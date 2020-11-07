@@ -4,17 +4,18 @@ namespace RayTracer.Core
 {
     public class Ray
     {
-        private Vector3 _origin;
-        private Vector3 _destination;
+        public Vector3 Origin { get; set; }
+
+        public Vector3 Direction { get; set; }
 
         public Ray()
             : this(Vector3.Zero, Vector3.Zero)
         { }
 
-        public Ray(Vector3 origin, Vector3 destination)
+        public Ray(Vector3 origin, Vector3 direction)
         {
-            _origin = origin;
-            _destination = destination;
+            Origin = origin;
+            Direction = direction;
         }
     }
 }
