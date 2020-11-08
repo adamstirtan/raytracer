@@ -1,5 +1,83 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
+@using RayTracer.Client.Models
+@using RayTracer.Core
 
-Welcome to your new app.
+<div class="d-md-flex h-md-100 align-items-center">
+
+    <div class="col-md-6 p-0 h-md-100 bg-editor">
+        <div class="d-md-flex align-items-center h-100 justify-content-center">
+            <div class="card">
+                <div class="card-header">
+                    Ray Tracer
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Scene Description</h5>
+                    <EditForm Model="@_scene" OnValidSubmit="@HandleValidSubmit">
+                        <DataAnnotationsValidator />
+                        <div class="form-row">
+                            <div class="form-group col-md-7">
+                                <label>Title</label>
+                                <div>
+                                    <InputText @bind-Value="@_scene.Name" class="form-control" />
+                                    <ValidationMessage For="@(() => _scene.Name)" />
+                                </div>
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label>Slug</label>
+                                <div>
+                                    <InputText @bind-Value="@_scene.Slug" class="form-control" readonly />
+                                    <ValidationMessage For="@(() => _scene.Slug)" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label>Scene</label>
+                                <div>
+                                    <InputTextArea @bind-Value="@_scene.Json" class="form-control" rows="20" />
+                                    <ValidationMessage For="@(() => @_scene.Json)" />
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-large btn-primary">
+                            Render
+                        </button>
+                    </EditForm>
+                </div>
+                <div class="card-footer text-muted">
+                    <a href="https://github.com/adamstirtan/raytracer">
+                        <span class="oi oi-code"></span> https://github.com/adamstirtan/raytracer
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 p-0 h-md-100">
+        <div class="d-md-flex align-items-center h-md-100 p-5 text-center justify-content-center">
+            <img src="https://placehold.it/800x600" class="rounded mx-auto d-block" alt="Render">
+        </div>
+    </div>
+</div>
+
+@code
+{
+    private Engine _engine;
+
+    private SceneDescription _scene = new SceneDescription
+    {
+        Name = "Spheres",
+        Slug = "sphere"
+    };
+
+    protected override Task OnInitializedAsync()
+    {
+        return base.OnInitializedAsync();
+    }
+
+    private Task HandleValidSubmit()
+    {
+        return Task.CompletedTask;
+    }
+}

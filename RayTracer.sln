@@ -3,11 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayTracer.Server", "RayTracer.Server\RayTracer.Server.csproj", "{EBBFFA9F-F5CA-4BB1-A736-5D9B762A5B72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RayTracer.Client", "RayTracer.Client\RayTracer.Client.csproj", "{07BBCFAF-9F87-4D0F-8660-7E9C44C550F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayTracer.Client", "RayTracer.Client\RayTracer.Client.csproj", "{07BBCFAF-9F87-4D0F-8660-7E9C44C550F4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayTracer.Core", "RayTracer.Core\RayTracer.Core.csproj", "{856F6D87-185C-4560-9F71-3F066BABAC63}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RayTracer.Core", "RayTracer.Core\RayTracer.Core.csproj", "{856F6D87-185C-4560-9F71-3F066BABAC63}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EBBFFA9F-F5CA-4BB1-A736-5D9B762A5B72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EBBFFA9F-F5CA-4BB1-A736-5D9B762A5B72}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EBBFFA9F-F5CA-4BB1-A736-5D9B762A5B72}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EBBFFA9F-F5CA-4BB1-A736-5D9B762A5B72}.Release|Any CPU.Build.0 = Release|Any CPU
 		{07BBCFAF-9F87-4D0F-8660-7E9C44C550F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{07BBCFAF-9F87-4D0F-8660-7E9C44C550F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07BBCFAF-9F87-4D0F-8660-7E9C44C550F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
