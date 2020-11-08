@@ -1,7 +1,10 @@
 ﻿@page "/"
 
+@using Newtonsoft.Json
+
 @using RayTracer.Client.Models
 @using RayTracer.Core
+@using RayTracer.Core.Scenes
 
 <div class="d-md-flex h-md-100 align-items-center">
 
@@ -17,14 +20,14 @@
                         <DataAnnotationsValidator />
                         <div class="form-row">
                             <div class="form-group col-md-7">
-                                <label>Title</label>
+                                <label>@nameof(_scene.Name)</label>
                                 <div>
                                     <InputText @bind-Value="@_scene.Name" class="form-control" />
                                     <ValidationMessage For="@(() => _scene.Name)" />
                                 </div>
                             </div>
                             <div class="form-group col-md-5">
-                                <label>Slug</label>
+                                <label>@nameof(_scene.Slug)</label>
                                 <div>
                                     <InputText @bind-Value="@_scene.Slug" class="form-control" readonly />
                                     <ValidationMessage For="@(() => _scene.Slug)" />
@@ -33,7 +36,7 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-12">
-                                <label>Scene</label>
+                                <label>@nameof(_scene.Json)</label>
                                 <div>
                                     <InputTextArea @bind-Value="@_scene.Json" class="form-control" rows="20" />
                                     <ValidationMessage For="@(() => @_scene.Json)" />
