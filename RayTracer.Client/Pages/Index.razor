@@ -59,7 +59,7 @@
 
     <div class="col-md-6 p-0 h-md-100">
         <div class="d-md-flex align-items-center h-md-100 p-5 text-center justify-content-center">
-            <img src="https://placehold.it/800x600" class="rounded mx-auto d-block" alt="Render">
+            <img src="@_imageData" class="rounded mx-auto d-block" alt="Render">
         </div>
     </div>
 </div>
@@ -67,24 +67,27 @@
 @code
 {
     private Engine _engine;
+    private string _imageData = "https://placehold.it/800x600";
 
     private SceneDescription _scene = new SceneDescription
     {
         Name = "Spheres",
         Slug = "sphere",
-        Json = @"{
-'primitives': [{
-'type': 'sphere'
-}]}"
+        Json = JsonConvert.SerializeObject(new SphereScene())
     };
-
-    protected override Task OnInitializedAsync()
-    {
-        return base.OnInitializedAsync();
-    }
 
     private void HandleValidSubmit()
     {
+        _engine = new Engine();
         _engine.LoadScene(new SphereScene());
+
+        var render = _engine.Render(800, 600);
+
+        using (System.IO.MemoryStream stream = new System.IO.MemoryStream())
+        {
+            render.Save(stream, render.RawFormat);
+
+            _imageData = Convert.ToBase64String(stream.ToArray());
+        }
     }
 }

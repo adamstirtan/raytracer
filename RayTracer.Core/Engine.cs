@@ -21,13 +21,13 @@ namespace RayTracer.Core
                 return null;
             }
 
-            Image render = new Bitmap(width, height);
+            var render = new Bitmap(width, height);
 
             for (int y = 0; y < height; y++)
             {
                 for (int x = 0; x < width; x++)
                 {
-                    Ray ray = new Ray(Vector3.Zero, Vector3.UnitZ);
+                    render.SetPixel(x, y, Color.Black);
                 }
             }
 

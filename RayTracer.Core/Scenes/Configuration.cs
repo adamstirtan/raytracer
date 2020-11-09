@@ -2,6 +2,6 @@
 {
     internal class Configuration
     {
-        public PrimitiveBase[] Primitives;
+        public Primitive[] Primitives;
     }
 }
