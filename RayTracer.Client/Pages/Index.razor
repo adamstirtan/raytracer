@@ -71,7 +71,11 @@
     private SceneDescription _scene = new SceneDescription
     {
         Name = "Spheres",
-        Slug = "sphere"
+        Slug = "sphere",
+        Json = @"{
+'primitives': [{
+'type': 'sphere'
+}]}"
     };
 
     protected override Task OnInitializedAsync()
@@ -79,8 +83,8 @@
         return base.OnInitializedAsync();
     }
 
-    private Task HandleValidSubmit()
+    private void HandleValidSubmit()
     {
-        return Task.CompletedTask;
+        _engine.LoadScene(new SphereScene());
     }
 }

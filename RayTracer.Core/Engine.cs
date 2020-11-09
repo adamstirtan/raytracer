@@ -34,7 +34,12 @@ namespace RayTracer.Core
             return render;
         }
 
-        public async Task LoadScene(string fileName)
+        public void LoadScene(Scene scene)
+        {
+            _scene = scene;
+        }
+
+        public async Task LoadSceneAsync(string fileName)
         {
             var directory = GetConfigurationDirectory();
             var filePath = Path.Combine(directory, fileName);

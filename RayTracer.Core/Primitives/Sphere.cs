@@ -3,7 +3,7 @@ using System.Numerics;
 
 namespace RayTracer.Core.Primitives
 {
-    public class Sphere : PrimitiveBase
+    public class Sphere : Primitive
     {
         public Vector3 Center { get; set; }
 
@@ -48,6 +48,11 @@ namespace RayTracer.Core.Primitives
             }
 
             return new IntersectionResult(RayIntersection.Miss, distance);
+        }
+
+        public override Vector3 GetNormal(Vector3 position)
+        {
+            return (position - Center) * (1.0f / Radius);
         }
     }
 }
