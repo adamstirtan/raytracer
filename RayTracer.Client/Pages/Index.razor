@@ -83,11 +83,9 @@
 
         var render = _engine.Render(800, 600);
 
-        using (System.IO.MemoryStream stream = new System.IO.MemoryStream())
+        if (render != null)
         {
-            render.Save(stream, render.RawFormat);
-
-            _imageData = Convert.ToBase64String(stream.ToArray());
+            _imageData = render;
         }
     }
 }

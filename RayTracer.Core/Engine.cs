@@ -1,4 +1,11 @@
-﻿using SixLabors.ImageSharp;
+﻿using System;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Numerics;
+
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Advanced;
+using SixLabors.ImageSharp.PixelFormats;
 
 using RayTracer.Core.Scenes;
 
@@ -8,24 +15,30 @@ namespace RayTracer.Core
     {
         private Scene _scene;
 
-        public Image Render(int width, int height)
+        public string Render(int width, int height)
         {
             if (_scene == null)
             {
                 return null;
             }
 
-            //var bitmap = new Image(SixLabors.ImageSharp.Configuration.Default, BmpBitsPerPixel, new Size(width, height))
+            using Image<Rgba32> render = new Image<Rgba32>(400, 400);
 
-            //for (int y = 0; y < height; y++)
-            //{
-            //    for (int x = 0; x < width; x++)
-            //    {
-            //        bitmap.SetPixel(x, y, Color.Black);
-            //    }
-            //}
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    render[x, y] = new Rgba32(Vector3.Zero);
+                }
+            }
 
-            return null;
+            var data = render
+                .GetPixelMemoryGroup()
+                .ToArray()[0];
+
+            var bytes = MemoryMarshal.AsBytes(data.Span).ToArray();
+
+            return Convert.ToBase64String(bytes);
         }
 
         public void LoadScene(Scene scene)
