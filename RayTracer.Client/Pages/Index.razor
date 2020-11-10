@@ -66,26 +66,26 @@
 
 @code
 {
-    private Engine _engine;
-    private string _imageData = "https://placehold.it/800x600";
+private Engine _engine;
+private string _imageData = "https://placehold.it/800x600";
 
-    private SceneDescription _scene = new SceneDescription
+private SceneDescription _scene = new SceneDescription
+{
+    Name = "Spheres",
+    Slug = "sphere",
+    Json = JsonConvert.SerializeObject(new SphereScene())
+};
+
+private void HandleValidSubmit()
+{
+    _engine = new Engine();
+    _engine.LoadScene(new SphereScene());
+
+    var render = _engine.Render(800, 600);
+
+    if (render != null)
     {
-        Name = "Spheres",
-        Slug = "sphere",
-        Json = JsonConvert.SerializeObject(new SphereScene())
-    };
-
-    private void HandleValidSubmit()
-    {
-        _engine = new Engine();
-        _engine.LoadScene(new SphereScene());
-
-        var render = _engine.Render(800, 600);
-
-        if (render != null)
-        {
-            _imageData = render;
-        }
+        _imageData = render;
     }
+}
 }
