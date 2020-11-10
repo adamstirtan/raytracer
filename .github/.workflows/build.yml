@@ -1,0 +1,40 @@
+name: "Deploy to Azure WebApp"
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  AZURE_WEBAPP_NAME: blazorraytracer
+  AZURE_WEBAPP_PACKAGE_PATH: './published'
+  NETCORE_VERSION: '3.1'
+  PROJECT_FILE: 'Raytracer.Client/RayTracer.Client.csproj'
+
+jobs:
+  build:
+    name: Windows Build Agent
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup .NET Core SDK ${{ env.NETCORE_VERSION }}
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ env.NETCORE_VERSION }}
+
+    - name: Restore
+      run: dotnet restore ${{ env.PROJECT_FILE }}
+    
+    - name: Build
+      run: dotnet build ${{ env.PROJECT_FILE }} --no-restore -c Release
+
+    - name: Publish
+      run: dotnet publish ${{ env.PROJECT_FILE }} --no-build -c Release -o ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+    
+    - name: Deploy to Azure
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
