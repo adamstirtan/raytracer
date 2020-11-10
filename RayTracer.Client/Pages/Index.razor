@@ -16,31 +16,14 @@
                             Ray Tracer
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Scene Description</h5>
-                            <EditForm Model="@Scene" OnValidSubmit="@HandleValidSubmit">
+                            <EditForm Model="@Configuration" OnValidSubmit="@HandleValidSubmit">
                                 <DataAnnotationsValidator />
                                 <div class="form-row">
-                                    <div class="form-group col-md-7">
-                                        <label>@nameof(Scene.Name)</label>
-                                        <div>
-                                            <InputText @bind-Value="@Scene.Name" class="form-control" />
-                                            <ValidationMessage For="@(() => Scene.Name)" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-md-5">
-                                        <label>@nameof(Scene.Slug)</label>
-                                        <div>
-                                            <InputText @bind-Value="@Scene.Slug" class="form-control" readonly />
-                                            <ValidationMessage For="@(() => Scene.Slug)" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-row">
                                     <div class="form-group col-md-12">
-                                        <label>@nameof(Scene.Json)</label>
+                                        <label>@nameof(Configuration.Json)</label>
                                         <div>
-                                            <InputTextArea @bind-Value="@Scene.Json" class="form-control" rows="15" />
-                                            <ValidationMessage For="@(() => Scene.Json)" />
+                                            <InputTextArea @bind-Value="@Configuration.Json" class="form-control" rows="15" />
+                                            <ValidationMessage For="@(() => Configuration.Json)" />
                                         </div>
                                     </div>
                                 </div>
@@ -60,7 +43,7 @@
         </div>
         <div class="col-lg-6">
             <div class="d-flex align-items-center render">
-                <img class="rounded mx-auto d-block" src="@ImageData" />
+                <img class="img-fluid rounded px-5" src="@ImageData" />
             </div>
         </div>
     </div>
@@ -72,10 +55,8 @@
 
     protected string ImageData = "https://placehold.it/800x600";
 
-    protected SceneDescription Scene = new SceneDescription
+    protected EngineConfiguration Configuration = new EngineConfiguration
     {
-        Name = "Spheres",
-        Slug = "sphere",
         Json = JsonConvert.SerializeObject(new SphereScene())
     };
 
