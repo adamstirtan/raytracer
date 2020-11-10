@@ -1,10 +1,4 @@
-﻿using System;
-using System.Drawing;
-using System.IO;
-using System.Numerics;
-using System.Threading.Tasks;
-
-using Newtonsoft.Json;
+﻿using SixLabors.ImageSharp;
 
 using RayTracer.Core.Scenes;
 
@@ -21,55 +15,22 @@ namespace RayTracer.Core
                 return null;
             }
 
-            var render = new Bitmap(width, height);
+            //var bitmap = new Image(SixLabors.ImageSharp.Configuration.Default, BmpBitsPerPixel, new Size(width, height))
 
-            for (int y = 0; y < height; y++)
-            {
-                for (int x = 0; x < width; x++)
-                {
-                    render.SetPixel(x, y, Color.Black);
-                }
-            }
+            //for (int y = 0; y < height; y++)
+            //{
+            //    for (int x = 0; x < width; x++)
+            //    {
+            //        bitmap.SetPixel(x, y, Color.Black);
+            //    }
+            //}
 
-            return render;
+            return null;
         }
 
         public void LoadScene(Scene scene)
         {
             _scene = scene;
-        }
-
-        public async Task LoadSceneAsync(string fileName)
-        {
-            var directory = GetConfigurationDirectory();
-            var filePath = Path.Combine(directory, fileName);
-
-            if (!File.Exists(filePath))
-            {
-                throw new ArgumentException($"Configuration file not found: {filePath}");
-            }
-
-            var configuration = JsonConvert.DeserializeObject<Configuration>(
-                await File.ReadAllTextAsync(filePath));
-
-            _scene = new Scene();
-
-            foreach (var p in configuration.Primitives)
-            {
-                _scene.AddPrimitive(p);
-            }
-        }
-
-        private static string GetConfigurationDirectory()
-        {
-            var baseDirectory = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
-
-            if (baseDirectory.Parent?.Parent?.Parent != null)
-            {
-                return baseDirectory.Parent.Parent.Parent.FullName;
-            }
-
-            throw new DirectoryNotFoundException();
         }
     }
 }
