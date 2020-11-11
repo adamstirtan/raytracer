@@ -64,7 +64,14 @@
     {
         _engine.LoadScene(new SphereScene());
 
+        var stopwatch = new System.Diagnostics.Stopwatch();
+        stopwatch.Start();
+
         var render = _engine.Render(800, 600);
+
+        stopwatch.Stop();
+
+        Console.WriteLine($"Render took {stopwatch.ElapsedMilliseconds}ms");
 
         if (render != null)
         {

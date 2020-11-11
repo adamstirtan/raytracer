@@ -1,4 +1,6 @@
-﻿using SixLabors.ImageSharp;
+﻿using System;
+
+using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats.Png;
 using SixLabors.ImageSharp.PixelFormats;
 
@@ -21,9 +23,11 @@ namespace RayTracer.Core
 
             for (int y = 0; y < height; y++)
             {
-                for (int x = 0; x < width; x++)
+                Span<Rgba32> pixelRowSpan = render.GetPixelRowSpan(y);
+
+                for (int x = 0; x < render.Width; x++)
                 {
-                    render[x, y] = new Rgba32(120, 120, 120);
+                    pixelRowSpan[x] = new Rgba32(120, 120, 120);
                 }
             }
 

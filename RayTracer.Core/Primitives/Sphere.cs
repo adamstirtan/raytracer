@@ -1,18 +1,26 @@
 ﻿using System;
 using System.Numerics;
 
+using RayTracer.Core.Materials;
+
 namespace RayTracer.Core.Primitives
 {
     public class Sphere : Primitive
     {
+        public Sphere(Vector3 center, float radius, Material material)
+            : base(material)
+        {
+            Center = center;
+            Radius = radius;
+        }
+
         public Vector3 Center { get; set; }
 
         public float Radius { get; set; }
 
-        public Sphere(Vector3 center, float radius)
+        public override PrimitiveType GetPrimitiveType()
         {
-            Center = center;
-            Radius = radius;
+            return PrimitiveType.Sphere;
         }
 
         public override IntersectionResult Intersects(Ray ray, float distance)
