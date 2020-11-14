@@ -1,21 +1,17 @@
 ﻿using System.Collections.Generic;
+using System.Numerics;
 
 namespace RayTracer.Core.Scenes
 {
     public class Scene
     {
-        private readonly HashSet<Primitive> _primitives;
+        public List<Primitive> Primitives;
+        public Vector3 CameraPosition;
 
-        public Scene()
+        public Scene(Vector3 cameraPosition)
         {
-            _primitives = new HashSet<Primitive>();
-        }
-
-        public int Count => _primitives.Count;
-
-        public void AddPrimitive(Primitive primitive)
-        {
-            _primitives.Add(primitive);
+            Primitives = new List<Primitive>();
+            CameraPosition = cameraPosition;
         }
     }
 }

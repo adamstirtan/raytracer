@@ -11,7 +11,10 @@ namespace RayTracer.Core.Scenes
 {
     public class SphereScene : Scene
     {
+        private static readonly Vector3 cameraPosition = new Vector3(0, 0, -5);
+
         public SphereScene()
+            : base(cameraPosition)
         {
             Plane ground = new Plane(new Vector3(0, 0, 5f), 10, new Material(Color.Green,
                 diffuse: 0,
@@ -31,11 +34,11 @@ namespace RayTracer.Core.Scenes
             Light light1 = new Light(new Vector3(0, 5f, 5f), 0.1f, new Material(Color.Silver));
             Light light2 = new Light(new Vector3(0, 5f, 5f), 0.1f, new Material(Color.LightGray));
 
-            AddPrimitive(ground);
-            AddPrimitive(bigSphere);
-            AddPrimitive(smallSphere);
-            AddPrimitive(light1);
-            AddPrimitive(light2);
+            Primitives.Add(ground);
+            Primitives.Add(bigSphere);
+            Primitives.Add(smallSphere);
+            Primitives.Add(light1);
+            Primitives.Add(light2);
         }
     }
 }
