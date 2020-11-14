@@ -6,11 +6,14 @@ using SixLabors.ImageSharp.Formats.Png;
 using SixLabors.ImageSharp.PixelFormats;
 
 using RayTracer.Core.Scenes;
+using RayTracer.Core.Primitives;
 
 namespace RayTracer.Core
 {
     public sealed class Engine
     {
+        private const int TRACE_DEPTH = 6;
+
         private Scene _scene;
         private float _wx1;
         private float _wy1;
@@ -44,7 +47,7 @@ namespace RayTracer.Core
             {
                 Span<Rgba32> pixelRowSpan = render.GetPixelRowSpan(y);
 
-                for (int x = 0; x < render.Width; x++)
+                for (int x = 0; x < width; x++)
                 {
                     float distance = 0;
                     Vector3 color = Vector3.Zero;
@@ -74,7 +77,68 @@ namespace RayTracer.Core
             _scene = scene;
         }
 
-        private void Raytrace(Ray ray, ref Vector3 color, int depth, float index, ref float distance)
-        { }
+        private Primitive Raytrace(Ray ray, ref Vector3 color, int depth, float index, ref float distance)
+        {
+            if (depth > TRACE_DEPTH)
+            {
+                return null;
+            }
+
+            float minDistance = float.MaxValue;
+            distance = 1000000f;
+
+            Primitive closest = null;
+            IntersectionResult result;
+
+            foreach (var primitive in _scene.Primitives)
+            {
+                result = primitive.Intersects(ray, distance);
+
+                if (result.RayIntersection == RayIntersection.Hit)
+                {
+                    if (result.Distance < minDistance)
+                    {
+                        closest = primitive;
+                        minDistance = result.Distance;
+                    }
+                }
+            }
+
+            if (closest == null)
+            {
+                return null;
+            }
+
+            if (closest is Light)
+            {
+                color = Vector3.One;
+            }
+            else
+            {
+                Vector3 intersection = Vector3.Multiply(distance, Vector3.Add(ray.Origin, ray.Direction));
+
+                foreach (var primitive in _scene.Primitives)
+                {
+                    if (primitive is Light)
+                    {
+                        Vector3 l = Vector3.Normalize(((Light)primitive).Center);
+                        Vector3 n = closest.GetNormal(intersection);
+
+                        if (closest.Material.Diffuse > 0)
+                        {
+                            float dot = Vector3.Dot(n, l);
+
+                            if (dot > 0)
+                            {
+                                float diff = dot * closest.Material.Diffuse;
+                                color += diff * closest.Material.Color * primitive.Material.Color;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return closest;
+        }
     }
 }

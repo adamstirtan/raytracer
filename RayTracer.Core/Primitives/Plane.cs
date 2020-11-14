@@ -1,5 +1,4 @@
-﻿using System;
-using System.Numerics;
+﻿using System.Numerics;
 
 using RayTracer.Core.Materials;
 
@@ -29,7 +28,19 @@ namespace RayTracer.Core.Primitives
 
         public override IntersectionResult Intersects(Ray ray, float distance)
         {
-            throw new NotImplementedException();
+            float d = Vector3.Dot(Normal, ray.Direction);
+
+            float dist = -(Vector3.Dot(Normal, ray.Origin) + D) / d;
+
+            if (dist > 0)
+            {
+                if (dist < distance)
+                {
+                    return new IntersectionResult(RayIntersection.Hit, dist);
+                }
+            }
+
+            return new IntersectionResult(RayIntersection.Miss, distance);
         }
     }
 }
