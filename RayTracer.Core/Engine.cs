@@ -54,9 +54,9 @@ namespace RayTracer.Core
 
                     Raytrace(ray, ref color, 1, 1f, ref distance);
 
-                    int red = Math.Min(255, (int)color.X * 256);
-                    int green = Math.Min(255, (int)color.Y * 256);
-                    int blue = Math.Min(255, (int)color.Z * 256);
+                    int red = (int)Math.Clamp(color.X * 256, 0, 255);
+                    int green = (int)Math.Clamp(color.Y * 256, 0, 255);
+                    int blue = (int)Math.Clamp(color.Z * 256, 0, 255);
 
                     pixelRowSpan[x] = new Rgba32(red, green, blue);
 
