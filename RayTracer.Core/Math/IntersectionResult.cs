@@ -1,4 +1,4 @@
-﻿namespace RayTracer.Core
+﻿namespace RayTracer.Core.Math
 {
     public class IntersectionResult
     {

@@ -1,11 +1,10 @@
 ﻿using System.Numerics;
 
-namespace RayTracer.Core
+namespace RayTracer.Core.Math
 {
     public class Ray
     {
         public Vector3 Origin { get; set; }
-
         public Vector3 Direction { get; set; }
 
         public Ray()

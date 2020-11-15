@@ -2,9 +2,9 @@
 
 @using Newtonsoft.Json
 
-@using RayTracer.Client.Models
 @using RayTracer.Core
 @using RayTracer.Core.Scenes
+@using RayTracer.Core.Settings
 
 <div class="container-fluid p-0">
     <div class="row no-gutters">
@@ -16,14 +16,14 @@
                             Ray Tracer
                         </div>
                         <div class="card-body">
-                            <EditForm Model="@Configuration" OnValidSubmit="@HandleValidSubmit">
+                            <EditForm Model="@Settings" OnValidSubmit="@HandleValidSubmit">
                                 <DataAnnotationsValidator />
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
-                                        <label>@nameof(Configuration.Json)</label>
+                                        <label>@nameof(Settings.Json)</label>
                                         <div>
-                                            <InputTextArea @bind-Value="@Configuration.Json" class="form-control" rows="12" />
-                                            <ValidationMessage For="@(() => Configuration.Json)" />
+                                            <InputTextArea @bind-Value="@Settings.Json" class="form-control" rows="12" />
+                                            <ValidationMessage For="@(() => Settings.Json)" />
                                         </div>
                                     </div>
                                 </div>
@@ -51,27 +51,23 @@
 
 @code
 {
-    private Engine _engine = new Engine();
+    protected int Width = 1024;
+    protected int Height = 768;
 
-    protected string ImageData = "https://placehold.it/800x600";
+    protected string ImageData = "https://placehold.it/1024x768";
 
-    protected EngineConfiguration Configuration = new EngineConfiguration
+    protected RenderSettings Settings = new RenderSettings
     {
-        Json = JsonConvert.SerializeObject(new SphereScene())
+        Json = JsonConvert.SerializeObject(new SphereScene(), Formatting.Indented)
     };
 
     private void HandleValidSubmit()
     {
-        _engine.LoadScene(new SphereScene());
+        var engine = new Engine();
 
-        var stopwatch = new System.Diagnostics.Stopwatch();
-        stopwatch.Start();
+        engine.LoadScene(new SphereScene());
 
-        var render = _engine.Render(800, 600);
-
-        stopwatch.Stop();
-
-        Console.WriteLine($"Render took {stopwatch.ElapsedMilliseconds}ms");
+        var render = engine.Render(Width, Height);
 
         if (render != null)
         {

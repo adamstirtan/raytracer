@@ -6,6 +6,7 @@ using SixLabors.ImageSharp.Formats.Png;
 using SixLabors.ImageSharp.PixelFormats;
 
 using RayTracer.Core.Scenes;
+using RayTracer.Core.Math;
 using RayTracer.Core.Primitives;
 
 namespace RayTracer.Core

@@ -1,7 +1,7 @@
-﻿using System;
-using System.Numerics;
+﻿using System.Numerics;
 
 using RayTracer.Core.Materials;
+using RayTracer.Core.Math;
 
 namespace RayTracer.Core.Primitives
 {
@@ -15,7 +15,7 @@ namespace RayTracer.Core.Primitives
             Center = center;
             Radius = radius;
 
-            _radiusSquared = (float)Math.Pow(Radius, 2);
+            _radiusSquared = (float)System.Math.Pow(Radius, 2);
         }
 
         public Vector3 Center { get; set; }
@@ -36,7 +36,7 @@ namespace RayTracer.Core.Primitives
 
             if (det > 0)
             {
-                det = (float)Math.Sqrt(det);
+                det = (float)System.Math.Sqrt(det);
                 float i1 = b - det;
                 float i2 = b + det;
 

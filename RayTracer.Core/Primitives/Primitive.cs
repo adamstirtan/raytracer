@@ -1,6 +1,7 @@
 ﻿using System.Numerics;
 
 using RayTracer.Core.Materials;
+using RayTracer.Core.Math;
 using RayTracer.Core.Primitives;
 
 namespace RayTracer.Core
