@@ -26,21 +26,21 @@ namespace RayTracer.Core.Primitives
             return PrimitiveType.Plane;
         }
 
-        public override IntersectionResult Intersects(Ray ray, float distance)
+        public override RayIntersection Intersects(Ray ray, ref float distance)
         {
             float d = Vector3.Dot(Normal, ray.Direction);
-
             float dist = -(Vector3.Dot(Normal, ray.Origin) + D) / d;
 
             if (dist > 0)
             {
                 if (dist < distance)
                 {
-                    return new IntersectionResult(RayIntersection.Hit, dist);
+                    distance = dist;
+                    return RayIntersection.Hit;
                 }
             }
 
-            return new IntersectionResult(RayIntersection.Miss, distance);
+            return RayIntersection.Miss;
         }
     }
 }

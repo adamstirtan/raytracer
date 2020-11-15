@@ -7,11 +7,15 @@ namespace RayTracer.Core.Primitives
 {
     public class Sphere : Primitive
     {
+        private readonly float _radiusSquared;
+
         public Sphere(Vector3 center, float radius, Material material)
             : base(material)
         {
             Center = center;
             Radius = radius;
+
+            _radiusSquared = (float)Math.Pow(Radius, 2);
         }
 
         public Vector3 Center { get; set; }
@@ -23,12 +27,12 @@ namespace RayTracer.Core.Primitives
             return PrimitiveType.Sphere;
         }
 
-        public override IntersectionResult Intersects(Ray ray, float distance)
+        public override RayIntersection Intersects(Ray ray, ref float distance)
         {
             var v = ray.Origin - Center;
 
             float b = -Vector3.Dot(v, ray.Direction);
-            float det = (b * b) - Vector3.Dot(v, v) + Radius;
+            float det = (b * b) - Vector3.Dot(v, v) + _radiusSquared;
 
             if (det > 0)
             {
@@ -42,20 +46,22 @@ namespace RayTracer.Core.Primitives
                     {
                         if (i2 < distance)
                         {
-                            return new IntersectionResult(RayIntersection.Inside, i2);
+                            distance = i2;
+                            return RayIntersection.Inside;
                         }
                     }
                     else
                     {
                         if (i1 < distance)
                         {
-                            return new IntersectionResult(RayIntersection.Hit, i1);
+                            distance = i1;
+                            return RayIntersection.Hit;
                         }
                     }
                 }
             }
 
-            return new IntersectionResult(RayIntersection.Miss, distance);
+            return RayIntersection.Miss;
         }
 
         public override Vector3 GetNormal(Vector3 position)

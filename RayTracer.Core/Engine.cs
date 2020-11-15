@@ -45,6 +45,8 @@ namespace RayTracer.Core
 
             for (int y = 0; y < height; y++)
             {
+                _sx = _wx1;
+
                 Span<Rgba32> pixelRowSpan = render.GetPixelRowSpan(y);
 
                 for (int x = 0; x < width; x++)
@@ -57,11 +59,15 @@ namespace RayTracer.Core
 
                     Raytrace(ray, ref color, 1, 1f, ref distance);
 
-                    int red = (int)Math.Clamp(color.X * 256, 0, 255);
-                    int green = (int)Math.Clamp(color.Y * 256, 0, 255);
-                    int blue = (int)Math.Clamp(color.Z * 256, 0, 255);
+                    //int r = (int)Math.Max(0, Math.Min(color.X * 256, 255));
+                    //int g = (int)Math.Max(0, Math.Min(color.Y * 256, 255));
+                    //int b = (int)Math.Max(0, Math.Min(color.Z * 256, 255));
 
-                    pixelRowSpan[x] = new Rgba32(red, green, blue);
+                    //int red = (int)Math.Clamp(color.X * 256, 0, 255);
+                    //int green = (int)Math.Clamp(color.Y * 256, 0, 255);
+                    //int blue = (int)Math.Clamp(color.Z * 256, 0, 255);
+
+                    pixelRowSpan[x] = new Rgba32(color.X, color.Y, color.Z);
 
                     _sx += _dx;
                 }
@@ -84,23 +90,17 @@ namespace RayTracer.Core
                 return null;
             }
 
-            float minDistance = float.MaxValue;
             distance = 1000000f;
-
             Primitive closest = null;
-            IntersectionResult result;
+            RayIntersection result;
 
             foreach (var primitive in _scene.Primitives)
             {
-                result = primitive.Intersects(ray, distance);
+                result = primitive.Intersects(ray, ref distance);
 
-                if (result.RayIntersection == RayIntersection.Hit)
+                if (result == RayIntersection.Hit)
                 {
-                    if (result.Distance < minDistance)
-                    {
-                        closest = primitive;
-                        minDistance = result.Distance;
-                    }
+                    closest = primitive;
                 }
             }
 
@@ -115,13 +115,15 @@ namespace RayTracer.Core
             }
             else
             {
-                Vector3 intersection = Vector3.Multiply(distance, Vector3.Add(ray.Origin, ray.Direction));
+                Vector3 intersection = Vector3.Add(ray.Origin, Vector3.Multiply(distance, ray.Direction));
 
                 foreach (var primitive in _scene.Primitives)
                 {
                     if (primitive is Light)
                     {
-                        Vector3 l = Vector3.Normalize(((Light)primitive).Center);
+                        Vector3 l = ((Light)primitive).Center - intersection;
+                        l = Vector3.Normalize(l);
+
                         Vector3 n = closest.GetNormal(intersection);
 
                         if (closest.Material.Diffuse > 0)

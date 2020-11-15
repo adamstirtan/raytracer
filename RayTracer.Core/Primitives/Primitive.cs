@@ -16,7 +16,7 @@ namespace RayTracer.Core
 
         public abstract PrimitiveType GetPrimitiveType();
 
-        public abstract IntersectionResult Intersects(Ray ray, float distance);
+        public abstract RayIntersection Intersects(Ray ray, ref float distance);
 
         public abstract Vector3 GetNormal(Vector3 position);
     }
