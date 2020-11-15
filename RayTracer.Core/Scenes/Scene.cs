@@ -1,5 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+
 using System.Numerics;
+
+using RayTracer.Core.Primitives;
 
 namespace RayTracer.Core.Scenes
 {
@@ -12,6 +16,11 @@ namespace RayTracer.Core.Scenes
         {
             Primitives = new List<Primitive>();
             CameraPosition = cameraPosition;
+        }
+
+        public IEnumerable<Light> Lights()
+        {
+            return Primitives.Where(x => x.GetPrimitiveType() == PrimitiveType.Light).AsEnumerable().Cast<Light>();
         }
     }
 }

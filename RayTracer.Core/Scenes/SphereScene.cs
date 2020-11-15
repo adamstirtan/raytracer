@@ -29,8 +29,8 @@ namespace RayTracer.Core.Scenes
                 reflection: 0,
                 specular: 0));
 
-            Light light1 = new Light(new Vector3(0f, 9f, 5f), 0.1f, new Material(new Vector3(0.6f, 0.6f, 0.6f)));
-            Light light2 = new Light(new Vector3(2f, 5f, 1f), 0.1f, new Material(new Vector3(0.7f, 0.6f, 0.9f)));
+            Light light1 = new Light(new Vector3(0f, 5f, 5f), float.MinValue, new Material(new Vector3(0.6f, 0.6f, 0.6f)));
+            Light light2 = new Light(new Vector3(2f, 5f, 1f), float.MinValue, new Material(new Vector3(0.7f, 0.6f, 0.9f)));
 
             Primitives.Add(ground);
             Primitives.Add(bigSphere);

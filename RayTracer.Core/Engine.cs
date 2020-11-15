@@ -15,14 +15,6 @@ namespace RayTracer.Core
         private const int TRACE_DEPTH = 6;
 
         private Scene _scene;
-        private float _wx1;
-        private float _wy1;
-        private float _wx2;
-        private float _wy2;
-        private float _dx;
-        private float _dy;
-        private float _sx;
-        private float _sy;
 
         public string Render(int width, int height)
         {
@@ -31,21 +23,18 @@ namespace RayTracer.Core
                 return null;
             }
 
-            // Screen plane in world space coordinates
-            _wx1 = -4;
-            _wx2 = 4;
-            _wy1 = _sy = 3;
-            _wy2 = -3;
+            Vector2 topLeft = new Vector2(-4, 3);
+            Vector2 bottomRight = new Vector2(4, -3);
 
-            // Deltas for interpolation
-            _dx = (_wx2 - _wx1) / width;
-            _dy = (_wy2 - _wy1) / height;
+            float deltaX = (bottomRight.X - topLeft.X) / width;
+            float deltaY = (bottomRight.Y - topLeft.Y) / height;
+            float screenDeltaY = topLeft.Y;
 
             using Image<Rgba32> render = new Image<Rgba32>(width, height);
 
             for (int y = 0; y < height; y++)
             {
-                _sx = _wx1;
+                float screenDeltaX = topLeft.X;
 
                 Span<Rgba32> pixelRowSpan = render.GetPixelRowSpan(y);
 
@@ -53,26 +42,17 @@ namespace RayTracer.Core
                 {
                     float distance = 0;
                     Vector3 color = Vector3.Zero;
-                    Vector3 direction = new Vector3(_sx, _sy, 0) - _scene.CameraPosition;
+                    Vector3 direction = new Vector3(screenDeltaX, screenDeltaY, 0) - _scene.CameraPosition;
 
                     Ray ray = new Ray(_scene.CameraPosition, Vector3.Normalize(direction));
-
-                    Raytrace(ray, ref color, 1, 1f, ref distance);
-
-                    //int r = (int)Math.Max(0, Math.Min(color.X * 256, 255));
-                    //int g = (int)Math.Max(0, Math.Min(color.Y * 256, 255));
-                    //int b = (int)Math.Max(0, Math.Min(color.Z * 256, 255));
-
-                    //int red = (int)Math.Clamp(color.X * 256, 0, 255);
-                    //int green = (int)Math.Clamp(color.Y * 256, 0, 255);
-                    //int blue = (int)Math.Clamp(color.Z * 256, 0, 255);
+                    Raytrace(ray, ref color, 1, 1, ref distance);
 
                     pixelRowSpan[x] = new Rgba32(color.X, color.Y, color.Z);
 
-                    _sx += _dx;
+                    screenDeltaX += deltaX;
                 }
 
-                _sy += _dy;
+                screenDeltaY += deltaY;
             }
 
             return render.ToBase64String(PngFormat.Instance);
@@ -83,7 +63,7 @@ namespace RayTracer.Core
             _scene = scene;
         }
 
-        private Primitive Raytrace(Ray ray, ref Vector3 color, int depth, float index, ref float distance)
+        private Primitive Raytrace(Ray ray, ref Vector3 color, int depth, float reflectionIndex, ref float distance)
         {
             if (depth > TRACE_DEPTH)
             {
@@ -111,30 +91,24 @@ namespace RayTracer.Core
 
             if (closest is Light)
             {
-                color = Vector3.One;
+                color = closest.Material.Color;
             }
             else
             {
                 Vector3 intersection = Vector3.Add(ray.Origin, Vector3.Multiply(distance, ray.Direction));
 
-                foreach (var primitive in _scene.Primitives)
+                foreach (var light in _scene.Lights())
                 {
-                    if (primitive is Light)
+                    Vector3 l = Vector3.Normalize(light.Center - intersection);
+                    Vector3 n = closest.GetNormal(intersection);
+
+                    if (closest.Material.Diffuse > 0)
                     {
-                        Vector3 l = ((Light)primitive).Center - intersection;
-                        l = Vector3.Normalize(l);
+                        float dot = Vector3.Dot(n, l);
 
-                        Vector3 n = closest.GetNormal(intersection);
-
-                        if (closest.Material.Diffuse > 0)
+                        if (dot > 0)
                         {
-                            float dot = Vector3.Dot(n, l);
-
-                            if (dot > 0)
-                            {
-                                float diff = dot * closest.Material.Diffuse;
-                                color += diff * closest.Material.Color * primitive.Material.Color;
-                            }
+                            color += dot * closest.Material.Diffuse * closest.Material.Color * light.Material.Color;
                         }
                     }
                 }
