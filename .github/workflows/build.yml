@@ -8,7 +8,7 @@ on:
 env:
   AZURE_WEBAPP_NAME: blazorraytracer
   AZURE_WEBAPP_PACKAGE_PATH: './published'
-  NETCORE_VERSION: '3.1'
+  NET_VERSION: '5.0.100'
   PROJECT_FILE: 'Raytracer.Client/RayTracer.Client.csproj'
 
 jobs:
@@ -18,10 +18,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Setup .NET Core SDK ${{ env.NETCORE_VERSION }}
+    - name: Setup .NET SDK ${{ env.NET_VERSION }}
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: ${{ env.NETCORE_VERSION }}
+        dotnet-version: ${{ env.NET_VERSION }}
 
     - name: Restore
       run: dotnet restore ${{ env.PROJECT_FILE }}
