@@ -6,7 +6,7 @@ on:
       - master
 
 env:
-  AZURE_WEBAPP_NAME: blazorraytracer
+  AZURE_WEBAPP_NAME: raytracer-as
   AZURE_WEBAPP_PACKAGE_PATH: './published'
   NET_VERSION: '5.0.100'
   PROJECT_FILE: 'Raytracer.Client/RayTracer.Client.csproj'
