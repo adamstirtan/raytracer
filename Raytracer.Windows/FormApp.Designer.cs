@@ -37,8 +37,8 @@ namespace Raytracer.Windows
             // pboxRender
             // 
             this.pboxRender.BackColor = System.Drawing.Color.Black;
-            this.pboxRender.Dock = System.Windows.Forms.DockStyle.Top;
             this.pboxRender.Location = new System.Drawing.Point(0, 0);
+            this.pboxRender.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.pboxRender.Name = "pboxRender";
             this.pboxRender.Size = new System.Drawing.Size(800, 600);
             this.pboxRender.TabIndex = 0;
@@ -46,9 +46,10 @@ namespace Raytracer.Windows
             // 
             // buttonRender
             // 
-            this.buttonRender.Location = new System.Drawing.Point(22, 620);
+            this.buttonRender.Location = new System.Drawing.Point(10, 612);
+            this.buttonRender.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.buttonRender.Name = "buttonRender";
-            this.buttonRender.Size = new System.Drawing.Size(756, 139);
+            this.buttonRender.Size = new System.Drawing.Size(780, 43);
             this.buttonRender.TabIndex = 1;
             this.buttonRender.Text = "Render";
             this.buttonRender.UseVisualStyleBackColor = true;
@@ -56,12 +57,13 @@ namespace Raytracer.Windows
             // 
             // FormApp
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(20F, 48F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 785);
+            this.ClientSize = new System.Drawing.Size(800, 664);
             this.Controls.Add(this.buttonRender);
             this.Controls.Add(this.pboxRender);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.MaximizeBox = false;
             this.Name = "FormApp";
             this.Text = "Ray Tracer";
