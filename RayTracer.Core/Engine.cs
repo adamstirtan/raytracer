@@ -2,7 +2,6 @@
 using System.Numerics;
 
 using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.Formats.Png;
 using SixLabors.ImageSharp.PixelFormats;
 
 using RayTracer.Core.Scenes;
@@ -17,7 +16,7 @@ namespace RayTracer.Core
 
         private Scene _scene;
 
-        public string Render(int width, int height)
+        public Image<Rgba32> Render(int width, int height)
         {
             if (_scene == null)
             {
@@ -31,7 +30,7 @@ namespace RayTracer.Core
             float deltaY = (bottomRight.Y - topLeft.Y) / height;
             float screenDeltaY = topLeft.Y;
 
-            using Image<Rgba32> render = new Image<Rgba32>(width, height);
+            Image<Rgba32> render = new Image<Rgba32>(width, height);
 
             for (int y = 0; y < height; y++)
             {
@@ -56,7 +55,7 @@ namespace RayTracer.Core
                 screenDeltaY += deltaY;
             }
 
-            return render.ToBase64String(PngFormat.Instance);
+            return render;
         }
 
         public void LoadScene(Scene scene)

@@ -9,6 +9,9 @@ namespace RayTracer.Core.Primitives
     {
         private readonly float _radiusSquared;
 
+        public Vector3 Center { get; set; }
+        public float Radius { get; set; }
+
         public Sphere(Vector3 center, float radius, Material material)
             : base(material)
         {
@@ -17,10 +20,6 @@ namespace RayTracer.Core.Primitives
 
             _radiusSquared = (float)System.Math.Pow(Radius, 2);
         }
-
-        public Vector3 Center { get; set; }
-
-        public float Radius { get; set; }
 
         public override PrimitiveType GetPrimitiveType()
         {
