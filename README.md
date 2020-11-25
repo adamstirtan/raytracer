@@ -2,6 +2,8 @@
 ### An extensible ray tracer made with .NET
 ***
 
+![Sphere scene](https://i.imgur.com/0jIxjwGl.png)
+
 **Demo site**: http://raytracer-as.azurewebsites.net/
 
 When I was in University one of my projects was to write a ray tracer. The course was https://www.cosc.brocku.ca/Offerings/4P98/.
