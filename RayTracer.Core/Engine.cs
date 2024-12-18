@@ -44,9 +44,9 @@ namespace RayTracer.Core
                 {
                     float distance = float.MaxValue;
                     Vector3 color = Vector3.Zero;
-                    Vector3 direction = new Vector3(screenDeltaX, screenDeltaY, 0) - _scene.CameraPosition;
+                    Vector3 direction = new Vector3(screenDeltaX, screenDeltaY, 0) - _scene.Camera.Position;
 
-                    Ray ray = new(_scene.CameraPosition, Vector3.Normalize(direction));
+                    Ray ray = new(_scene.Camera.Position, Vector3.Normalize(direction));
                     Raytrace(ray, ref color, 1, 1, ref distance);
 
                     color = Vector3.Clamp(color, Vector3.Zero, Vector3.One);
@@ -78,7 +78,7 @@ namespace RayTracer.Core
             Primitive closest = null;
             RayIntersection result;
 
-            foreach (var primitive in _scene.Primitives)
+            foreach (Primitive primitive in _scene)
             {
                 float currentDistance = distance;
                 result = primitive.Intersects(ray, ref currentDistance);
@@ -92,6 +92,7 @@ namespace RayTracer.Core
 
             if (closest == null)
             {
+                color = new Vector3(0, 0, 0);
                 return null;
             }
 
@@ -106,7 +107,7 @@ namespace RayTracer.Core
                 Vector3 intersection = Vector3.Add(ray.Origin, Vector3.Multiply(distance, ray.Direction));
                 Vector3 normal = closest.GetNormal(intersection);
 
-                foreach (var light in _scene.Lights())
+                foreach (Light light in _scene.OfType<Light>())
                 {
                     Vector3 lightDirection = Vector3.Normalize(light.Center - intersection);
                     float dot = Vector3.Dot(normal, lightDirection);
@@ -120,7 +121,7 @@ namespace RayTracer.Core
                 if (closest.Material.Reflection > 0 && depth < TRACE_DEPTH)
                 {
                     Vector3 reflectionDirection = Vector3.Reflect(ray.Direction, normal);
-                    Ray reflectedRay = new(intersection, reflectionDirection);
+                    Ray reflectedRay = new(intersection + reflectionDirection * 0.001f, reflectionDirection); // Offset to avoid self-intersection
                     Vector3 reflectedColor = Vector3.Zero;
                     float reflectedDistance = float.MaxValue;
 
