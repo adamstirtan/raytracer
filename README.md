@@ -2,7 +2,7 @@
 ### An extensible ray tracer made with .NET
 ***
 
-![Sphere scene](https://i.imgur.com/0jIxjwGl.png)
+![Sphere scene](https://github.com/user-attachments/assets/6d311d0c-07fb-4db5-a9e4-3e61225fa19e)
 
 **Demo site**: http://raytracer-as.azurewebsites.net/
 
