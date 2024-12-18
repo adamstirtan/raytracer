@@ -4,8 +4,6 @@
 
 ![Sphere scene](https://i.imgur.com/0jIxjwGl.png)
 
-**Demo site**: http://raytracer-as.azurewebsites.net/
-
 When I was in University one of my projects was to write a ray tracer. The course was https://www.cosc.brocku.ca/Offerings/4P98/.
 
 This code is me working on modernizing that project as a Blazor WebAssembly app.
