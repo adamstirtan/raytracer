@@ -104,21 +104,29 @@ namespace RayTracer.Core
             else
             {
                 Vector3 intersection = Vector3.Add(ray.Origin, Vector3.Multiply(distance, ray.Direction));
+                Vector3 normal = closest.GetNormal(intersection);
 
                 foreach (var light in _scene.Lights())
                 {
-                    Vector3 l = Vector3.Normalize(light.Center - intersection);
-                    Vector3 n = closest.GetNormal(intersection);
+                    Vector3 lightDirection = Vector3.Normalize(light.Center - intersection);
+                    float dot = Vector3.Dot(normal, lightDirection);
 
-                    if (closest.Material.Diffuse > 0)
+                    if (dot > 0)
                     {
-                        float dot = Vector3.Dot(n, l);
-
-                        if (dot > 0)
-                        {
-                            color += dot * closest.Material.Diffuse * closest.Material.Color * light.Material.Color;
-                        }
+                        color += dot * closest.Material.Diffuse * closest.Material.Color * light.Material.Color;
                     }
+                }
+
+                if (closest.Material.Reflection > 0 && depth < TRACE_DEPTH)
+                {
+                    Vector3 reflectionDirection = Vector3.Reflect(ray.Direction, normal);
+                    Ray reflectedRay = new(intersection, reflectionDirection);
+                    Vector3 reflectedColor = Vector3.Zero;
+                    float reflectedDistance = float.MaxValue;
+
+                    Raytrace(reflectedRay, ref reflectedColor, depth + 1, reflectionIndex, ref reflectedDistance);
+
+                    color += closest.Material.Reflection * reflectedColor;
                 }
             }
 
