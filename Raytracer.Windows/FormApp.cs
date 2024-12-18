@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 using RayTracer.Core;
@@ -20,10 +21,10 @@ namespace Raytracer.Windows
 
             engine.LoadScene(new SphereScene());
 
-            var render = engine.Render(pboxRender.Width, pboxRender.Height);
-            var image = ImageSharpExtensions.ToBitmap(render);
+            using var render = engine.Render(pboxRender.Width, pboxRender.Height);
+            using var image = ImageSharpExtensions.ToBitmap(render);
 
-            pboxRender.Image = image;
+            pboxRender.Image = (Image)image.Clone();
         }
     }
 }
