@@ -11,11 +11,11 @@ public class Scene : IEnumerable<Primitive>, IEnumerable<Light>
     private readonly ICollection<Primitive> _objects = [];
     private readonly ICollection<Light> _lights = [];
 
-    public Scene(Vector3 cameraPosition)
+    public Scene()
     {
         Camera = new Camera
         {
-            Position = cameraPosition
+            Position = Vector3.Zero
         };
     }
 

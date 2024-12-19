@@ -1,22 +1,15 @@
-﻿namespace RayTracer.Core.Math
+﻿namespace RayTracer.Core.Math;
+
+public class IntersectionResult(RayIntersection rayIntersection, float distance)
 {
-    public class IntersectionResult
-    {
-        public RayIntersection RayIntersection { get; set; }
+    public RayIntersection RayIntersection { get; set; } = rayIntersection;
 
-        public float Distance { get; set; }
+    public float Distance { get; set; } = distance;
+}
 
-        public IntersectionResult(RayIntersection rayIntersection, float distance)
-        {
-            RayIntersection = rayIntersection;
-            Distance = distance;
-        }
-    }
-
-    public enum RayIntersection
-    {
-        Hit,
-        Miss,
-        Inside
-    }
+public enum RayIntersection
+{
+    Hit,
+    Miss,
+    Inside
 }

@@ -4,6 +4,8 @@
     {
         Light,
         Sphere,
-        Plane
+        Plane,
+        Box,
+        Triangle
     }
 }

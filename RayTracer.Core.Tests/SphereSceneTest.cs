@@ -2,21 +2,24 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using RayTracer.Core.Scenes;
 
-namespace RayTracer.Core.Tests
+namespace RayTracer.Core.Tests;
+
+[TestClass]
+public class SphereSceneTest
 {
-    [TestClass]
-    public class SphereSceneTest
+    [TestMethod]
+    public void RenderTest()
     {
-        [TestMethod]
-        public void RenderTest()
+        Engine engine = new(new SphereScene());
+
+        var render = engine.Render(new RenderOptions
         {
-            var engine = new Engine();
+            DisableReflections = true,
+            TraceDepth = 1,
+            Width = 800,
+            Height = 800
+        });
 
-            engine.LoadScene(new SphereScene());
-
-            var render = engine.Render(800, 600);
-
-            Assert.IsNotNull(render);
-        }
+        Assert.IsNotNull(render);
     }
 }

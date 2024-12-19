@@ -29,53 +29,334 @@ namespace Raytracer.Windows
         /// </summary>
         private void InitializeComponent()
         {
-            this.pboxRender = new System.Windows.Forms.PictureBox();
-            this.buttonRender = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pboxRender)).BeginInit();
-            this.SuspendLayout();
+            pboxRender = new System.Windows.Forms.PictureBox();
+            label1 = new System.Windows.Forms.Label();
+            NumericTraceDepth = new System.Windows.Forms.NumericUpDown();
+            CheckBoxDisableReflections = new System.Windows.Forms.CheckBox();
+            tabControl1 = new System.Windows.Forms.TabControl();
+            tabPage1 = new System.Windows.Forms.TabPage();
+            tabPage2 = new System.Windows.Forms.TabPage();
+            ButtonCameraBackward = new System.Windows.Forms.Button();
+            NumericCameraZ = new System.Windows.Forms.NumericUpDown();
+            NumericCameraY = new System.Windows.Forms.NumericUpDown();
+            NumericCameraX = new System.Windows.Forms.NumericUpDown();
+            ButtonCameraForward = new System.Windows.Forms.Button();
+            ButtonCameraRight = new System.Windows.Forms.Button();
+            ButtonCameraLeft = new System.Windows.Forms.Button();
+            label4 = new System.Windows.Forms.Label();
+            label3 = new System.Windows.Forms.Label();
+            label2 = new System.Windows.Forms.Label();
+            TextboxElapsed = new System.Windows.Forms.TextBox();
+            label5 = new System.Windows.Forms.Label();
+            label6 = new System.Windows.Forms.Label();
+            CheckBoxDisableDiffuse = new System.Windows.Forms.CheckBox();
+            CheckBoxDisableSpeculation = new System.Windows.Forms.CheckBox();
+            ((System.ComponentModel.ISupportInitialize)pboxRender).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)NumericTraceDepth).BeginInit();
+            tabControl1.SuspendLayout();
+            tabPage1.SuspendLayout();
+            tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)NumericCameraZ).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)NumericCameraY).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)NumericCameraX).BeginInit();
+            SuspendLayout();
             // 
             // pboxRender
             // 
-            this.pboxRender.BackColor = System.Drawing.Color.Black;
-            this.pboxRender.Location = new System.Drawing.Point(0, 0);
-            this.pboxRender.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
-            this.pboxRender.Name = "pboxRender";
-            this.pboxRender.Size = new System.Drawing.Size(800, 600);
-            this.pboxRender.TabIndex = 0;
-            this.pboxRender.TabStop = false;
+            pboxRender.BackColor = System.Drawing.Color.Black;
+            pboxRender.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            pboxRender.Location = new System.Drawing.Point(10, 10);
+            pboxRender.Margin = new System.Windows.Forms.Padding(1);
+            pboxRender.Name = "pboxRender";
+            pboxRender.Size = new System.Drawing.Size(800, 800);
+            pboxRender.TabIndex = 0;
+            pboxRender.TabStop = false;
             // 
-            // buttonRender
+            // label1
             // 
-            this.buttonRender.Location = new System.Drawing.Point(10, 612);
-            this.buttonRender.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
-            this.buttonRender.Name = "buttonRender";
-            this.buttonRender.Size = new System.Drawing.Size(780, 43);
-            this.buttonRender.TabIndex = 1;
-            this.buttonRender.Text = "Render";
-            this.buttonRender.UseVisualStyleBackColor = true;
-            this.buttonRender.Click += new System.EventHandler(this.buttonRender_Click);
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(180, 56);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(116, 20);
+            label1.TabIndex = 3;
+            label1.Text = "Recursion depth";
+            // 
+            // NumericTraceDepth
+            // 
+            NumericTraceDepth.Location = new System.Drawing.Point(24, 54);
+            NumericTraceDepth.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
+            NumericTraceDepth.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            NumericTraceDepth.Name = "NumericTraceDepth";
+            NumericTraceDepth.Size = new System.Drawing.Size(150, 27);
+            NumericTraceDepth.TabIndex = 4;
+            NumericTraceDepth.Value = new decimal(new int[] { 3, 0, 0, 0 });
+            NumericTraceDepth.ValueChanged += NumericTraceDepth_ValueChanged;
+            // 
+            // CheckBoxDisableReflections
+            // 
+            CheckBoxDisableReflections.AutoSize = true;
+            CheckBoxDisableReflections.Location = new System.Drawing.Point(24, 24);
+            CheckBoxDisableReflections.Name = "CheckBoxDisableReflections";
+            CheckBoxDisableReflections.Size = new System.Drawing.Size(158, 24);
+            CheckBoxDisableReflections.TabIndex = 3;
+            CheckBoxDisableReflections.Text = "Disable Reflections";
+            CheckBoxDisableReflections.UseVisualStyleBackColor = true;
+            CheckBoxDisableReflections.CheckedChanged += CheckBoxDisableReflections_CheckedChanged;
+            // 
+            // tabControl1
+            // 
+            tabControl1.Controls.Add(tabPage1);
+            tabControl1.Controls.Add(tabPage2);
+            tabControl1.Location = new System.Drawing.Point(814, 10);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new System.Drawing.Size(390, 250);
+            tabControl1.TabIndex = 3;
+            // 
+            // tabPage1
+            // 
+            tabPage1.Controls.Add(CheckBoxDisableSpeculation);
+            tabPage1.Controls.Add(CheckBoxDisableDiffuse);
+            tabPage1.Controls.Add(label1);
+            tabPage1.Controls.Add(CheckBoxDisableReflections);
+            tabPage1.Controls.Add(NumericTraceDepth);
+            tabPage1.Location = new System.Drawing.Point(4, 29);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            tabPage1.Size = new System.Drawing.Size(382, 217);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "Options";
+            tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            tabPage2.Controls.Add(ButtonCameraBackward);
+            tabPage2.Controls.Add(NumericCameraZ);
+            tabPage2.Controls.Add(NumericCameraY);
+            tabPage2.Controls.Add(NumericCameraX);
+            tabPage2.Controls.Add(ButtonCameraForward);
+            tabPage2.Controls.Add(ButtonCameraRight);
+            tabPage2.Controls.Add(ButtonCameraLeft);
+            tabPage2.Controls.Add(label4);
+            tabPage2.Controls.Add(label3);
+            tabPage2.Controls.Add(label2);
+            tabPage2.Location = new System.Drawing.Point(4, 29);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            tabPage2.Size = new System.Drawing.Size(382, 217);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "Camera";
+            tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // ButtonCameraBackward
+            // 
+            ButtonCameraBackward.Location = new System.Drawing.Point(151, 117);
+            ButtonCameraBackward.Name = "ButtonCameraBackward";
+            ButtonCameraBackward.Size = new System.Drawing.Size(62, 29);
+            ButtonCameraBackward.TabIndex = 9;
+            ButtonCameraBackward.Text = "⬇️";
+            ButtonCameraBackward.UseVisualStyleBackColor = true;
+            ButtonCameraBackward.Click += ButtonCameraBackward_Click;
+            // 
+            // NumericCameraZ
+            // 
+            NumericCameraZ.DecimalPlaces = 1;
+            NumericCameraZ.Increment = new decimal(new int[] { 25, 0, 0, 131072 });
+            NumericCameraZ.Location = new System.Drawing.Point(262, 22);
+            NumericCameraZ.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
+            NumericCameraZ.Minimum = new decimal(new int[] { 10, 0, 0, int.MinValue });
+            NumericCameraZ.Name = "NumericCameraZ";
+            NumericCameraZ.Size = new System.Drawing.Size(74, 27);
+            NumericCameraZ.TabIndex = 8;
+            NumericCameraZ.ValueChanged += NumericCameraZ_ValueChanged;
+            // 
+            // NumericCameraY
+            // 
+            NumericCameraY.DecimalPlaces = 1;
+            NumericCameraY.Increment = new decimal(new int[] { 25, 0, 0, 131072 });
+            NumericCameraY.Location = new System.Drawing.Point(151, 22);
+            NumericCameraY.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
+            NumericCameraY.Minimum = new decimal(new int[] { 10, 0, 0, int.MinValue });
+            NumericCameraY.Name = "NumericCameraY";
+            NumericCameraY.Size = new System.Drawing.Size(74, 27);
+            NumericCameraY.TabIndex = 7;
+            NumericCameraY.ValueChanged += NumericCameraY_ValueChanged;
+            // 
+            // NumericCameraX
+            // 
+            NumericCameraX.DecimalPlaces = 1;
+            NumericCameraX.Increment = new decimal(new int[] { 25, 0, 0, 131072 });
+            NumericCameraX.Location = new System.Drawing.Point(48, 22);
+            NumericCameraX.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
+            NumericCameraX.Minimum = new decimal(new int[] { 10, 0, 0, int.MinValue });
+            NumericCameraX.Name = "NumericCameraX";
+            NumericCameraX.Size = new System.Drawing.Size(74, 27);
+            NumericCameraX.TabIndex = 6;
+            NumericCameraX.ValueChanged += NumericCameraX_ValueChanged;
+            // 
+            // ButtonCameraForward
+            // 
+            ButtonCameraForward.Location = new System.Drawing.Point(151, 82);
+            ButtonCameraForward.Name = "ButtonCameraForward";
+            ButtonCameraForward.Size = new System.Drawing.Size(62, 29);
+            ButtonCameraForward.TabIndex = 5;
+            ButtonCameraForward.Text = "⬆️";
+            ButtonCameraForward.UseVisualStyleBackColor = true;
+            ButtonCameraForward.Click += ButtonCameraForward_Click;
+            // 
+            // ButtonCameraRight
+            // 
+            ButtonCameraRight.Location = new System.Drawing.Point(220, 117);
+            ButtonCameraRight.Name = "ButtonCameraRight";
+            ButtonCameraRight.Size = new System.Drawing.Size(62, 29);
+            ButtonCameraRight.TabIndex = 5;
+            ButtonCameraRight.Text = ">";
+            ButtonCameraRight.UseVisualStyleBackColor = true;
+            ButtonCameraRight.Click += ButtonCameraRight_Click;
+            // 
+            // ButtonCameraLeft
+            // 
+            ButtonCameraLeft.Location = new System.Drawing.Point(84, 117);
+            ButtonCameraLeft.Name = "ButtonCameraLeft";
+            ButtonCameraLeft.Size = new System.Drawing.Size(62, 29);
+            ButtonCameraLeft.TabIndex = 4;
+            ButtonCameraLeft.Text = "<";
+            ButtonCameraLeft.UseVisualStyleBackColor = true;
+            ButtonCameraLeft.Click += ButtonCameraLeft_Click;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new System.Drawing.Point(238, 24);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(18, 20);
+            label4.TabIndex = 5;
+            label4.Text = "Z";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(128, 24);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(17, 20);
+            label3.TabIndex = 3;
+            label3.Text = "Y";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(24, 24);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(18, 20);
+            label2.TabIndex = 1;
+            label2.Text = "X";
+            // 
+            // TextboxElapsed
+            // 
+            TextboxElapsed.BackColor = System.Drawing.Color.White;
+            TextboxElapsed.Location = new System.Drawing.Point(818, 300);
+            TextboxElapsed.Name = "TextboxElapsed";
+            TextboxElapsed.ReadOnly = true;
+            TextboxElapsed.Size = new System.Drawing.Size(126, 27);
+            TextboxElapsed.TabIndex = 4;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new System.Drawing.Point(818, 277);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(93, 20);
+            label5.TabIndex = 5;
+            label5.Text = "Render Time";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new System.Drawing.Point(950, 303);
+            label6.Name = "label6";
+            label6.Size = new System.Drawing.Size(28, 20);
+            label6.TabIndex = 6;
+            label6.Text = "ms";
+            // 
+            // CheckBoxDisableDiffuse
+            // 
+            CheckBoxDisableDiffuse.AutoSize = true;
+            CheckBoxDisableDiffuse.Location = new System.Drawing.Point(24, 97);
+            CheckBoxDisableDiffuse.Name = "CheckBoxDisableDiffuse";
+            CheckBoxDisableDiffuse.Size = new System.Drawing.Size(132, 24);
+            CheckBoxDisableDiffuse.TabIndex = 7;
+            CheckBoxDisableDiffuse.Text = "Disable Diffuse";
+            CheckBoxDisableDiffuse.UseVisualStyleBackColor = true;
+            CheckBoxDisableDiffuse.CheckedChanged += CheckBoxDisableDiffuse_CheckedChanged;
+            // 
+            // CheckBoxDisableSpeculation
+            // 
+            CheckBoxDisableSpeculation.AutoSize = true;
+            CheckBoxDisableSpeculation.Location = new System.Drawing.Point(24, 127);
+            CheckBoxDisableSpeculation.Name = "CheckBoxDisableSpeculation";
+            CheckBoxDisableSpeculation.Size = new System.Drawing.Size(163, 24);
+            CheckBoxDisableSpeculation.TabIndex = 8;
+            CheckBoxDisableSpeculation.Text = "Disable Speculation";
+            CheckBoxDisableSpeculation.UseVisualStyleBackColor = true;
+            CheckBoxDisableSpeculation.CheckedChanged += CheckBoxDisableSpeculation_CheckedChanged;
             // 
             // FormApp
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 664);
-            this.Controls.Add(this.buttonRender);
-            this.Controls.Add(this.pboxRender);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
-            this.MaximizeBox = false;
-            this.Name = "FormApp";
-            this.Text = "Ray Tracer";
-            ((System.ComponentModel.ISupportInitialize)(this.pboxRender)).EndInit();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(1212, 820);
+            Controls.Add(label6);
+            Controls.Add(label5);
+            Controls.Add(TextboxElapsed);
+            Controls.Add(tabControl1);
+            Controls.Add(pboxRender);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            Margin = new System.Windows.Forms.Padding(1);
+            MaximizeBox = false;
+            Name = "FormApp";
+            Text = "Ray Tracer";
+            ((System.ComponentModel.ISupportInitialize)pboxRender).EndInit();
+            ((System.ComponentModel.ISupportInitialize)NumericTraceDepth).EndInit();
+            tabControl1.ResumeLayout(false);
+            tabPage1.ResumeLayout(false);
+            tabPage1.PerformLayout();
+            tabPage2.ResumeLayout(false);
+            tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)NumericCameraZ).EndInit();
+            ((System.ComponentModel.ISupportInitialize)NumericCameraY).EndInit();
+            ((System.ComponentModel.ISupportInitialize)NumericCameraX).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private System.Windows.Forms.PictureBox pboxRender;
-        private System.Windows.Forms.Button buttonRender;
+        private System.Windows.Forms.Button ButtonRender;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.NumericUpDown NumericTraceDepth;
+        private System.Windows.Forms.CheckBox CheckBoxDisableReflections;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button ButtonCameraLeft;
+        private System.Windows.Forms.Button ButtonCameraRight;
+        private System.Windows.Forms.Button ButtonCameraForward;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox TextboxElapsed;
+        private System.Windows.Forms.NumericUpDown NumericCameraZ;
+        private System.Windows.Forms.NumericUpDown NumericCameraY;
+        private System.Windows.Forms.NumericUpDown NumericCameraX;
+        private System.Windows.Forms.Button ButtonCameraBackward;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox CheckBoxDisableSpeculation;
+        private System.Windows.Forms.CheckBox CheckBoxDisableDiffuse;
     }
 }
 

@@ -1,30 +1,159 @@
 ﻿using System;
+using System.DirectoryServices;
 using System.Drawing;
+using System.IO;
+using System.Text.Json;
 using System.Windows.Forms;
 
 using RayTracer.Core;
 using RayTracer.Core.Extensions;
 using RayTracer.Core.Scenes;
 
-namespace Raytracer.Windows
+namespace Raytracer.Windows;
+
+public partial class FormApp : Form
 {
-    public partial class FormApp : Form
+    private readonly Engine _engine;
+    private readonly Timer _timer;
+
+    private float _cameraAngle;
+
+    public FormApp()
     {
-        public FormApp()
+        InitializeComponent();
+
+        _engine = new();
+
+        _engine.RenderCompleted += RenderCompleted;
+
+        _timer = new Timer
         {
-            InitializeComponent();
-        }
+            Interval = 1000
+        };
 
-        private void buttonRender_Click(object sender, EventArgs e)
+        _timer.Tick += Timer_Tick;
+        _timer.Start();
+
+        Render();
+    }
+
+    private void RenderCompleted(object sender, TimeSpan elapsed)
+    {
+        TextboxElapsed.Text = $"{(int)elapsed.TotalMilliseconds}";
+    }
+
+    private void Render()
+    {
+        Scene scene = new SphereScene();// LoadScene("scene.json");
+        RenderOptions options = ReadOptions();
+
+        using var render = _engine.Render(scene, options);
+        using var image = ImageSharpExtensions.ToBitmap(render);
+
+        pboxRender.Image = (Image)image.Clone();
+    }
+
+    private void Timer_Tick(object sender, EventArgs e)
+    {
+        // Update the camera position to move in a circle along the Y-axis
+        _cameraAngle += 0.01f; // Adjust the angle increment as needed
+        float radius = 2.0f; // Distance from the origin
+        float x = radius * MathF.Cos(_cameraAngle);
+        float y = radius * MathF.Sin(_cameraAngle);
+        float z = (float)NumericCameraZ.Value; // Keep the Z position constant
+
+        NumericCameraX.Value = (decimal)x;
+        NumericCameraY.Value = (decimal)y;
+
+        Render();
+    }
+
+    //private Scene LoadScene(string filePath)
+    //{
+    //    string json = File.ReadAllText(filePath);
+
+    //    return JsonSerializer.Deserialize<Scene>(json);
+    //}sazd
+
+    private RenderOptions ReadOptions()
+    {
+        return new RenderOptions
         {
-            var engine = new Engine();
+            Width = pboxRender.Width,
+            Height = pboxRender.Height,
+            CameraPosition = new(
+                float.Parse(NumericCameraX.Value.ToString()),
+                float.Parse(NumericCameraY.Value.ToString()),
+                float.Parse(NumericCameraZ.Value.ToString())),
+            TraceDepth = (int)NumericTraceDepth.Value,
+            DisableReflections = CheckBoxDisableReflections.Checked,
+            DisableDiffuse = CheckBoxDisableDiffuse.Checked,
+            DisableSpeculation = CheckBoxDisableSpeculation.Checked
+        };
+    }
 
-            engine.LoadScene(new SphereScene());
+    private void CheckBoxDisableReflections_CheckedChanged(object sender, EventArgs e)
+    {
+        NumericTraceDepth.Enabled = !CheckBoxDisableReflections.Checked;
 
-            using var render = engine.Render(pboxRender.Width, pboxRender.Height);
-            using var image = ImageSharpExtensions.ToBitmap(render);
+        Render();
+    }
 
-            pboxRender.Image = (Image)image.Clone();
-        }
+    private void NumericTraceDepth_ValueChanged(object sender, EventArgs e)
+    {
+        Render();
+    }
+
+    private void ButtonCameraLeft_Click(object sender, EventArgs e)
+    {
+        NumericCameraX.Value -= 0.25m;
+
+        Render();
+    }
+
+    private void ButtonCameraRight_Click(object sender, EventArgs e)
+    {
+        NumericCameraX.Value += 0.25m;
+
+        Render();
+    }
+
+    private void ButtonCameraForward_Click(object sender, EventArgs e)
+    {
+        NumericCameraZ.Value += 0.25m;
+
+        Render();
+    }
+
+    private void ButtonCameraBackward_Click(object sender, EventArgs e)
+    {
+        NumericCameraZ.Value -= 0.25m;
+
+        Render();
+    }
+
+    private void NumericCameraX_ValueChanged(object sender, EventArgs e)
+    {
+        Render();
+    }
+
+    private void NumericCameraY_ValueChanged(object sender, EventArgs e)
+    {
+        Render();
+    }
+
+    private void NumericCameraZ_ValueChanged(object sender, EventArgs e)
+    {
+        Render();
+    }
+
+    private void CheckBoxDisableDiffuse_CheckedChanged(object sender, EventArgs e)
+    {
+        Render();
+    }
+
+    private void CheckBoxDisableSpeculation_CheckedChanged(object sender, EventArgs e)
+    {
+        Render();
     }
 }
