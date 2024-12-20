@@ -18,17 +18,17 @@ public class SphereScene : Scene
 
         AddObject(ground);
 
-        Sphere sphere1 = new(new Vector3(-1, 0, 5f), 1f, new Material(new Vector3(1, 0, 0),
+        Sphere sphere1 = new(new Vector3(-1, 0, 15f), 1f, new Material(new Vector3(1, 0, 0),
             diffuse: 1f,
             reflection: 0.7f,
             specular: 0.5f));
 
-        Sphere sphere2 = new(new Vector3(1.8f, -1.4f, 3f), 1.6f, new Material(new Vector3(0, 1, 0),
+        Sphere sphere2 = new(new Vector3(1.8f, -1.4f, 12f), 1.6f, new Material(new Vector3(0, 1, 0),
             diffuse: 0.8f,
             reflection: 0.9f,
             specular: 0.5f));
 
-        Sphere sphere3 = new(new Vector3(1, 2.1f, 2.4f), 1.5f, new Material(new Vector3(0, 0, 1),
+        Sphere sphere3 = new(new Vector3(1, 2.1f, 9f), 1.5f, new Material(new Vector3(0, 0, 1),
             diffuse: 0.8f,
             reflection: 0.2f,
             specular: 0.1f));
@@ -37,15 +37,8 @@ public class SphereScene : Scene
         AddObject(sphere2);
         AddObject(sphere3);
 
-        Triangle triangle = new(new Vector3(-1, 0, 7), new Vector3(5, 0, 7), new Vector3(0, 1, 7), new Material(new Vector3(0.2f, 0.53f, 0.6f),
-            diffuse: 0.8f,
-            reflection: 0.2f,
-            specular: 0.5f));
-
-        AddObject(triangle);
-
-        Light light = new(new Vector3(-7, 0, -9), float.MinValue, new Material(new Vector3(1f, 1f, 1f)));
-
-        AddLight(light);
+        AddLight(new(new Vector3(0, 50, -100), float.MinValue, new Material(new Vector3(0.9f, 0.8f, 0.7f))));
+        AddLight(new(new Vector3(50, -50, -100), float.MinValue, new Material(new Vector3(0.9f, 0.8f, 0.7f))));
+        AddLight(new(new Vector3(-50, 50, -100), float.MinValue, new Material(new Vector3(0.9f, 0.8f, 0.7f))));
     }
 }

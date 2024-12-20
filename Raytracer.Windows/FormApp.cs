@@ -1,8 +1,5 @@
 ﻿using System;
-using System.DirectoryServices;
 using System.Drawing;
-using System.IO;
-using System.Text.Json;
 using System.Windows.Forms;
 
 using RayTracer.Core;
@@ -32,7 +29,6 @@ public partial class FormApp : Form
         };
 
         _timer.Tick += Timer_Tick;
-        _timer.Start();
 
         Render();
     }
@@ -44,7 +40,7 @@ public partial class FormApp : Form
 
     private void Render()
     {
-        Scene scene = new SphereScene();// LoadScene("scene.json");
+        Scene scene = new SphereScene();
         RenderOptions options = ReadOptions();
 
         using var render = _engine.Render(scene, options);
@@ -55,25 +51,18 @@ public partial class FormApp : Form
 
     private void Timer_Tick(object sender, EventArgs e)
     {
-        // Update the camera position to move in a circle along the Y-axis
-        _cameraAngle += 0.01f; // Adjust the angle increment as needed
+        _cameraAngle += 0.1f; // Adjust the angle increment as needed
         float radius = 2.0f; // Distance from the origin
         float x = radius * MathF.Cos(_cameraAngle);
         float y = radius * MathF.Sin(_cameraAngle);
-        float z = (float)NumericCameraZ.Value; // Keep the Z position constant
+        float z = radius * MathF.Cos(_cameraAngle);
 
         NumericCameraX.Value = (decimal)x;
         NumericCameraY.Value = (decimal)y;
+        NumericCameraZ.Value = (decimal)z;
 
         Render();
     }
-
-    //private Scene LoadScene(string filePath)
-    //{
-    //    string json = File.ReadAllText(filePath);
-
-    //    return JsonSerializer.Deserialize<Scene>(json);
-    //}sazd
 
     private RenderOptions ReadOptions()
     {
@@ -155,5 +144,19 @@ public partial class FormApp : Form
     private void CheckBoxDisableSpeculation_CheckedChanged(object sender, EventArgs e)
     {
         Render();
+    }
+
+    private void CheckBoxMoveAutomatically_CheckedChanged(object sender, EventArgs e)
+    {
+        bool @checked = CheckBoxMoveAutomatically.Checked;
+
+        if (@checked)
+        {
+            _timer.Start();
+        }
+        else
+        {
+            _timer.Stop();
+        }
     }
 }

@@ -35,7 +35,10 @@ namespace Raytracer.Windows
             CheckBoxDisableReflections = new System.Windows.Forms.CheckBox();
             tabControl1 = new System.Windows.Forms.TabControl();
             tabPage1 = new System.Windows.Forms.TabPage();
+            CheckBoxDisableSpeculation = new System.Windows.Forms.CheckBox();
+            CheckBoxDisableDiffuse = new System.Windows.Forms.CheckBox();
             tabPage2 = new System.Windows.Forms.TabPage();
+            CheckBoxMoveAutomatically = new System.Windows.Forms.CheckBox();
             ButtonCameraBackward = new System.Windows.Forms.Button();
             NumericCameraZ = new System.Windows.Forms.NumericUpDown();
             NumericCameraY = new System.Windows.Forms.NumericUpDown();
@@ -49,8 +52,11 @@ namespace Raytracer.Windows
             TextboxElapsed = new System.Windows.Forms.TextBox();
             label5 = new System.Windows.Forms.Label();
             label6 = new System.Windows.Forms.Label();
-            CheckBoxDisableDiffuse = new System.Windows.Forms.CheckBox();
-            CheckBoxDisableSpeculation = new System.Windows.Forms.CheckBox();
+            tabControl2 = new System.Windows.Forms.TabControl();
+            tabPage3 = new System.Windows.Forms.TabPage();
+            tabPage4 = new System.Windows.Forms.TabPage();
+            TextBoxScene = new System.Windows.Forms.TextBox();
+            ButtonLoadScene = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)pboxRender).BeginInit();
             ((System.ComponentModel.ISupportInitialize)NumericTraceDepth).BeginInit();
             tabControl1.SuspendLayout();
@@ -59,16 +65,19 @@ namespace Raytracer.Windows
             ((System.ComponentModel.ISupportInitialize)NumericCameraZ).BeginInit();
             ((System.ComponentModel.ISupportInitialize)NumericCameraY).BeginInit();
             ((System.ComponentModel.ISupportInitialize)NumericCameraX).BeginInit();
+            tabControl2.SuspendLayout();
+            tabPage3.SuspendLayout();
+            tabPage4.SuspendLayout();
             SuspendLayout();
             // 
             // pboxRender
             // 
             pboxRender.BackColor = System.Drawing.Color.Black;
             pboxRender.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            pboxRender.Location = new System.Drawing.Point(10, 10);
+            pboxRender.Location = new System.Drawing.Point(4, 4);
             pboxRender.Margin = new System.Windows.Forms.Padding(1);
             pboxRender.Name = "pboxRender";
-            pboxRender.Size = new System.Drawing.Size(800, 800);
+            pboxRender.Size = new System.Drawing.Size(500, 500);
             pboxRender.TabIndex = 0;
             pboxRender.TabStop = false;
             // 
@@ -107,10 +116,10 @@ namespace Raytracer.Windows
             // 
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage2);
-            tabControl1.Location = new System.Drawing.Point(814, 10);
+            tabControl1.Location = new System.Drawing.Point(528, 10);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new System.Drawing.Size(390, 250);
+            tabControl1.Size = new System.Drawing.Size(390, 536);
             tabControl1.TabIndex = 3;
             // 
             // tabPage1
@@ -123,13 +132,36 @@ namespace Raytracer.Windows
             tabPage1.Location = new System.Drawing.Point(4, 29);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            tabPage1.Size = new System.Drawing.Size(382, 217);
+            tabPage1.Size = new System.Drawing.Size(382, 503);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Options";
             tabPage1.UseVisualStyleBackColor = true;
             // 
+            // CheckBoxDisableSpeculation
+            // 
+            CheckBoxDisableSpeculation.AutoSize = true;
+            CheckBoxDisableSpeculation.Location = new System.Drawing.Point(24, 127);
+            CheckBoxDisableSpeculation.Name = "CheckBoxDisableSpeculation";
+            CheckBoxDisableSpeculation.Size = new System.Drawing.Size(163, 24);
+            CheckBoxDisableSpeculation.TabIndex = 8;
+            CheckBoxDisableSpeculation.Text = "Disable Speculation";
+            CheckBoxDisableSpeculation.UseVisualStyleBackColor = true;
+            CheckBoxDisableSpeculation.CheckedChanged += CheckBoxDisableSpeculation_CheckedChanged;
+            // 
+            // CheckBoxDisableDiffuse
+            // 
+            CheckBoxDisableDiffuse.AutoSize = true;
+            CheckBoxDisableDiffuse.Location = new System.Drawing.Point(24, 97);
+            CheckBoxDisableDiffuse.Name = "CheckBoxDisableDiffuse";
+            CheckBoxDisableDiffuse.Size = new System.Drawing.Size(132, 24);
+            CheckBoxDisableDiffuse.TabIndex = 7;
+            CheckBoxDisableDiffuse.Text = "Disable Diffuse";
+            CheckBoxDisableDiffuse.UseVisualStyleBackColor = true;
+            CheckBoxDisableDiffuse.CheckedChanged += CheckBoxDisableDiffuse_CheckedChanged;
+            // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(CheckBoxMoveAutomatically);
             tabPage2.Controls.Add(ButtonCameraBackward);
             tabPage2.Controls.Add(NumericCameraZ);
             tabPage2.Controls.Add(NumericCameraY);
@@ -143,10 +175,21 @@ namespace Raytracer.Windows
             tabPage2.Location = new System.Drawing.Point(4, 29);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            tabPage2.Size = new System.Drawing.Size(382, 217);
+            tabPage2.Size = new System.Drawing.Size(382, 503);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Camera";
             tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // CheckBoxMoveAutomatically
+            // 
+            CheckBoxMoveAutomatically.AutoSize = true;
+            CheckBoxMoveAutomatically.Location = new System.Drawing.Point(24, 169);
+            CheckBoxMoveAutomatically.Name = "CheckBoxMoveAutomatically";
+            CheckBoxMoveAutomatically.Size = new System.Drawing.Size(164, 24);
+            CheckBoxMoveAutomatically.TabIndex = 10;
+            CheckBoxMoveAutomatically.Text = "Move Automatically";
+            CheckBoxMoveAutomatically.UseVisualStyleBackColor = true;
+            CheckBoxMoveAutomatically.CheckedChanged += CheckBoxMoveAutomatically_CheckedChanged;
             // 
             // ButtonCameraBackward
             // 
@@ -254,7 +297,7 @@ namespace Raytracer.Windows
             // TextboxElapsed
             // 
             TextboxElapsed.BackColor = System.Drawing.Color.White;
-            TextboxElapsed.Location = new System.Drawing.Point(818, 300);
+            TextboxElapsed.Location = new System.Drawing.Point(360, 552);
             TextboxElapsed.Name = "TextboxElapsed";
             TextboxElapsed.ReadOnly = true;
             TextboxElapsed.Size = new System.Drawing.Size(126, 27);
@@ -263,7 +306,7 @@ namespace Raytracer.Windows
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new System.Drawing.Point(818, 277);
+            label5.Location = new System.Drawing.Point(261, 555);
             label5.Name = "label5";
             label5.Size = new System.Drawing.Size(93, 20);
             label5.TabIndex = 5;
@@ -272,44 +315,73 @@ namespace Raytracer.Windows
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new System.Drawing.Point(950, 303);
+            label6.Location = new System.Drawing.Point(492, 553);
             label6.Name = "label6";
             label6.Size = new System.Drawing.Size(28, 20);
             label6.TabIndex = 6;
             label6.Text = "ms";
             // 
-            // CheckBoxDisableDiffuse
+            // tabControl2
             // 
-            CheckBoxDisableDiffuse.AutoSize = true;
-            CheckBoxDisableDiffuse.Location = new System.Drawing.Point(24, 97);
-            CheckBoxDisableDiffuse.Name = "CheckBoxDisableDiffuse";
-            CheckBoxDisableDiffuse.Size = new System.Drawing.Size(132, 24);
-            CheckBoxDisableDiffuse.TabIndex = 7;
-            CheckBoxDisableDiffuse.Text = "Disable Diffuse";
-            CheckBoxDisableDiffuse.UseVisualStyleBackColor = true;
-            CheckBoxDisableDiffuse.CheckedChanged += CheckBoxDisableDiffuse_CheckedChanged;
+            tabControl2.Controls.Add(tabPage3);
+            tabControl2.Controls.Add(tabPage4);
+            tabControl2.Location = new System.Drawing.Point(12, 10);
+            tabControl2.Name = "tabControl2";
+            tabControl2.SelectedIndex = 0;
+            tabControl2.Size = new System.Drawing.Size(514, 540);
+            tabControl2.TabIndex = 7;
             // 
-            // CheckBoxDisableSpeculation
+            // tabPage3
             // 
-            CheckBoxDisableSpeculation.AutoSize = true;
-            CheckBoxDisableSpeculation.Location = new System.Drawing.Point(24, 127);
-            CheckBoxDisableSpeculation.Name = "CheckBoxDisableSpeculation";
-            CheckBoxDisableSpeculation.Size = new System.Drawing.Size(163, 24);
-            CheckBoxDisableSpeculation.TabIndex = 8;
-            CheckBoxDisableSpeculation.Text = "Disable Speculation";
-            CheckBoxDisableSpeculation.UseVisualStyleBackColor = true;
-            CheckBoxDisableSpeculation.CheckedChanged += CheckBoxDisableSpeculation_CheckedChanged;
+            tabPage3.Controls.Add(pboxRender);
+            tabPage3.Location = new System.Drawing.Point(4, 29);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            tabPage3.Size = new System.Drawing.Size(506, 507);
+            tabPage3.TabIndex = 0;
+            tabPage3.Text = "Render";
+            tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tabPage4
+            // 
+            tabPage4.Controls.Add(TextBoxScene);
+            tabPage4.Location = new System.Drawing.Point(4, 29);
+            tabPage4.Name = "tabPage4";
+            tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            tabPage4.Size = new System.Drawing.Size(506, 507);
+            tabPage4.TabIndex = 1;
+            tabPage4.Text = "Scene";
+            tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // TextBoxScene
+            // 
+            TextBoxScene.Font = new System.Drawing.Font("Consolas", 9F);
+            TextBoxScene.Location = new System.Drawing.Point(6, 6);
+            TextBoxScene.Multiline = true;
+            TextBoxScene.Name = "TextBoxScene";
+            TextBoxScene.Size = new System.Drawing.Size(494, 495);
+            TextBoxScene.TabIndex = 0;
+            // 
+            // ButtonLoadScene
+            // 
+            ButtonLoadScene.Location = new System.Drawing.Point(16, 552);
+            ButtonLoadScene.Name = "ButtonLoadScene";
+            ButtonLoadScene.Size = new System.Drawing.Size(94, 29);
+            ButtonLoadScene.TabIndex = 8;
+            ButtonLoadScene.Text = "Load Scene";
+            ButtonLoadScene.UseVisualStyleBackColor = true;
             // 
             // FormApp
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(1212, 820);
+            ClientSize = new System.Drawing.Size(929, 591);
+            Controls.Add(ButtonLoadScene);
+            Controls.Add(tabControl2);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(TextboxElapsed);
             Controls.Add(tabControl1);
-            Controls.Add(pboxRender);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             Margin = new System.Windows.Forms.Padding(1);
             MaximizeBox = false;
@@ -325,6 +397,10 @@ namespace Raytracer.Windows
             ((System.ComponentModel.ISupportInitialize)NumericCameraZ).EndInit();
             ((System.ComponentModel.ISupportInitialize)NumericCameraY).EndInit();
             ((System.ComponentModel.ISupportInitialize)NumericCameraX).EndInit();
+            tabControl2.ResumeLayout(false);
+            tabPage3.ResumeLayout(false);
+            tabPage4.ResumeLayout(false);
+            tabPage4.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -357,6 +433,12 @@ namespace Raytracer.Windows
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox CheckBoxDisableSpeculation;
         private System.Windows.Forms.CheckBox CheckBoxDisableDiffuse;
+        private System.Windows.Forms.CheckBox CheckBoxMoveAutomatically;
+        private System.Windows.Forms.TabControl tabControl2;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TextBox TextBoxScene;
+        private System.Windows.Forms.Button ButtonLoadScene;
     }
 }
 
