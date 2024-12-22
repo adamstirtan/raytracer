@@ -16,8 +16,8 @@ namespace RayTracer.Core;
 
 public class Engine
 {
-    public event EventHandler RenderStarted;
-    public event EventHandler<TimeSpan> RenderCompleted;
+    public event EventHandler? RenderStarted;
+    public event EventHandler<TimeSpan>? RenderCompleted;
 
     protected void OnRenderStarted()
     {
@@ -70,7 +70,7 @@ public class Engine
                 Vector3 direction = new(screenDeltaX, screenDeltaY, 1);
 
                 Ray ray = new(scene.Camera.Position, Vector3.Normalize(direction));
-                Raytrace(scene, options, ray, ref color, 1, 1, ref distance);
+                Raytrace(scene, options, ray, ref color, 1, ref distance);
 
                 color = Vector3.Clamp(color, Vector3.Zero, Vector3.One);
 
@@ -89,7 +89,7 @@ public class Engine
         return render;
     }
 
-    private static Primitive Raytrace(Scene scene, RenderOptions options, Ray ray, ref Vector3 color, int depth, float reflectionIndex, ref float distance)
+    private static Primitive? Raytrace(Scene scene, RenderOptions options, Ray ray, ref Vector3 color, int depth, ref float distance)
     {
         if (depth > options.TraceDepth)
         {
@@ -97,7 +97,7 @@ public class Engine
         }
 
         float minDistance = float.MaxValue;
-        Primitive closest = null;
+        Primitive? closest = null;
         RayIntersection result;
 
         foreach (Primitive primitive in scene)
@@ -129,6 +129,14 @@ public class Engine
             Vector3 intersection = Vector3.Add(ray.Origin, Vector3.Multiply(distance, ray.Direction));
             Vector3 normal = closest.GetNormal(intersection);
 
+            Vector3 baseColor = closest.Material.Color;
+
+            if (closest.Texture != null)
+            {
+                Vector2 uv = closest.GetUV(intersection);
+                baseColor = closest.Texture.Sample(uv.X, uv.Y);
+            }
+
             foreach (Light light in scene.OfType<Light>())
             {
                 Vector3 lightDirection = Vector3.Normalize(light.Center - intersection);
@@ -137,7 +145,7 @@ public class Engine
                 if (!options.DisableDiffuse && dot > 0)
                 {
                     // Diffuse reflection
-                    color += dot * closest.Material.Diffuse * closest.Material.Color * light.Material.Color;
+                    color += dot * closest.Material.Diffuse * baseColor * light.Material.Color;
                 }
 
                 // Speculation reflection
@@ -145,7 +153,6 @@ public class Engine
                 {
                     Vector3 reflectionDirection = Vector3.Reflect(-lightDirection, normal);
                     float specularFactor = MathF.Pow(MathF.Max(Vector3.Dot(reflectionDirection, -ray.Direction), 0), closest.Material.Specular);
-                    
                     color += specularFactor * closest.Material.Specular * light.Material.Color;
                 }
             }
@@ -153,7 +160,7 @@ public class Engine
             // Add base color contribution if diffuse is disabled
             if (options.DisableDiffuse)
             {
-                color += closest.Material.Color * 0.08f; // Adjust the factor as needed
+                color += baseColor * 0.08f; // Adjust the factor as needed
             }
 
             if (!options.DisableReflections && closest.Material.Reflection > 0 && depth < options.TraceDepth)
@@ -163,7 +170,7 @@ public class Engine
                 Vector3 reflectedColor = Vector3.Zero;
                 float reflectedDistance = float.MaxValue;
 
-                Raytrace(scene, options, reflectedRay, ref reflectedColor, depth + 1, reflectionIndex, ref reflectedDistance);
+                Raytrace(scene, options, reflectedRay, ref reflectedColor, depth + 1, ref reflectedDistance);
 
                 color += closest.Material.Reflection * reflectedColor;
             }
