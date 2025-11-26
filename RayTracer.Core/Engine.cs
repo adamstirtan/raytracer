@@ -14,7 +14,7 @@ using RayTracer.Core.Primitives;
 
 namespace RayTracer.Core;
 
-public class Engine
+public class Engine(Scene scene, RenderOptions options)
 {
     public event EventHandler? RenderStarted;
     public event EventHandler<TimeSpan>? RenderCompleted;
@@ -29,7 +29,7 @@ public class Engine
         RenderCompleted?.Invoke(this, time);
     }
 
-    public Image<Rgba32> Render(Scene scene, RenderOptions options)
+    public Image<Rgba32> Render()
     {
         OnRenderStarted();
 
@@ -61,7 +61,7 @@ public class Engine
             float screenDeltaX = topLeft.X;
             float screenDeltaY = topLeft.Y + y * deltaY;
 
-            Span<Rgba32> pixelRowSpan = render.GetPixelMemoryGroup().Single().Span.Slice(y * options.Width);
+            Span<Rgba32> pixelRowSpan = render.GetPixelMemoryGroup().Single().Span[(y * options.Width)..];
 
             for (int x = 0; x < options.Width; x++)
             {

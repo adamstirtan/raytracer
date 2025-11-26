@@ -19,7 +19,10 @@ public partial class FormApp : Form
     {
         InitializeComponent();
 
-        _engine = new();
+        Scene scene = new SphereScene();
+        RenderOptions options = ReadOptions();
+
+        _engine = new(scene, options);
 
         _engine.RenderCompleted += RenderCompleted;
 
@@ -40,10 +43,7 @@ public partial class FormApp : Form
 
     private void Render()
     {
-        Scene scene = new SphereScene();
-        RenderOptions options = ReadOptions();
-
-        using var render = _engine.Render(scene, options);
+        using var render = _engine.Render();
         using var image = ImageSharpExtensions.ToBitmap(render);
 
         pboxRender.Image = (Image)image.Clone();

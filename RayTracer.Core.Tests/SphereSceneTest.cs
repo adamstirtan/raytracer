@@ -1,3 +1,5 @@
+using System.Numerics;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using RayTracer.Core.Scenes;
@@ -10,15 +12,18 @@ public class SphereSceneTest
     [TestMethod]
     public void RenderTest()
     {
-        Engine engine = new(new SphereScene());
-
-        var render = engine.Render(new RenderOptions
+        RenderOptions options = new()
         {
+            CameraPosition = new Vector3(0, 0, -5),
             DisableReflections = true,
             TraceDepth = 1,
             Width = 800,
             Height = 800
-        });
+        };
+
+        Engine engine = new(new SphereScene(), options);
+
+        var render = engine.Render();
 
         Assert.IsNotNull(render);
     }
