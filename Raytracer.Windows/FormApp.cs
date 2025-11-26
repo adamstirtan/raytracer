@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Numerics;
 
 using RayTracer.Core;
 using RayTracer.Core.Extensions;
@@ -43,6 +44,12 @@ public partial class FormApp : Form
 
     private void Render()
     {
+        // Update engine camera position from UI controls so runtime movement takes effect
+        _engine.SetCameraPosition(new Vector3(
+            (float)NumericCameraX.Value,
+            (float)NumericCameraY.Value,
+            (float)NumericCameraZ.Value));
+
         using var render = _engine.Render();
         using var image = ImageSharpExtensions.ToBitmap(render);
 

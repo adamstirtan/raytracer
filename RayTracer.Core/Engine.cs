@@ -14,10 +14,22 @@ using RayTracer.Core.Primitives;
 
 namespace RayTracer.Core;
 
-public class Engine(Scene scene, RenderOptions options)
+public class Engine
 {
+    private readonly Scene _scene;
+    private readonly RenderOptions _options;
+
     public event EventHandler? RenderStarted;
     public event EventHandler<TimeSpan>? RenderCompleted;
+
+    public Engine(Scene scene, RenderOptions options)
+    {
+        _scene = scene ?? throw new ArgumentNullException(nameof(scene));
+        _options = options ?? throw new ArgumentNullException(nameof(options));
+
+        // Initialize camera position from options once
+        _scene.Camera.Position = _options.CameraPosition;
+    }
 
     protected void OnRenderStarted()
     {
@@ -29,19 +41,29 @@ public class Engine(Scene scene, RenderOptions options)
         RenderCompleted?.Invoke(this, time);
     }
 
+    // Camera control API
+    public void SetCameraPosition(Vector3 position) => _scene.Camera.Position = position;
+
+    public void MoveCamera(Vector3 delta) => _scene.Camera.Position += delta;
+
+    public void MoveCameraForward(float amount) => MoveCamera(new Vector3(0, 0, amount));
+    public void MoveCameraRight(float amount) => MoveCamera(new Vector3(amount, 0, 0));
+    public void MoveCameraUp(float amount) => MoveCamera(new Vector3(0, amount, 0));
+
     public Image<Rgba32> Render()
     {
         OnRenderStarted();
 
         Stopwatch stopwatch = Stopwatch.StartNew();
 
-        scene.Camera.Position = options.CameraPosition;
+        // Use the current camera position (allow runtime updates)
+        // _scene.Camera.Position = _options.CameraPosition;
 
         // Define the vertical FOV (in radians)
         float verticalFOV = MathF.PI / 4; // 45 degrees
 
         // Calculate the aspect ratio
-        float aspectRatio = (float)options.Width / options.Height;
+        float aspectRatio = (float)_options.Width / _options.Height;
 
         /// Calculate the height and width of the view plane based on the FOV and aspect ratio
         float viewPlaneHeight = 2 * MathF.Tan(verticalFOV / 2);
@@ -51,26 +73,26 @@ public class Engine(Scene scene, RenderOptions options)
         Vector2 topLeft = new(-viewPlaneWidth / 2, viewPlaneHeight / 2);
         Vector2 bottomRight = new(viewPlaneWidth / 2, -viewPlaneHeight / 2);
 
-        float deltaX = (bottomRight.X - topLeft.X) / options.Width;
-        float deltaY = (bottomRight.Y - topLeft.Y) / options.Height;
+        float deltaX = (bottomRight.X - topLeft.X) / _options.Width;
+        float deltaY = (bottomRight.Y - topLeft.Y) / _options.Height;
 
-        Image<Rgba32> render = new(options.Width, options.Height);
+        Image<Rgba32> render = new(_options.Width, _options.Height);
 
-        Parallel.For(0, options.Height, y =>
+        Parallel.For(0, _options.Height, y =>
         {
             float screenDeltaX = topLeft.X;
             float screenDeltaY = topLeft.Y + y * deltaY;
 
-            Span<Rgba32> pixelRowSpan = render.GetPixelMemoryGroup().Single().Span[(y * options.Width)..];
+            Span<Rgba32> pixelRowSpan = render.GetPixelMemoryGroup().Single().Span[(y * _options.Width)..];
 
-            for (int x = 0; x < options.Width; x++)
+            for (int x = 0; x < _options.Width; x++)
             {
                 float distance = float.MaxValue;
                 Vector3 color = Vector3.Zero;
                 Vector3 direction = new(screenDeltaX, screenDeltaY, 1);
 
-                Ray ray = new(scene.Camera.Position, Vector3.Normalize(direction));
-                Raytrace(scene, options, ray, ref color, 1, ref distance);
+                Ray ray = new(_scene.Camera.Position, Vector3.Normalize(direction));
+                Raytrace(_scene, _options, ray, ref color, 1, ref distance);
 
                 color = Vector3.Clamp(color, Vector3.Zero, Vector3.One);
 
