@@ -1,40 +1,40 @@
-# name: "Deploy to Azure WebApp"
+name: "Deploy to Azure WebApp"
 
-# on:
-#   push:
-#     branches:
-#       - master
+on:
+  push:
+    branches:
+      - master
 
-# env:
-#   AZURE_WEBAPP_NAME: raytracer-as
-#   AZURE_WEBAPP_PACKAGE_PATH: './published'
-#   NET_VERSION: '5.0.100'
-#   PROJECT_FILE: 'Raytracer.Client/RayTracer.Client.csproj'
+env:
+  AZURE_WEBAPP_NAME: raytracer-as
+  AZURE_WEBAPP_PACKAGE_PATH: './published'
+  NET_VERSION: '10.0.100'
+  PROJECT_FILE: 'Raytracer.Client/RayTracer.Client.csproj'
 
-# jobs:
-#   build:
-#     name: Windows Build Agent
-#     runs-on: windows-latest
-#     steps:
-#     - uses: actions/checkout@v2
+jobs:
+  build:
+    name: Windows Build Agent
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
 
-#     - name: Setup .NET SDK ${{ env.NET_VERSION }}
-#       uses: actions/setup-dotnet@v1
-#       with:
-#         dotnet-version: ${{ env.NET_VERSION }}
+    - name: Setup .NET SDK ${{ env.NET_VERSION }}
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ env.NET_VERSION }}
 
-#     - name: Restore
-#       run: dotnet restore ${{ env.PROJECT_FILE }}
+    - name: Restore
+      run: dotnet restore ${{ env.PROJECT_FILE }}
     
-#     - name: Build
-#       run: dotnet build ${{ env.PROJECT_FILE }} --no-restore -c Release
+    - name: Build
+      run: dotnet build ${{ env.PROJECT_FILE }} --no-restore -c Release
 
-#     - name: Publish
-#       run: dotnet publish ${{ env.PROJECT_FILE }} --no-build -c Release -o ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+    - name: Publish
+      run: dotnet publish ${{ env.PROJECT_FILE }} --no-build -c Release -o ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
     
-#     - name: Deploy to Azure
-#       uses: azure/webapps-deploy@v2
-#       with:
-#         app-name: ${{ env.AZURE_WEBAPP_NAME }}
-#         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-#         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+    - name: Deploy to Azure
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
