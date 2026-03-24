@@ -37,8 +37,19 @@ for (int i = 0; i < argsList.Length; i++)
 Scene scene = sceneName.ToLower() switch
 {
     "sphere" => new SphereScene(),
+    "triangle" => new TriangleScene(),
+    "box" => new BoxScene(),
+    "cylinder" => new CylinderScene(),
+    "disk" => new DiskScene(),
+    "list" => throw new System.ArgumentException("list is not a scene"),
     _ => new SphereScene()
 };
+
+if (sceneName.ToLower() == "list")
+{
+    Console.WriteLine("Available scenes: sphere, triangle, box, cylinder, disk");
+    System.Environment.Exit(0);
+}
 
 var options = new RenderOptions
 {
