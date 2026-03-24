@@ -9,6 +9,7 @@
         Triangle,
         Cylinder,
         Disk,
-        Mesh
+        Mesh,
+        Torus
     }
 }
