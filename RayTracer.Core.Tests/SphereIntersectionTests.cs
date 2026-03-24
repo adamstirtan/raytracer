@@ -31,6 +31,6 @@ public class SphereIntersectionTests
         float dist = float.MaxValue;
         var result = sphere.Intersects(ray, ref dist);
         Assert.IsTrue(result == RayIntersection.Hit || result == RayIntersection.Inside);
-        Assert.IsTrue(dist < float.MaxValue);
+        Assert.IsLessThan(dist, float.MaxValue);
     }
 }

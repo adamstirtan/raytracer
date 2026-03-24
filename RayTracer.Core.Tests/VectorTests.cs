@@ -26,6 +26,6 @@ public class VectorTests
         var norm = Vector3.Normalize(v);
         // length should be 1
         var len = norm.Length();
-        Assert.IsTrue(System.Math.Abs(len - 1.0f) < 1e-6f);
+        Assert.IsLessThan(System.Math.Abs(len - 1.0f), 1e-6f);
     }
 }
