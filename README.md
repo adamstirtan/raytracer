@@ -2,7 +2,7 @@
 ### An extensible ray tracer made with .NET
 ***
 
-![Billiards scene](./assets/billiards.png)
+![Skull render](./assets/skull_face.png)
 
 Overview
 
