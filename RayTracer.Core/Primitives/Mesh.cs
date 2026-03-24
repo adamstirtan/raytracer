@@ -117,17 +117,26 @@ public class Mesh : Primitive
             var extent = max - min;
             float maxExtent = System.Math.Max(extent.X, System.Math.Max(extent.Y, extent.Z));
             float scale = 4.0f / maxExtent; // scale so model ~4 units across
-            // apply centering, scaling, translate to scene and rotate 45 degrees around Y
-            float angle = 45.0f * (float)System.Math.PI / 180.0f;
-            var cos = System.MathF.Cos(angle);
-            var sin = System.MathF.Sin(angle);
+            // apply centering, scaling, translate to scene
+            float angleY = 45.0f * (float)System.Math.PI / 180.0f;
+            var cosy = System.MathF.Cos(angleY);
+            var siny = System.MathF.Sin(angleY);
+            // rotate -90 deg around X to make the face point forward (if needed)
+            float angleX = -90.0f * (float)System.Math.PI / 180.0f;
+            var cosx = System.MathF.Cos(angleX);
+            var sinx = System.MathF.Sin(angleX);
+
             for (int i = 0; i < mesh.Vertices.Count; i++)
             {
                 var v = (mesh.Vertices[i] - center) * scale;
                 // rotate around Y
-                float x = v.X * cos + v.Z * sin;
-                float z = -v.X * sin + v.Z * cos;
-                mesh.Vertices[i] = new Vector3(x, v.Y, z) + new Vector3(0, 1.0f, 8.0f);
+                float x = v.X * cosy + v.Z * siny;
+                float z = -v.X * siny + v.Z * cosy;
+                float y = v.Y;
+                // rotate around X (x, y, z) -> (x, y*cosx - z*sinx, y*sinx + z*cosx)
+                float y2 = y * cosx - z * sinx;
+                float z2 = y * sinx + z * cosx;
+                mesh.Vertices[i] = new Vector3(x, y2, z2) + new Vector3(0, 1.0f, 8.0f);
             }
         }
 
