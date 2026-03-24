@@ -125,18 +125,34 @@ public class Mesh : Primitive
             float angleX = -90.0f * (float)System.Math.PI / 180.0f;
             var cosx = System.MathF.Cos(angleX);
             var sinx = System.MathF.Sin(angleX);
+            // additional rotations requested by user: tilt down 15 deg (around X), right 20 deg (around Y)
+            float extraTilt = -15.0f * (float)System.Math.PI / 180.0f; // down
+            var cost = System.MathF.Cos(extraTilt);
+            var sint = System.MathF.Sin(extraTilt);
+            float extraYaw = -50.0f * (float)System.Math.PI / 180.0f; // left 50°
+            var cosy2 = System.MathF.Cos(extraYaw);
+            var siny2 = System.MathF.Sin(extraYaw);
 
             for (int i = 0; i < mesh.Vertices.Count; i++)
             {
                 var v = (mesh.Vertices[i] - center) * scale;
-                // rotate around Y
+                // rotate around Y (initial)
                 float x = v.X * cosy + v.Z * siny;
                 float z = -v.X * siny + v.Z * cosy;
                 float y = v.Y;
-                // rotate around X (x, y, z) -> (x, y*cosx - z*sinx, y*sinx + z*cosx)
+                // rotate around X (initial)
                 float y2 = y * cosx - z * sinx;
                 float z2 = y * sinx + z * cosx;
-                mesh.Vertices[i] = new Vector3(x, y2, z2) + new Vector3(0, 1.0f, 8.0f);
+                // apply extra tilt around X
+                float y3 = y2 * cost - z2 * sint;
+                float z3 = y2 * sint + z2 * cost;
+                // apply extra yaw around Y
+                float x4 = y3; // placeholder
+                // rotate (x,z3) around Y by extraYaw
+                float xr = x * cosy2 + z3 * siny2;
+                float zr = -x * siny2 + z3 * cosy2;
+
+                mesh.Vertices[i] = new Vector3(xr, y3, zr) + new Vector3(0, 1.0f, 8.0f);
             }
         }
 
