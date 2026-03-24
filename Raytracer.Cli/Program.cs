@@ -41,6 +41,7 @@ Scene scene = sceneName.ToLower() switch
     "box" => new BoxScene(),
     "cylinder" => new CylinderScene(),
     "disk" => new DiskScene(),
+    "billiards" => new BilliardsScene(),
     "list" => throw new System.ArgumentException("list is not a scene"),
     _ => new SphereScene()
 };
