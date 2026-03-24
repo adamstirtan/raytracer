@@ -44,29 +44,38 @@ public class Mesh : Primitive
             else if (line.StartsWith("f "))
             {
                 var parts = line.Split(' ', System.StringSplitOptions.RemoveEmptyEntries);
-                // face entries may be v, v/vt, v//vn, or v/vt/vn
-                int[] vidx = new int[3];
-                int[] nidx = new int[3];
-                for (int i = 0; i < 3; i++)
+                // face entries may be v, v/vt, v//vn, or v/vt/vn and can have more than 3 vertices (polygons)
+                var vIndices = new List<int>();
+                var nIndices = new List<int>();
+                for (int i = 1; i < parts.Length; i++)
                 {
-                    var comps = parts[1+i].Split('/');
-                    vidx[i] = int.Parse(comps[0]) - 1;
-                    if (comps.Length >= 3 && comps[2] != "") nidx[i] = int.Parse(comps[2]) - 1;
-                    else nidx[i] = -1;
+                    var comps = parts[i].Split('/');
+                    int v = int.Parse(comps[0]) - 1;
+                    vIndices.Add(v);
+                    int ni = -1;
+                    if (comps.Length >= 3 && comps[2] != "") ni = int.Parse(comps[2]) - 1;
+                    nIndices.Add(ni);
                 }
-                mesh.Triangles.Add((vidx[0], vidx[1], vidx[2]));
 
-                // store per-triangle vertex normal indices if present
-                if (nidx[0] >= 0 && normals.Count > 0)
+                // triangulate polygon with a fan (v0, vi, vi+1)
+                for (int i = 1; i < vIndices.Count - 1; i++)
                 {
+                    int a = vIndices[0];
+                    int b = vIndices[i];
+                    int c = vIndices[i+1];
+                    mesh.Triangles.Add((a,b,c));
+
                     // ensure VertexNormals length matches Vertices
-                    while (mesh.VertexNormals.Count < mesh.Vertices.Count) mesh.VertexNormals.Add(Vector3.Zero);
-                    for (int i = 0; i < 3; i++)
+                    if (normals.Count > 0)
                     {
-                        if (nidx[i] >= 0 && nidx[i] < normals.Count)
-                        {
-                            mesh.VertexNormals[vidx[i]] = normals[nidx[i]];
-                        }
+                        while (mesh.VertexNormals.Count < mesh.Vertices.Count) mesh.VertexNormals.Add(Vector3.Zero);
+
+                        int na = nIndices[0];
+                        int nb = nIndices[i];
+                        int nc = nIndices[i+1];
+                        if (na >= 0 && na < normals.Count) mesh.VertexNormals[a] = normals[na];
+                        if (nb >= 0 && nb < normals.Count) mesh.VertexNormals[b] = normals[nb];
+                        if (nc >= 0 && nc < normals.Count) mesh.VertexNormals[c] = normals[nc];
                     }
                 }
             }
@@ -108,9 +117,17 @@ public class Mesh : Primitive
             var extent = max - min;
             float maxExtent = System.Math.Max(extent.X, System.Math.Max(extent.Y, extent.Z));
             float scale = 4.0f / maxExtent; // scale so model ~4 units across
+            // apply centering, scaling, translate to scene and rotate 45 degrees around Y
+            float angle = 45.0f * (float)System.Math.PI / 180.0f;
+            var cos = System.MathF.Cos(angle);
+            var sin = System.MathF.Sin(angle);
             for (int i = 0; i < mesh.Vertices.Count; i++)
             {
-                mesh.Vertices[i] = (mesh.Vertices[i] - center) * scale + new Vector3(0, 1.0f, 8.0f);
+                var v = (mesh.Vertices[i] - center) * scale;
+                // rotate around Y
+                float x = v.X * cos + v.Z * sin;
+                float z = -v.X * sin + v.Z * cos;
+                mesh.Vertices[i] = new Vector3(x, v.Y, z) + new Vector3(0, 1.0f, 8.0f);
             }
         }
 
