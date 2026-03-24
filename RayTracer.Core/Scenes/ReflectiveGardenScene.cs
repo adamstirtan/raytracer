@@ -10,11 +10,11 @@ public class ReflectiveGardenScene : Scene
     public ReflectiveGardenScene(int seed = 42, int sphereCount = 300)
     {
         // Ground
-        var ground = new Plane(new Vector3(0, 1, 0), 1000, new Material(new Vector3(0.08f, 0.08f, 0.08f), diffuse: 0.9f, reflection: 0.3f, specular: 0.2f), null);
+        var ground = new RayTracer.Core.Primitives.Plane(new Vector3(0, 1, 0), 1000, new Material(new Vector3(0.08f, 0.08f, 0.08f), diffuse: 0.9f, reflection: 0.3f, specular: 0.2f), null);
         AddObject(ground);
 
         // Back wall (large box as far plane)
-        var back = new Plane(new Vector3(0, 0, 1), 2000, new Material(new Vector3(0.06f, 0.06f, 0.06f), diffuse: 0.9f, reflection: 0.1f, specular: 0.1f), null);
+        var back = new RayTracer.Core.Primitives.Plane(new Vector3(0, 0, 1), 2000, new Material(new Vector3(0.06f, 0.06f, 0.06f), diffuse: 0.9f, reflection: 0.1f, specular: 0.1f), null);
         AddObject(back);
 
         // A few large focal reflective spheres
@@ -26,10 +26,10 @@ public class ReflectiveGardenScene : Scene
         var rnd = new Random(seed);
         for (int i = 0; i < sphereCount; i++)
         {
-            float angle = (float)(rnd.NextDouble() * Math.PI * 2.0);
+            float angle = (float)(rnd.NextDouble() * System.MathF.PI * 2.0f);
             float radius = (float)(5.0 + rnd.NextDouble() * 12.0); // ring
-            float x = MathF.Cos(angle) * radius + (float)(rnd.NextDouble() - 0.5) * 0.6f;
-            float z = MathF.Sin(angle) * radius + (float)(rnd.NextDouble() - 0.5) * 0.6f + 15.0f;
+            float x = System.MathF.Cos(angle) * radius + (float)(rnd.NextDouble() - 0.5) * 0.6f;
+            float z = System.MathF.Sin(angle) * radius + (float)(rnd.NextDouble() - 0.5) * 0.6f + 15.0f;
             float y = (float)(rnd.NextDouble() * 1.6);
             float size = (float)(0.15 + rnd.NextDouble() * 0.6);
 
@@ -60,7 +60,7 @@ public class ReflectiveGardenScene : Scene
     private static Vector3 HsvToRgb(float h, float s, float v)
     {
         // h in 0..1
-        int i = (int)MathF.Floor(h * 6);
+        int i = (int)System.MathF.Floor(h * 6);
         float f = h * 6 - i;
         float p = v * (1 - s);
         float q = v * (1 - f * s);
