@@ -52,12 +52,20 @@ if (sceneName.ToLower() == "list")
     System.Environment.Exit(0);
 }
 
+// Choose camera position; default behind the view looking forward
+Vector3 cameraPos = new Vector3(0, 0, -5);
+if (sceneName.ToLower() == "billiards")
+{
+    // Overhead camera above table, looking downwards
+    cameraPos = new Vector3(0, 8, 0);
+}
+
 var options = new RenderOptions
 {
     Width = width,
     Height = height,
     TraceDepth = depth,
-    CameraPosition = new Vector3(0, 0, -5),
+    CameraPosition = cameraPos,
     DisableReflections = false
 };
 
