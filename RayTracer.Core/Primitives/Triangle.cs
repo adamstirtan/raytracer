@@ -28,7 +28,7 @@ public class Triangle : Primitive
         Vector3 pvec = Vector3.Cross(ray.Direction, edge2);
         float det = Vector3.Dot(edge1, pvec);
 
-        if (MathF.Abs(det) < 1e-8f)
+        if (System.Math.Abs(det) < 1e-8f)
             return RayIntersection.Miss;
 
         float invDet = 1.0f / det;

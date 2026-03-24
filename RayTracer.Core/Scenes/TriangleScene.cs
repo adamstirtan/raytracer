@@ -9,7 +9,7 @@ public class TriangleScene : Scene
     public TriangleScene()
     {
         // Ground plane
-        AddObject(new Plane(new Vector3(0,1,0), 1000, new Material(new Vector3(0.8f,0.8f,0.8f), diffuse:0.9f, reflection:0.2f, specular:0.1f), null));
+        AddObject(new RayTracer.Core.Primitives.Plane(new Vector3(0,1,0), 1000, new Material(new Vector3(0.8f,0.8f,0.8f), diffuse:0.9f, reflection:0.2f, specular:0.1f), null));
 
         // Single triangle in front of camera
         var a = new System.Numerics.Vector3(-1, 0, 5);
