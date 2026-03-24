@@ -129,7 +129,7 @@ public class Mesh : Primitive
             float extraTilt = -15.0f * (float)System.Math.PI / 180.0f; // down
             var cost = System.MathF.Cos(extraTilt);
             var sint = System.MathF.Sin(extraTilt);
-            float extraYaw = -50.0f * (float)System.Math.PI / 180.0f; // left 50°
+            float extraYaw = 180.0f * (float)System.Math.PI / 180.0f; // turn right 180°
             var cosy2 = System.MathF.Cos(extraYaw);
             var siny2 = System.MathF.Sin(extraYaw);
 
