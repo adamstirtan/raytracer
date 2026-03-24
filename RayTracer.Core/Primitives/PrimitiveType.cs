@@ -8,6 +8,7 @@
         Box,
         Triangle,
         Cylinder,
-        Disk
+        Disk,
+        Mesh
     }
 }
