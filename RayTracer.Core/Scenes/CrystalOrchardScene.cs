@@ -3,6 +3,9 @@ using System;
 using RayTracer.Core.Materials;
 using RayTracer.Core.Primitives;
 
+// Avoid ambiguity with System.Numerics.Plane
+using Plane = RayTracer.Core.Primitives.Plane;
+
 namespace RayTracer.Core.Scenes;
 
 public class CrystalOrchardScene : Scene
@@ -15,7 +18,7 @@ public class CrystalOrchardScene : Scene
         var rnd = new Random(seed);
         for (int i=0;i<count;i++){
             // place in a loose orchard
-            float angle = (float)(rnd.NextDouble()*Math.PI*2.0);
+            float angle = (float)( rnd.NextDouble()*System.Math.PI*2.0);
             float r = (float)(2.0 + rnd.NextDouble()*25.0);
             float x = MathF.Cos(angle)*r + (float)(rnd.NextDouble()-0.5f)*0.5f;
             float z = MathF.Sin(angle)*r + (float)(rnd.NextDouble()-0.5f)*0.5f + 10f;
