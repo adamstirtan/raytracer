@@ -43,22 +43,31 @@ Scene scene = sceneName.ToLower() switch
     "disk" => new DiskScene(),
     "billiards" => new BilliardsScene(),
     "mesh" => new MeshScene(),
+    "hand" => new HandScene(),
     "list" => throw new System.ArgumentException("list is not a scene"),
     _ => new SphereScene()
 };
 
 if (sceneName.ToLower() == "list")
 {
-    Console.WriteLine("Available scenes: sphere, triangle, box, cylinder, disk");
+    Console.WriteLine("Available scenes: sphere, triangle, box, cylinder, disk, billiards, mesh");
     System.Environment.Exit(0);
 }
 
 // Choose camera position; default behind the view looking forward
 Vector3 cameraPos = new Vector3(0, 0, -5);
+Vector3 cameraTarget = Vector3.Zero;
 if (sceneName.ToLower() == "billiards")
 {
     // Overhead camera above table, looking downwards
     cameraPos = new Vector3(0, 8, 0);
+    cameraTarget = new Vector3(0, 0, 0);
+}
+else if (sceneName.ToLower() == "mesh")
+{
+    // Position camera to the front-left-top of the model and look at its center
+    cameraPos = new Vector3(6f, 2.5f, 6f);
+    cameraTarget = new Vector3(0f, 1.0f, 8.0f);
 }
 
 var options = new RenderOptions
@@ -67,6 +76,7 @@ var options = new RenderOptions
     Height = height,
     TraceDepth = depth,
     CameraPosition = cameraPos,
+    CameraTarget = cameraTarget,
     DisableReflections = false
 };
 
