@@ -70,6 +70,13 @@ public class Engine
         Vector3 camForward = Vector3.Normalize(_options.CameraTarget - camPos);
         if (camForward == Vector3.Zero) camForward = Vector3.UnitZ;
         Vector3 worldUp = Vector3.UnitY;
+        // Handle the case where camera forward is parallel to world up (overhead camera)
+        if (System.MathF.Abs(Vector3.Dot(camForward, worldUp)) > 0.999f)
+        {
+            // choose a different up to avoid degenerate cross product
+            worldUp = Vector3.UnitZ;
+        }
+
         Vector3 camRight = Vector3.Normalize(Vector3.Cross(camForward, worldUp));
         Vector3 camUp = Vector3.Normalize(Vector3.Cross(camRight, camForward));
 
