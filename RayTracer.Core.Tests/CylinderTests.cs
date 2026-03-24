@@ -17,7 +17,7 @@ public class CylinderTests
         float dist = float.MaxValue;
         var res = cyl.Intersects(ray, ref dist);
         Assert.AreEqual(RayIntersection.Hit, res);
-        Assert.IsGreaterThan(dist, 0);
+        Assert.IsGreaterThan(0, dist);
     }
 
     [TestMethod]

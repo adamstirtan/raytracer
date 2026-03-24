@@ -23,8 +23,8 @@ public class TriangleTests
         var res = tri.Intersects(ray, ref dist);
 
         Assert.AreEqual(RayIntersection.Hit, res);
-        Assert.IsGreaterThan(dist, 0);
-        Assert.IsLessThan(dist, float.MaxValue);
+        Assert.IsGreaterThan(0, dist);
+        Assert.IsLessThan(float.MaxValue, dist);
     }
 
     [TestMethod]
@@ -54,6 +54,6 @@ public class TriangleTests
 
         var normal = tri.GetNormal(new Vector3(0,0,5));
         // Expected normal points roughly towards -Z in this setup? Actually triangle lies in plane z=5, so normal should be +Z
-        Assert.IsGreaterThan(Vector3.Dot(normal, Vector3.UnitZ), 0.9f);
+        Assert.IsGreaterThan(0.9f, Vector3.Dot(normal, Vector3.UnitZ));
     }
 }
