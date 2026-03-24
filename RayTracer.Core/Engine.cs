@@ -59,49 +59,49 @@ public class Engine
         // Use the current camera position (allow runtime updates)
         // _scene.Camera.Position = _options.CameraPosition;
 
-        // Define the vertical FOV (in radians)
+        // Camera FOV and basis
         float verticalFOV = MathF.PI / 4; // 45 degrees
-
-        // Calculate the aspect ratio
         float aspectRatio = (float)_options.Width / _options.Height;
-
-        /// Calculate the height and width of the view plane based on the FOV and aspect ratio
         float viewPlaneHeight = 2 * MathF.Tan(verticalFOV / 2);
         float viewPlaneWidth = viewPlaneHeight * aspectRatio;
 
-        // Calculate the top left and bottom right coordinates of the view plane
-        Vector2 topLeft = new(-viewPlaneWidth / 2, viewPlaneHeight / 2);
-        Vector2 bottomRight = new(viewPlaneWidth / 2, -viewPlaneHeight / 2);
+        // Camera basis using CameraPosition and CameraTarget
+        Vector3 camPos = _scene.Camera.Position;
+        Vector3 camForward = Vector3.Normalize(_options.CameraTarget - camPos);
+        if (camForward == Vector3.Zero) camForward = Vector3.UnitZ;
+        Vector3 worldUp = Vector3.UnitY;
+        Vector3 camRight = Vector3.Normalize(Vector3.Cross(camForward, worldUp));
+        Vector3 camUp = Vector3.Normalize(Vector3.Cross(camRight, camForward));
 
-        float deltaX = (bottomRight.X - topLeft.X) / _options.Width;
-        float deltaY = (bottomRight.Y - topLeft.Y) / _options.Height;
+        // Top-left corner of the view plane in camera space
+        Vector3 viewCenter = camPos + camForward; // distance 1
+        Vector3 topLeft3D = viewCenter - (camRight * (viewPlaneWidth / 2)) + (camUp * (viewPlaneHeight / 2));
+
+        float deltaX = viewPlaneWidth / _options.Width;
+        float deltaY = viewPlaneHeight / _options.Height;
 
         Image<Rgba32> render = new(_options.Width, _options.Height);
 
         Parallel.For(0, _options.Height, y =>
         {
-            float screenDeltaX = topLeft.X;
-            float screenDeltaY = topLeft.Y + y * deltaY;
-
+            Vector3 pixelStart = topLeft3D - camUp * (y * deltaY);
             Span<Rgba32> pixelRowSpan = render.GetPixelMemoryGroup().Single().Span[(y * _options.Width)..];
 
             for (int x = 0; x < _options.Width; x++)
             {
                 float distance = float.MaxValue;
                 Vector3 color = Vector3.Zero;
-                Vector3 direction = new(screenDeltaX, screenDeltaY, 1);
 
-                Ray ray = new(_scene.Camera.Position, Vector3.Normalize(direction));
+                Vector3 pixelPos = pixelStart + camRight * (x * deltaX);
+                Vector3 direction = Vector3.Normalize(pixelPos - camPos);
+
+                Ray ray = new(camPos, direction);
                 Raytrace(_scene, _options, ray, ref color, 1, ref distance);
 
                 color = Vector3.Clamp(color, Vector3.Zero, Vector3.One);
 
                 pixelRowSpan[x] = new Rgba32(color.X, color.Y, color.Z);
-
-                screenDeltaX += deltaX;
             }
-
-            screenDeltaY += deltaY;
         });
 
         stopwatch.Stop();
