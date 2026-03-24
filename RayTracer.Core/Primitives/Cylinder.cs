@@ -18,7 +18,7 @@ public class Cylinder : Primitive
         Height = height;
     }
 
-    public override PrimitiveType GetPrimitiveType() => PrimitiveType.Box; // reuse enum for now
+    public override PrimitiveType GetPrimitiveType() => PrimitiveType.Cylinder;
 
     public override RayIntersection Intersects(Ray ray, ref float distance)
     {

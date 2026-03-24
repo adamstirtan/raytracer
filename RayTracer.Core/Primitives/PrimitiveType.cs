@@ -6,6 +6,8 @@
         Sphere,
         Plane,
         Box,
-        Triangle
+        Triangle,
+        Cylinder,
+        Disk
     }
 }
