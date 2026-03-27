@@ -32,8 +32,8 @@ public class Torus : Primitive
     public override RayIntersection Intersects(Ray ray, ref float distance)
     {
         // Ray-marching using SDF. Not perfect but simple and robust for tests/scenes.
-        const int maxSteps = 100;
-        const float hitEps = 1e-3f;
+        const int maxSteps = 300; // increase steps for finer intersections
+        const float hitEps = 5e-4f;   // tighter hit epsilon for crisper surface
         const float maxDist = 100f;
 
         float t = 0f;
@@ -60,7 +60,7 @@ public class Torus : Primitive
     private Vector3 EstimateNormal(Vector3 p)
     {
         // numerical gradient
-        float eps = 1e-4f;
+        float eps = 5e-5f;
         float dx = SDF(new Vector3(p.X + eps, p.Y, p.Z)) - SDF(new Vector3(p.X - eps, p.Y, p.Z));
         float dy = SDF(new Vector3(p.X, p.Y + eps, p.Z)) - SDF(new Vector3(p.X, p.Y - eps, p.Z));
         float dz = SDF(new Vector3(p.X, p.Y, p.Z + eps)) - SDF(new Vector3(p.X, p.Y, p.Z - eps));

@@ -99,12 +99,36 @@ public class Engine
                 float distance = float.MaxValue;
                 Vector3 color = Vector3.Zero;
 
-                Vector3 pixelPos = pixelStart + camRight * (x * deltaX);
-                Vector3 direction = Vector3.Normalize(pixelPos - camPos);
+                // Supersampling / stratified jittered sampling
+                int spp = System.Math.Max(1, _options.SamplesPerPixel);
+                int side = (int)System.MathF.Round(System.MathF.Sqrt(spp));
+                if (side * side != spp) side = 1; // fallback to 1 if not perfect square
 
-                Ray ray = new(camPos, direction);
-                Raytrace(_scene, _options, ray, ref color, 1, ref distance);
+                Vector3 accum = Vector3.Zero;
 
+                // simple stratified grid within pixel
+                for (int sy = 0; sy < side; sy++)
+                {
+                    for (int sx = 0; sx < side; sx++)
+                    {
+                        // jitter within subpixel
+                        float jitterX = (sx + 0.5f) / side;
+                        float jitterY = (sy + 0.5f) / side;
+
+                        Vector3 pixelPosSS = pixelStart + camRight * ((x + jitterX) * deltaX) - camUp * ((y + jitterY) * deltaY);
+                        Vector3 dirSS = Vector3.Normalize(pixelPosSS - camPos);
+
+                        Ray ssRay = new(camPos, dirSS);
+                        float ssDistance = float.MaxValue;
+                        Vector3 ssColor = Vector3.Zero;
+
+                        Raytrace(_scene, _options, ssRay, ref ssColor, 1, ref ssDistance);
+
+                        accum += ssColor;
+                    }
+                }
+
+                color = accum / (side * side);
                 color = Vector3.Clamp(color, Vector3.Zero, Vector3.One);
 
                 pixelRowSpan[x] = new Rgba32(color.X, color.Y, color.Z);
