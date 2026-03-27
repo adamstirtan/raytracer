@@ -13,4 +13,8 @@ public class RenderOptions
     public required bool DisableReflections { get; init; }
     public bool DisableDiffuse { get; init; }
     public bool DisableSpeculation { get; init; }
+
+    // Supersampling: number of samples per pixel (1 = no supersampling).
+    // Use perfect squares like 1,4,9 (1x1,2x2,3x3 stratified sampling).
+    public int SamplesPerPixel { get; init; } = 1;
 }
