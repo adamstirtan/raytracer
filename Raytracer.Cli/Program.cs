@@ -11,6 +11,7 @@ int width = 800;
 int height = 600;
 string outPath = "render.png";
 int depth = 2;
+int samplesPerPixel = 1;
 
 for (int i = 0; i < argsList.Length; i++)
 {
@@ -30,6 +31,9 @@ for (int i = 0; i < argsList.Length; i++)
             break;
         case "--depth":
             if (i + 1 < argsList.Length) int.TryParse(argsList[++i], out depth);
+            break;
+        case "--spp":
+            if (i + 1 < argsList.Length) int.TryParse(argsList[++i], out samplesPerPixel);
             break;
     }
 }
@@ -78,7 +82,8 @@ var options = new RenderOptions
     TraceDepth = depth,
     CameraPosition = cameraPos,
     CameraTarget = cameraTarget,
-    DisableReflections = false
+    DisableReflections = false,
+    SamplesPerPixel = samplesPerPixel
 };
 
 var engine = new Engine(scene, options);
