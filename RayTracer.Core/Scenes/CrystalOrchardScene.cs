@@ -10,12 +10,12 @@ public class CrystalOrchardScene : Scene
     public CrystalOrchardScene(int seed = 1337, int count = 450)
     {
         // Ground
-        AddObject(new Plane(new Vector3(0,1,0), 1000, new Material(new Vector3(0.06f,0.06f,0.07f), diffuse:0.95f, reflection:0.15f, specular:0.2f), null));
+        AddObject(new RayTracer.Core.Primitives.Plane(new Vector3(0,1,0), 1000, new Material(new Vector3(0.06f,0.06f,0.07f), diffuse:0.95f, reflection:0.15f, specular:0.2f), null));
 
         var rnd = new Random(seed);
         for (int i=0;i<count;i++){
             // place in a loose orchard
-            float angle = (float)(rnd.NextDouble()*Math.PI*2.0);
+            float angle = (float)(rnd.NextDouble()*System.Math.PI*2.0);
             float r = (float)(2.0 + rnd.NextDouble()*25.0);
             float x = MathF.Cos(angle)*r + (float)(rnd.NextDouble()-0.5f)*0.5f;
             float z = MathF.Sin(angle)*r + (float)(rnd.NextDouble()-0.5f)*0.5f + 10f;
