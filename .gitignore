@@ -2,4 +2,5 @@
 **/obj/*
 
 .vs/
-**/.vs/
+**/.vs/# Ignore test results
+RayTracer.Core.Tests/TestResults/
