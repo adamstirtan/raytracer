@@ -100,7 +100,7 @@ public class Engine
                 Vector3 color = Vector3.Zero;
 
                 // Supersampling / stratified jittered sampling
-                int spp = Math.Max(1, _options.SamplesPerPixel);
+                int spp = System.Math.Max(1, _options.SamplesPerPixel);
                 int side = (int)System.MathF.Round(System.MathF.Sqrt(spp));
                 if (side * side != spp) side = 1; // fallback to 1 if not perfect square
 
