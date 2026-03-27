@@ -44,6 +44,7 @@ Scene scene = sceneName.ToLower() switch
     "billiards" => new BilliardsScene(),
     "mesh" => new MeshScene(),
     "hand" => new HandScene(),
+    "torus" => new RayTracer.Core.Scenes.TorusScene(),
     "list" => throw new System.ArgumentException("list is not a scene"),
     _ => new SphereScene()
 };
