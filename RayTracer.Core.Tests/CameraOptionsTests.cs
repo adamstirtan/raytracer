@@ -1,13 +1,14 @@
 using System.Numerics;
 using RayTracer.Core;
 using RayTracer.Core.Scenes;
-using Xunit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace RayTracer.Core.Tests
 {
+    [TestClass]
     public class CameraOptionsTests
     {
-        [Fact]
+        [TestMethod]
         public void Engine_Uses_RenderOptions_CameraTarget_When_Set()
         {
             var scene = new SphereScene();
@@ -23,8 +24,8 @@ namespace RayTracer.Core.Tests
 
             var engine = new Engine(scene, options);
             var img = engine.Render();
-            Assert.Equal(options.Width, img.Width);
-            Assert.Equal(options.Height, img.Height);
+            Assert.AreEqual(options.Width, img.Width);
+            Assert.AreEqual(options.Height, img.Height);
         }
     }
 }

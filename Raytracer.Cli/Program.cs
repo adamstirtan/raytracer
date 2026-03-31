@@ -13,6 +13,10 @@ string outPath = "render.png";
 int depth = 2;
 int samplesPerPixel = 1;
 
+// camera defaults
+Vector3 cameraPos = new Vector3(0, 0, -5);
+Vector3 cameraTarget = Vector3.Zero;
+
 for (int i = 0; i < argsList.Length; i++)
 {
     switch (argsList[i])
@@ -76,9 +80,6 @@ if (sceneName.ToLower() == "list")
     System.Environment.Exit(0);
 }
 
-// Choose camera position; default behind the view looking forward
-Vector3 cameraPos = new Vector3(0, 0, -5);
-Vector3 cameraTarget = Vector3.Zero;
 if (sceneName.ToLower() == "billiards")
 {
     // Overhead camera above table, looking downwards
