@@ -35,6 +35,22 @@ for (int i = 0; i < argsList.Length; i++)
         case "--spp":
             if (i + 1 < argsList.Length) int.TryParse(argsList[++i], out samplesPerPixel);
             break;
+        case "--cam-pos":
+            if (i + 1 < argsList.Length)
+            {
+                var parts = argsList[++i].Split(',');
+                if (parts.Length == 3 && float.TryParse(parts[0], out float cx) && float.TryParse(parts[1], out float cy) && float.TryParse(parts[2], out float cz))
+                    cameraPos = new System.Numerics.Vector3(cx, cy, cz);
+            }
+            break;
+        case "--cam-target":
+            if (i + 1 < argsList.Length)
+            {
+                var parts = argsList[++i].Split(',');
+                if (parts.Length == 3 && float.TryParse(parts[0], out float tx) && float.TryParse(parts[1], out float ty) && float.TryParse(parts[2], out float tz))
+                    cameraTarget = new System.Numerics.Vector3(tx, ty, tz);
+            }
+            break;
     }
 }
 
