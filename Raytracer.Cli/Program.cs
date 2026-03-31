@@ -49,6 +49,7 @@ Scene scene = sceneName.ToLower() switch
     "mesh" => new MeshScene(),
     "hand" => new HandScene(),
     "torus" => new RayTracer.Core.Scenes.TorusScene(),
+    "reflective" => new RayTracer.Core.Scenes.ReflectiveSphereScene(),
     "list" => throw new System.ArgumentException("list is not a scene"),
     _ => new SphereScene()
 };
