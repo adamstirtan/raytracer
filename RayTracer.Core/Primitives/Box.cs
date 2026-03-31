@@ -1,5 +1,4 @@
 using System.Numerics;
-
 using RayTracer.Core.Materials;
 using RayTracer.Core.Math;
 
@@ -10,101 +9,73 @@ public class Box : Primitive
     public Vector3 Min { get; set; }
     public Vector3 Max { get; set; }
 
-    public Box(Vector3 min, Vector3 max, Material material, Texture texture)
+    public Box(Vector3 min, Vector3 max, Material material, Texture? texture)
         : base(material, texture)
     {
         Min = min;
         Max = max;
     }
 
-    public override PrimitiveType GetPrimitiveType()
-    {
-        return PrimitiveType.Box;
-    }
+    public override PrimitiveType GetPrimitiveType() => PrimitiveType.Box;
 
     public override RayIntersection Intersects(Ray ray, ref float distance)
     {
-        float tMin = (Min.X - ray.Origin.X) / ray.Direction.X;
-        float tMax = (Max.X - ray.Origin.X) / ray.Direction.X;
+        // Slab method
+        float tmin = (Min.X - ray.Origin.X) / ray.Direction.X;
+        float tmax = (Max.X - ray.Origin.X) / ray.Direction.X;
+        if (tmin > tmax) (tmin, tmax) = (tmax, tmin);
 
-        if (tMin > tMax)
+        float tymin = (Min.Y - ray.Origin.Y) / ray.Direction.Y;
+        float tymax = (Max.Y - ray.Origin.Y) / ray.Direction.Y;
+        if (tymin > tymax) (tymin, tymax) = (tymax, tymin);
+
+        if ((tmin > tymax) || (tymin > tmax)) return RayIntersection.Miss;
+
+        if (tymin > tmin) tmin = tymin;
+        if (tymax < tmax) tmax = tymax;
+
+        float tzmin = (Min.Z - ray.Origin.Z) / ray.Direction.Z;
+        float tzmax = (Max.Z - ray.Origin.Z) / ray.Direction.Z;
+        if (tzmin > tzmax) (tzmin, tzmax) = (tzmax, tzmin);
+
+        if ((tmin > tzmax) || (tzmin > tmax)) return RayIntersection.Miss;
+
+        if (tzmin > tmin) tmin = tzmin;
+        if (tzmax < tmax) tmax = tzmax;
+
+        float t = tmin > 1e-6f ? tmin : tmax;
+        if (t > 1e-6f && t < distance)
         {
-            (tMin, tMax) = (tMax, tMin);
+            distance = t;
+            return RayIntersection.Hit;
         }
 
-        float tyMin = (Min.Y - ray.Origin.Y) / ray.Direction.Y;
-        float tyMax = (Max.Y - ray.Origin.Y) / ray.Direction.Y;
-
-        if (tyMin > tyMax)
-        {
-            (tyMin, tyMax) = (tyMax, tyMin);
-        }
-
-        if ((tMin > tyMax) || (tyMin > tMax))
-        {
-            return RayIntersection.Miss;
-        }
-
-        if (tyMin > tMin)
-        {
-            tMin = tyMin;
-        }
-
-        if (tyMax < tMax)
-        {
-            tMax = tyMax;
-        }
-
-        float tzMin = (Min.Z - ray.Origin.Z) / ray.Direction.Z;
-        float tzMax = (Max.Z - ray.Origin.Z) / ray.Direction.Z;
-
-        if (tzMin > tzMax)
-        {
-            (tzMin, tzMax) = (tzMax, tzMin);
-        }
-
-        if ((tMin > tzMax) || (tzMin > tMax))
-        {
-            return RayIntersection.Miss;
-        }
-
-        if (tzMin > tMin)
-        {
-            tMin = tzMin;
-        }
-
-        if (tzMax < tMax)
-        {
-            tMax = tzMax;
-        }
-
-        if (tMin < 0)
-        {
-            tMin = tMax;
-            if (tMin < 0)
-            {
-                return RayIntersection.Miss;
-            }
-        }
-
-        distance = tMin;
-        return RayIntersection.Hit;
+        return RayIntersection.Miss;
     }
 
     public override Vector3 GetNormal(Vector3 position)
     {
-        Vector3 normal = Vector3.Zero;
-        if (position.X == Min.X) normal = new Vector3(-1, 0, 0);
-        if (position.X == Max.X) normal = new Vector3(1, 0, 0);
-        if (position.Y == Min.Y) normal = new Vector3(0, -1, 0);
-        if (position.Y == Max.Y) normal = new Vector3(0, 1, 0);
-        if (position.Z == Min.Z) normal = new Vector3(0, 0, -1);
-        if (position.Z == Max.Z) normal = new Vector3(0, 0, 1);
-        return normal;
+        // Determine closest face
+        float dx = System.MathF.Min(System.MathF.Abs(position.X - Min.X), System.MathF.Abs(position.X - Max.X));
+        float dy = System.MathF.Min(System.MathF.Abs(position.Y - Min.Y), System.MathF.Abs(position.Y - Max.Y));
+        float dz = System.MathF.Min(System.MathF.Abs(position.Z - Min.Z), System.MathF.Abs(position.Z - Max.Z));
+
+        if (dx < dy && dx < dz)
+            return position.X - Min.X < position.X - Max.X ? Vector3.UnitX * -1 : Vector3.UnitX;
+        else if (dy < dx && dy < dz)
+            return position.Y - Min.Y < position.Y - Max.Y ? Vector3.UnitY * -1 : Vector3.UnitY;
+        else
+            return position.Z - Min.Z < position.Z - Max.Z ? Vector3.UnitZ * -1 : Vector3.UnitZ;
     }
 
     public override Vector2 GetUV(Vector3 position)
     {
-        throw new System.NotImplementedException();
+        // Simple mapping based on dominant face
+        var normal = GetNormal(position);
+        if (normal == Vector3.UnitX || normal == -Vector3.UnitX)
+            return new Vector2((position.Z - Min.Z) / (Max.Z - Min.Z), (position.Y - Min.Y) / (Max.Y - Min.Y));
+        if (normal == Vector3.UnitY || normal == -Vector3.UnitY)
+            return new Vector2((position.X - Min.X) / (Max.X - Min.X), (position.Z - Min.Z) / (Max.Z - Min.Z));
+        return new Vector2((position.X - Min.X) / (Max.X - Min.X), (position.Y - Min.Y) / (Max.Y - Min.Y));
     }
 }

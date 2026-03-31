@@ -1,40 +1,33 @@
-name: "Deploy to Azure WebApp"
+name: "CI - Build and Test"
 
 on:
   push:
     branches:
       - master
+  pull_request:
+    branches:
+      - master
 
 env:
-  AZURE_WEBAPP_NAME: raytracer-as
-  AZURE_WEBAPP_PACKAGE_PATH: './published'
   NET_VERSION: '10.0.100'
-  PROJECT_FILE: 'Raytracer.Client/RayTracer.Client.csproj'
 
 jobs:
-  build:
-    name: Windows Build Agent
-    runs-on: windows-latest
+  build-and-test:
+    name: Build and run tests
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-    - name: Setup .NET SDK ${{ env.NET_VERSION }}
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: ${{ env.NET_VERSION }}
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ env.NET_VERSION }}
 
-    - name: Restore
-      run: dotnet restore ${{ env.PROJECT_FILE }}
-    
-    - name: Build
-      run: dotnet build ${{ env.PROJECT_FILE }} --no-restore -c Release
+      - name: Restore
+        run: dotnet restore
 
-    - name: Publish
-      run: dotnet publish ${{ env.PROJECT_FILE }} --no-build -c Release -o ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-    
-    - name: Deploy to Azure
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+      - name: Build
+        run: dotnet build --no-restore -c Release
+
+      - name: Run unit tests
+        run: dotnet test --no-build -c Release --verbosity minimal

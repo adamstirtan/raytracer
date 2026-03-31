@@ -59,49 +59,80 @@ public class Engine
         // Use the current camera position (allow runtime updates)
         // _scene.Camera.Position = _options.CameraPosition;
 
-        // Define the vertical FOV (in radians)
+        // Camera FOV and basis
         float verticalFOV = MathF.PI / 4; // 45 degrees
-
-        // Calculate the aspect ratio
         float aspectRatio = (float)_options.Width / _options.Height;
-
-        /// Calculate the height and width of the view plane based on the FOV and aspect ratio
         float viewPlaneHeight = 2 * MathF.Tan(verticalFOV / 2);
         float viewPlaneWidth = viewPlaneHeight * aspectRatio;
 
-        // Calculate the top left and bottom right coordinates of the view plane
-        Vector2 topLeft = new(-viewPlaneWidth / 2, viewPlaneHeight / 2);
-        Vector2 bottomRight = new(viewPlaneWidth / 2, -viewPlaneHeight / 2);
+        // Camera basis using CameraPosition and CameraTarget
+        Vector3 camPos = _scene.Camera.Position;
+        Vector3 camForward = Vector3.Normalize(_options.CameraTarget - camPos);
+        if (camForward == Vector3.Zero) camForward = Vector3.UnitZ;
+        Vector3 worldUp = Vector3.UnitY;
+        // Handle the case where camera forward is parallel to world up (overhead camera)
+        if (System.MathF.Abs(Vector3.Dot(camForward, worldUp)) > 0.999f)
+        {
+            // choose a different up to avoid degenerate cross product
+            worldUp = Vector3.UnitZ;
+        }
 
-        float deltaX = (bottomRight.X - topLeft.X) / _options.Width;
-        float deltaY = (bottomRight.Y - topLeft.Y) / _options.Height;
+        Vector3 camRight = Vector3.Normalize(Vector3.Cross(camForward, worldUp));
+        Vector3 camUp = Vector3.Normalize(Vector3.Cross(camRight, camForward));
+
+        // Top-left corner of the view plane in camera space
+        Vector3 viewCenter = camPos + camForward; // distance 1
+        Vector3 topLeft3D = viewCenter - (camRight * (viewPlaneWidth / 2)) + (camUp * (viewPlaneHeight / 2));
+
+        float deltaX = viewPlaneWidth / _options.Width;
+        float deltaY = viewPlaneHeight / _options.Height;
 
         Image<Rgba32> render = new(_options.Width, _options.Height);
 
         Parallel.For(0, _options.Height, y =>
         {
-            float screenDeltaX = topLeft.X;
-            float screenDeltaY = topLeft.Y + y * deltaY;
-
+            Vector3 pixelStart = topLeft3D - camUp * (y * deltaY);
             Span<Rgba32> pixelRowSpan = render.GetPixelMemoryGroup().Single().Span[(y * _options.Width)..];
 
             for (int x = 0; x < _options.Width; x++)
             {
                 float distance = float.MaxValue;
                 Vector3 color = Vector3.Zero;
-                Vector3 direction = new(screenDeltaX, screenDeltaY, 1);
 
-                Ray ray = new(_scene.Camera.Position, Vector3.Normalize(direction));
-                Raytrace(_scene, _options, ray, ref color, 1, ref distance);
+                // Supersampling / stratified jittered sampling
+                int spp = System.Math.Max(1, _options.SamplesPerPixel);
+                int side = (int)System.MathF.Round(System.MathF.Sqrt(spp));
+                if (side * side != spp) side = 1; // fallback to 1 if not perfect square
 
+                Vector3 accum = Vector3.Zero;
+
+                // simple stratified grid within pixel
+                for (int sy = 0; sy < side; sy++)
+                {
+                    for (int sx = 0; sx < side; sx++)
+                    {
+                        // jitter within subpixel
+                        float jitterX = (sx + 0.5f) / side;
+                        float jitterY = (sy + 0.5f) / side;
+
+                        Vector3 pixelPosSS = pixelStart + camRight * ((x + jitterX) * deltaX) - camUp * ((y + jitterY) * deltaY);
+                        Vector3 dirSS = Vector3.Normalize(pixelPosSS - camPos);
+
+                        Ray ssRay = new(camPos, dirSS);
+                        float ssDistance = float.MaxValue;
+                        Vector3 ssColor = Vector3.Zero;
+
+                        Raytrace(_scene, _options, ssRay, ref ssColor, 1, ref ssDistance);
+
+                        accum += ssColor;
+                    }
+                }
+
+                color = accum / (side * side);
                 color = Vector3.Clamp(color, Vector3.Zero, Vector3.One);
 
                 pixelRowSpan[x] = new Rgba32(color.X, color.Y, color.Z);
-
-                screenDeltaX += deltaX;
             }
-
-            screenDeltaY += deltaY;
         });
 
         stopwatch.Stop();

@@ -1,0 +1,208 @@
+using System.Numerics;
+using System.Collections.Generic;
+using RayTracer.Core.Materials;
+using RayTracer.Core.Math;
+
+namespace RayTracer.Core.Primitives;
+
+public class Mesh : Primitive
+{
+    public readonly List<Vector3> Vertices = new();
+    public readonly List<(int a,int b,int c)> Triangles = new();
+    public readonly List<Vector3> VertexNormals = new();
+
+    // last hit normal captured during Intersects for GetNormal()
+    private Vector3 _lastHitNormal = Vector3.UnitY;
+
+    public Mesh(Material material, Texture? texture) : base(material, texture) { }
+
+    public static Mesh FromObj(string path, Material material)
+    {
+        var mesh = new Mesh(material, null);
+        var lines = System.IO.File.ReadAllLines(path);
+        var normals = new List<Vector3>();
+        var tempNormalsPerVertex = new List<Vector3>();
+
+        foreach (var line in lines)
+        {
+            if (line.StartsWith("v "))
+            {
+                var parts = line.Split(' ', System.StringSplitOptions.RemoveEmptyEntries);
+                float x = float.Parse(parts[1]);
+                float y = float.Parse(parts[2]);
+                float z = float.Parse(parts[3]);
+                mesh.Vertices.Add(new Vector3(x,y,z));
+            }
+            else if (line.StartsWith("vn "))
+            {
+                var parts = line.Split(' ', System.StringSplitOptions.RemoveEmptyEntries);
+                float x = float.Parse(parts[1]);
+                float y = float.Parse(parts[2]);
+                float z = float.Parse(parts[3]);
+                normals.Add(new Vector3(x,y,z));
+            }
+            else if (line.StartsWith("f "))
+            {
+                var parts = line.Split(' ', System.StringSplitOptions.RemoveEmptyEntries);
+                // face entries may be v, v/vt, v//vn, or v/vt/vn and can have more than 3 vertices (polygons)
+                var vIndices = new List<int>();
+                var nIndices = new List<int>();
+                for (int i = 1; i < parts.Length; i++)
+                {
+                    var comps = parts[i].Split('/');
+                    int v = int.Parse(comps[0]) - 1;
+                    vIndices.Add(v);
+                    int ni = -1;
+                    if (comps.Length >= 3 && comps[2] != "") ni = int.Parse(comps[2]) - 1;
+                    nIndices.Add(ni);
+                }
+
+                // triangulate polygon with a fan (v0, vi, vi+1)
+                for (int i = 1; i < vIndices.Count - 1; i++)
+                {
+                    int a = vIndices[0];
+                    int b = vIndices[i];
+                    int c = vIndices[i+1];
+                    mesh.Triangles.Add((a,b,c));
+
+                    // ensure VertexNormals length matches Vertices
+                    if (normals.Count > 0)
+                    {
+                        while (mesh.VertexNormals.Count < mesh.Vertices.Count) mesh.VertexNormals.Add(Vector3.Zero);
+
+                        int na = nIndices[0];
+                        int nb = nIndices[i];
+                        int nc = nIndices[i+1];
+                        if (na >= 0 && na < normals.Count) mesh.VertexNormals[a] = normals[na];
+                        if (nb >= 0 && nb < normals.Count) mesh.VertexNormals[b] = normals[nb];
+                        if (nc >= 0 && nc < normals.Count) mesh.VertexNormals[c] = normals[nc];
+                    }
+                }
+            }
+        }
+
+        // If no vertex normals were supplied, compute per-vertex normals by averaging face normals
+        if (mesh.VertexNormals.Count == 0)
+        {
+            mesh.VertexNormals.AddRange(new Vector3[mesh.Vertices.Count]);
+            var counts = new int[mesh.Vertices.Count];
+            foreach (var tri in mesh.Triangles)
+            {
+                var A = mesh.Vertices[tri.a];
+                var B = mesh.Vertices[tri.b];
+                var C = mesh.Vertices[tri.c];
+                var n = Vector3.Normalize(Vector3.Cross(B - A, C - A));
+                mesh.VertexNormals[tri.a] += n; counts[tri.a]++;
+                mesh.VertexNormals[tri.b] += n; counts[tri.b]++;
+                mesh.VertexNormals[tri.c] += n; counts[tri.c]++;
+            }
+            for (int i = 0; i < mesh.VertexNormals.Count; i++)
+            {
+                if (counts[i] > 0) mesh.VertexNormals[i] = Vector3.Normalize(mesh.VertexNormals[i] / counts[i]);
+                else mesh.VertexNormals[i] = Vector3.UnitY;
+            }
+        }
+
+        // Compute bounding box and normalize/center the mesh so it fits in a unit cube centered at origin
+        if (mesh.Vertices.Count > 0)
+        {
+            var min = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
+            var max = new Vector3(float.MinValue, float.MinValue, float.MinValue);
+            foreach (var v in mesh.Vertices)
+            {
+                min = Vector3.Min(min, v);
+                max = Vector3.Max(max, v);
+            }
+            var center = (min + max) * 0.5f;
+            var extent = max - min;
+            float maxExtent = System.Math.Max(extent.X, System.Math.Max(extent.Y, extent.Z));
+            float scale = 4.0f / maxExtent; // scale so model ~4 units across
+            // apply centering, scaling, translate to scene
+            float angleY = 45.0f * (float)System.Math.PI / 180.0f;
+            var cosy = System.MathF.Cos(angleY);
+            var siny = System.MathF.Sin(angleY);
+            // rotate -90 deg around X to make the face point forward (if needed)
+            float angleX = -90.0f * (float)System.Math.PI / 180.0f;
+            var cosx = System.MathF.Cos(angleX);
+            var sinx = System.MathF.Sin(angleX);
+            // additional rotations requested by user: tilt down 15 deg (around X), right 20 deg (around Y)
+            float extraTilt = -15.0f * (float)System.Math.PI / 180.0f; // down
+            var cost = System.MathF.Cos(extraTilt);
+            var sint = System.MathF.Sin(extraTilt);
+            float extraYaw = 180.0f * (float)System.Math.PI / 180.0f; // turn right 180°
+            var cosy2 = System.MathF.Cos(extraYaw);
+            var siny2 = System.MathF.Sin(extraYaw);
+
+            for (int i = 0; i < mesh.Vertices.Count; i++)
+            {
+                var v = (mesh.Vertices[i] - center) * scale;
+                // rotate around Y (initial)
+                float x = v.X * cosy + v.Z * siny;
+                float z = -v.X * siny + v.Z * cosy;
+                float y = v.Y;
+                // rotate around X (initial)
+                float y2 = y * cosx - z * sinx;
+                float z2 = y * sinx + z * cosx;
+                // apply extra tilt around X
+                float y3 = y2 * cost - z2 * sint;
+                float z3 = y2 * sint + z2 * cost;
+                // apply extra yaw around Y
+                float x4 = y3; // placeholder
+                // rotate (x,z3) around Y by extraYaw
+                float xr = x * cosy2 + z3 * siny2;
+                float zr = -x * siny2 + z3 * cosy2;
+
+                mesh.Vertices[i] = new Vector3(xr, y3, zr) + new Vector3(0, 1.0f, 8.0f);
+            }
+        }
+
+        return mesh;
+    }
+
+    public override PrimitiveType GetPrimitiveType() => PrimitiveType.Mesh;
+
+    public override RayIntersection Intersects(Ray ray, ref float distance)
+    {
+        // brute-force triangle checks
+        foreach (var tri in Triangles)
+        {
+            var A = Vertices[tri.a];
+            var B = Vertices[tri.b];
+            var C = Vertices[tri.c];
+
+            // Moller-Trumbore
+            Vector3 edge1 = B - A;
+            Vector3 edge2 = C - A;
+            Vector3 pvec = Vector3.Cross(ray.Direction, edge2);
+            float det = Vector3.Dot(edge1, pvec);
+            if (System.MathF.Abs(det) < 1e-8f) continue;
+            float invDet = 1.0f / det;
+            Vector3 tvec = ray.Origin - A;
+            float u = Vector3.Dot(tvec, pvec) * invDet;
+            if (u < 0 || u > 1) continue;
+            Vector3 qvec = Vector3.Cross(tvec, edge1);
+            float v = Vector3.Dot(ray.Direction, qvec) * invDet;
+            if (v < 0 || u + v > 1) continue;
+            float t = Vector3.Dot(edge2, qvec) * invDet;
+            if (t > 1e-6f && t < distance)
+            {
+                distance = t;
+                // compute triangle normal and store
+                _lastHitNormal = Vector3.Normalize(Vector3.Cross(edge1, edge2));
+                return RayIntersection.Hit;
+            }
+        }
+        return RayIntersection.Miss;
+    }
+
+    public override Vector3 GetNormal(Vector3 position)
+    {
+        // return last computed triangle normal
+        return _lastHitNormal;
+    }
+
+    public override Vector2 GetUV(Vector3 position)
+    {
+        return Vector2.Zero;
+    }
+}

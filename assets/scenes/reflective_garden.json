@@ -1,0 +1,1 @@
+{ "name": "reflective_garden", "sceneClass": "ReflectiveGardenScene", "options": { "CameraPosition": [0,4,-18], "LookAt": [0,1,18], "DisableReflections": false, "TraceDepth": 6, "Width": 1200, "Height": 800 } }
