@@ -5,7 +5,6 @@ using System.Numerics;
 using System.Threading.Tasks;
 
 using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.Advanced;
 using SixLabors.ImageSharp.PixelFormats;
 
 using RayTracer.Core.Scenes;
@@ -65,9 +64,10 @@ public class Engine
         float viewPlaneHeight = 2 * MathF.Tan(verticalFOV / 2);
         float viewPlaneWidth = viewPlaneHeight * aspectRatio;
 
-        // Camera basis using CameraPosition and CameraTarget
+        // Camera basis using CameraPosition and CameraTarget/Scene Camera Target
         Vector3 camPos = _scene.Camera.Position;
-        Vector3 camForward = Vector3.Normalize(_options.CameraTarget - camPos);
+        Vector3 camTarget = _scene.Camera.Target.HasValue ? _scene.Camera.Target.Value : _options.CameraTarget;
+        Vector3 camForward = Vector3.Normalize(camTarget - camPos);
         if (camForward == Vector3.Zero) camForward = Vector3.UnitZ;
         Vector3 worldUp = Vector3.UnitY;
         // Handle the case where camera forward is parallel to world up (overhead camera)
@@ -92,11 +92,9 @@ public class Engine
         Parallel.For(0, _options.Height, y =>
         {
             Vector3 pixelStart = topLeft3D - camUp * (y * deltaY);
-            Span<Rgba32> pixelRowSpan = render.GetPixelMemoryGroup().Single().Span[(y * _options.Width)..];
 
             for (int x = 0; x < _options.Width; x++)
             {
-                float distance = float.MaxValue;
                 Vector3 color = Vector3.Zero;
 
                 // Supersampling / stratified jittered sampling
@@ -131,7 +129,7 @@ public class Engine
                 color = accum / (side * side);
                 color = Vector3.Clamp(color, Vector3.Zero, Vector3.One);
 
-                pixelRowSpan[x] = new Rgba32(color.X, color.Y, color.Z);
+                render[x, y] = new Rgba32(color.X, color.Y, color.Z);
             }
         });
 
