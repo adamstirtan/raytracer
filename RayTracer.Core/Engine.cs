@@ -114,7 +114,7 @@ public class Engine
                         float jitterX = (sx + 0.5f) / side;
                         float jitterY = (sy + 0.5f) / side;
 
-                        Vector3 pixelPosSS = pixelStart + camRight * ((x + jitterX) * deltaX) - camUp * ((y + jitterY) * deltaY);
+                        Vector3 pixelPosSS = pixelStart + camRight * ((x + jitterX) * deltaX) - camUp * (jitterY * deltaY);
                         Vector3 dirSS = Vector3.Normalize(pixelPosSS - camPos);
 
                         Ray ssRay = new(camPos, dirSS);

@@ -28,12 +28,12 @@
 
             <TextBlock>Resolution (WxH)</TextBlock>
             <StackPanel Orientation="Horizontal" Spacing="6">
-                <TextBox x:Name="WidthTextBox" Width="70" Text="400" />
-                <TextBox x:Name="HeightTextBox" Width="70" Text="300" />
+                <TextBox x:Name="WidthTextBox" Width="70" Text="800" />
+                <TextBox x:Name="HeightTextBox" Width="70" Text="600" />
             </StackPanel>
 
             <TextBlock>Samples per pixel (1,4,9)</TextBlock>
-            <TextBox x:Name="SamplesTextBox" Text="1" />
+            <TextBox x:Name="SamplesTextBox" Text="4" />
 
             <TextBlock>Trace depth</TextBlock>
             <TextBox x:Name="TraceDepthTextBox" Text="3" />
