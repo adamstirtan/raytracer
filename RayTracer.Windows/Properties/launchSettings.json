@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "RayTracer.Windows (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "RayTracer.Windows (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
