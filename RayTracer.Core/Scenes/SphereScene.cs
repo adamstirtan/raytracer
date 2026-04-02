@@ -1,6 +1,6 @@
-﻿using System.Numerics;
+﻿using System;
+using System.Numerics;
 
-using System;
 using RayTracer.Core.Materials;
 using RayTracer.Core.Primitives;
 
