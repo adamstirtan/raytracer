@@ -66,7 +66,8 @@ public class Engine
 
         // Camera basis using CameraPosition and CameraTarget/Scene Camera Target
         Vector3 camPos = _scene.Camera.Position;
-        Vector3 camTarget = _scene.Camera.Target.HasValue ? _scene.Camera.Target.Value : _options.CameraTarget;
+        // Prefer explicit CameraTarget from options when provided (non-zero), otherwise fall back to scene's camera target
+        Vector3 camTarget = _options.CameraTarget != Vector3.Zero ? _options.CameraTarget : (_scene.Camera.Target.HasValue ? _scene.Camera.Target.Value : Vector3.Zero);
         Vector3 camForward = Vector3.Normalize(camTarget - camPos);
         if (camForward == Vector3.Zero) camForward = Vector3.UnitZ;
         Vector3 worldUp = Vector3.UnitY;
