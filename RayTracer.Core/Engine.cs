@@ -1,15 +1,13 @@
-﻿using System;
+﻿using RayTracer.Core.Math;
+using RayTracer.Core.Primitives;
+using RayTracer.Core.Scenes;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
+using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
-
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.PixelFormats;
-
-using RayTracer.Core.Scenes;
-using RayTracer.Core.Math;
-using RayTracer.Core.Primitives;
 
 namespace RayTracer.Core;
 
@@ -67,7 +65,7 @@ public class Engine
         // Camera basis using CameraPosition and CameraTarget/Scene Camera Target
         Vector3 camPos = _scene.Camera.Position;
         // Prefer explicit CameraTarget from options when provided (non-zero), otherwise fall back to scene's camera target
-        Vector3 camTarget = _options.CameraTarget != Vector3.Zero ? _options.CameraTarget : (_scene.Camera.Target.HasValue ? _scene.Camera.Target.Value : Vector3.Zero);
+        Vector3 camTarget = _options.CameraTarget != Vector3.Zero ? _options.CameraTarget : (_scene.Camera.Target ?? Vector3.Zero);
         Vector3 camForward = Vector3.Normalize(camTarget - camPos);
         if (camForward == Vector3.Zero) camForward = Vector3.UnitZ;
         Vector3 worldUp = Vector3.UnitY;

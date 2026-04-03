@@ -1,8 +1,6 @@
-﻿using System;
-using System.Numerics;
-
-using RayTracer.Core.Materials;
+﻿using RayTracer.Core.Materials;
 using RayTracer.Core.Primitives;
+using System.Numerics;
 
 namespace RayTracer.Core.Scenes;
 
