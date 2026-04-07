@@ -82,9 +82,10 @@ if (sceneName.ToLower() == "list")
 
 if (sceneName.ToLower() == "billiards")
 {
-    // Overhead camera above table, looking downwards
-    cameraPos = new Vector3(0, 8, 0);
-    cameraTarget = new Vector3(0, 0, 0);
+    // Position camera slightly above and behind the cue ball, looking toward the rack
+    // Cue ball sits around y=0.2, z ~ -2.0; place camera a bit higher and further back for a natural human viewpoint
+    cameraPos = new Vector3(0f, 1.0f, -3.0f);
+    cameraTarget = new Vector3(0f, 0.2f, 1.8f);
 }
 else if (sceneName.ToLower() == "mesh")
 {
