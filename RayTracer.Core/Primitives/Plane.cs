@@ -48,7 +48,7 @@ public class Plane : Primitive
     {
         // Simple planar UV mapping using world X and Z coordinates (assumes plane normal is Y up)
         // Adjust scale to control tiling density on the plane
-        float scale = 0.3f; // smaller values -> more repeats
+        float scale = 1.0f; // smaller values -> more repeats
 
         float u = position.X * scale;
         float v = position.Z * scale;
