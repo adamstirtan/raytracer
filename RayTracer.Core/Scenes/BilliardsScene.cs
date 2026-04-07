@@ -8,9 +8,10 @@ public class BilliardsScene : Scene
 {
     public BilliardsScene()
     {
-        // Table plane
+        // Table plane with green felt texture
+        var felt = new RayTracer.Core.Materials.Texture("Textures/green-felt.jpg");
         AddObject(new RayTracer.Core.Primitives.Plane(new Vector3(0,1,0), 1000,
-            new Material(new Vector3(0.05f,0.4f,0.05f), 0.9f, 0.1f, 0.2f), null));
+            new Material(new Vector3(1f,1f,1f), 1.0f, 0.0f, 0.1f), felt));
 
         // Walls (short raised borders) as boxes
         AddObject(new Box(new Vector3(-5,0.2f,3.6f), new Vector3(5,0.6f,3.6f + 0.2f), new Material(new Vector3(0.1f,0.05f,0.02f), 0.2f, 0.0f, 0.0f), null));
