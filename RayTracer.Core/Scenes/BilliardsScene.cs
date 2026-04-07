@@ -13,10 +13,10 @@ public class BilliardsScene : Scene
             new Material(new Vector3(0.05f,0.4f,0.05f), 0.9f, 0.1f, 0.2f), null));
 
         // Walls (short raised borders) as boxes
-        AddObject(new Box(new Vector3(-5,0.2f,3), new Vector3(5,0.6f,3.2f), new Material(new Vector3(0.1f,0.05f,0.02f), 0.2f, 0.3f, 0.1f), null));
-        AddObject(new Box(new Vector3(-5,0.2f,-3.2f), new Vector3(5,0.6f,-3), new Material(new Vector3(0.1f,0.05f,0.02f), 0.2f, 0.3f, 0.1f), null));
-        AddObject(new Box(new Vector3(-5,0.2f,-3), new Vector3(-4.8f,0.6f,3), new Material(new Vector3(0.1f,0.05f,0.02f), 0.2f, 0.3f, 0.1f), null));
-        AddObject(new Box(new Vector3(4.8f,0.2f,-3), new Vector3(5,0.6f,3), new Material(new Vector3(0.1f,0.05f,0.02f), 0.2f, 0.3f, 0.1f), null));
+        AddObject(new Box(new Vector3(-5,0.2f,3.6f), new Vector3(5,0.6f,3.6f + 0.2f), new Material(new Vector3(0.1f,0.05f,0.02f), 0.2f, 0.0f, 0.0f), null));
+        AddObject(new Box(new Vector3(-5,0.2f,-3.6f - 0.2f), new Vector3(5,0.6f,-3.6f), new Material(new Vector3(0.1f,0.05f,0.02f), 0.2f, 0.0f, 0.0f), null));
+        AddObject(new Box(new Vector3(-5,0.2f,-3.6f), new Vector3(-4.8f,0.6f,3.6f), new Material(new Vector3(0.1f,0.05f,0.02f), 0.2f, 0.0f, 0.0f), null));
+        AddObject(new Box(new Vector3(4.8f,0.2f,-3.6f), new Vector3(5,0.6f,3.6f), new Material(new Vector3(0.1f,0.05f,0.02f), 0.2f, 0.0f, 0.0f), null));
 
         // Add a light above
         AddLight(new Light(new Vector3(0, 8, -5), float.MinValue, new Material(new Vector3(1f,1f,0.95f))));
