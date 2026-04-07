@@ -10,7 +10,7 @@ namespace RayTracer.Core.Tests
         [TestMethod]
         public void GetUV_ReturnsValuesInUnitRange_ForVariousPositions()
         {
-            var plane = new Plane(new Vector3(0, 1, 0), 0, null, null);
+            var plane = new RayTracer.Core.Primitives.Plane(new Vector3(0, 1, 0), 0, null, null);
             var positions = new[]
             {
                 new Vector3(0f, 0f, 0f),

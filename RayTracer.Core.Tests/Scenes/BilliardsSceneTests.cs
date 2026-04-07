@@ -18,7 +18,8 @@ namespace RayTracer.Core.Tests
                 Height = 30,
                 TraceDepth = 1,
                 CameraPosition = new Vector3(0, 1, -4),
-                CameraTarget = new Vector3(0, 0.2f, 1.8f)
+                CameraTarget = new Vector3(0, 0.2f, 1.8f),
+                DisableReflections = true
             };
 
             var engine = new Engine(scene, options);
