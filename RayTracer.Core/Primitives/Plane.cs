@@ -46,6 +46,17 @@ public class Plane : Primitive
 
     public override Vector2 GetUV(Vector3 position)
     {
-        throw new System.NotImplementedException();
+        // Simple planar UV mapping using world X and Z coordinates (assumes plane normal is Y up)
+        // Adjust scale to control tiling density on the plane
+        float scale = 1.0f; // smaller values -> more repeats
+
+        float u = position.X * scale;
+        float v = position.Z * scale;
+
+        // Wrap into [0,1]
+        u = u - System.MathF.Floor(u);
+        v = v - System.MathF.Floor(v);
+
+        return new Vector2(u, v);
     }
 }

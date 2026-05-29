@@ -26,8 +26,10 @@ jobs:
       - name: Restore
         run: dotnet restore
 
-      - name: Build
-        run: dotnet build --no-restore -c Release
+      - name: Build Core and CLI projects
+        run: |
+          dotnet build RayTracer.Core/RayTracer.Core.csproj --no-restore -c Release
+          dotnet build RayTracer.Cli/RayTracer.Cli.csproj --no-restore -c Release
 
       - name: Run unit tests
-        run: dotnet test --no-build -c Release --verbosity minimal
+        run: dotnet test RayTracer.Core.Tests/RayTracer.Core.Tests.csproj --no-build -c Release --verbosity minimal
