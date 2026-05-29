@@ -6,13 +6,16 @@ namespace RayTracer.Core.Primitives;
 
 public class Torus : Primitive
 {
+    public Vector3 Center { get; set; }
+
     // Major radius (distance from center to tube center)
     public float MajorRadius { get; set; } = 2.0f;
     // Minor radius (tube radius)
     public float MinorRadius { get; set; } = 0.5f;
 
-    public Torus(Material material, Texture? texture, float major = 2.0f, float minor = 0.5f) : base(material, texture)
+    public Torus(Material material, Texture? texture, float major = 2.0f, float minor = 0.5f, Vector3 center = default) : base(material, texture)
     {
+        Center = center;
         MajorRadius = major;
         MinorRadius = minor;
     }
@@ -40,12 +43,11 @@ public class Torus : Primitive
         for (int i = 0; i < maxSteps && t < distance && t < maxDist; i++)
         {
             var p = ray.Origin + ray.Direction * t;
-            float d = SDF(p);
+            var localPoint = p - Center;
+            float d = SDF(localPoint);
             if (d < hitEps)
             {
                 distance = t;
-                // estimate normal
-                _lastHitNormal = EstimateNormal(p);
                 return RayIntersection.Hit;
             }
             t += d;
@@ -54,8 +56,6 @@ public class Torus : Primitive
         }
         return RayIntersection.Miss;
     }
-
-    private Vector3 _lastHitNormal = Vector3.UnitY;
 
     private Vector3 EstimateNormal(Vector3 p)
     {
@@ -71,14 +71,14 @@ public class Torus : Primitive
 
     public override Vector3 GetNormal(Vector3 position)
     {
-        return _lastHitNormal;
+        return EstimateNormal(position - Center);
     }
 
     public override Vector2 GetUV(Vector3 position)
     {
         // approximate UV: param by torus angles
         // Project to XZ to get angle around major radius, and around tube for minor angle
-        var p = position;
+        var p = position - Center;
         float theta = System.MathF.Atan2(p.Z, p.X); // around Y
         var xz = new Vector2(p.X, p.Z);
         float lenXZ = xz.Length();
