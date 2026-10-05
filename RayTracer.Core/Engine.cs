@@ -154,11 +154,14 @@ public class Engine
         {
             IntersectionResult result = primitive.Intersect(ray, distance);
 
-            if (result.RayIntersection == RayIntersection.Hit && result.Distance < minDistance)
+            if (result.RayIntersection != RayIntersection.Miss && result.Distance < minDistance)
             {
                 minDistance = result.Distance;
                 closest = primitive;
-                closestNormal = result.Normal;
+                // Exit intersections shade the interior-facing side of the surface.
+                closestNormal = result.RayIntersection == RayIntersection.Inside
+                    ? -result.Normal
+                    : result.Normal;
             }
         }
 
