@@ -72,7 +72,8 @@ var scenes = new Dictionary<string, (Func<Scene> Create, Vector3 Position, Vecto
     ["reflective"] = (() => new ReflectiveSphereScene(), new(0, 0, -5), null),
     ["future-city"] = (() => new FutureCityScene(), new(26, 18, -32), new(0, 5, 12)),
     ["orbital"] = (() => new OrbitalScene(), new(30, 28, -55), new(3, -1, 15)),
-    ["observatory"] = (() => new ObservatoryScene(), new(17, 8, -30), new(0, 5, 12))
+    ["observatory"] = (() => new ObservatoryScene(), new(17, 8, -30), new(0, 5, 12)),
+    ["synthwave"] = (() => new SynthwaveScene(), new(0, 7, -12), new(0, 9, 100))
 };
 
 if (sceneName.Equals("list", StringComparison.OrdinalIgnoreCase))

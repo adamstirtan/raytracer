@@ -8,6 +8,10 @@
 ![.NET 10](https://img.shields.io/badge/.NET-10-512BD4?logo=dotnet&logoColor=white)
 ![CPU rendering](https://img.shields.io/badge/rendering-CPU-222222)
 
+<img src="assets/synthwave.png" alt="Synthwave landscape with a luminous blue grid following jagged valley walls toward a giant pink sun beneath a purple star-filled sky" width="1280" />
+
+*Synthwave — a neon grid valley, jagged terrain, and a giant pink sun beneath a purple star field. Rendered at 1920 × 1110 with 16 samples per pixel.*
+
 <img src="assets/future_city_textured.png" alt="Textured futuristic spaceport with metal-clad towers, patterned windows, a suspended reactor halo, segmented glass domes, and reflections on a tiled plaza beneath a dusk sky" width="1280" />
 
 *Future City — metal cladding, patterned windows, ceramic panels, and segmented glass domes around a suspended reactor halo, reflected in a tiled plaza beneath a dusk sky.*
@@ -158,6 +162,6 @@ The closest-hit rule is essential for meshes: a triangle encountered first in th
 | [RayTracer.Core.Tests](RayTracer.Core.Tests) | Regression tests for intersections, normals, shadows, camera targets, and small renders |
 | [assets](assets) | OBJ models and example renders |
 
-The showcases use the CLI's `future-city`, `orbital`, `observatory`, and `billiards` scenes, defined in [FutureCityScene.cs](RayTracer.Core/Scenes/FutureCityScene.cs), [OrbitalScene.cs](RayTracer.Core/Scenes/OrbitalScene.cs), [ObservatoryScene.cs](RayTracer.Core/Scenes/ObservatoryScene.cs), and [BilliardsScene.cs](RayTracer.Core/Scenes/BilliardsScene.cs). The skull uses `mesh`. Other scenes include `sphere`, `triangle`, `box`, `cylinder`, `disk`, `hand`, `torus`, and `reflective`.
+The showcases use the CLI's `synthwave`, `future-city`, `orbital`, `observatory`, and `billiards` scenes, defined in [SynthwaveScene.cs](RayTracer.Core/Scenes/SynthwaveScene.cs), [FutureCityScene.cs](RayTracer.Core/Scenes/FutureCityScene.cs), [OrbitalScene.cs](RayTracer.Core/Scenes/OrbitalScene.cs), [ObservatoryScene.cs](RayTracer.Core/Scenes/ObservatoryScene.cs), and [BilliardsScene.cs](RayTracer.Core/Scenes/BilliardsScene.cs). The skull uses `mesh`. Other scenes include `sphere`, `triangle`, `box`, `cylinder`, `disk`, `hand`, `torus`, and `reflective`.
 
 This is a classic direct-light ray tracer with recursive mirror reflections. Mesh intersections currently check every triangle; a spatial acceleration structure is a natural next step for larger models.
