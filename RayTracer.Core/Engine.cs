@@ -180,7 +180,7 @@ public class Engine
         else
         {
             Vector3 intersection = Vector3.Add(ray.Origin, Vector3.Multiply(distance, ray.Direction));
-            Vector3 normal = closestNormal;
+            Vector3 normal = Vector3.Normalize(closestNormal);
 
             Vector3 baseColor = closest.Material.Color;
 
@@ -208,10 +208,11 @@ public class Engine
                 }
 
                 // Speculation reflection
-                if (!options.DisableSpeculation)
+                if (!options.DisableSpeculation && dot > 0)
                 {
-                    Vector3 reflectionDirection = Vector3.Reflect(-lightDirection, normal);
-                    float specularFactor = MathF.Pow(MathF.Max(Vector3.Dot(reflectionDirection, -ray.Direction), 0), closest.Material.Shininess ?? closest.Material.Specular);
+                    Vector3 reflectionDirection = Vector3.Normalize(Vector3.Reflect(-lightDirection, normal));
+                    float alignment = System.Math.Clamp(Vector3.Dot(reflectionDirection, -Vector3.Normalize(ray.Direction)), 0f, 1f);
+                    float specularFactor = MathF.Pow(alignment, closest.Material.Shininess ?? closest.Material.Specular);
                     color += specularFactor * closest.Material.Specular * light.Material.Color;
                 }
             }
@@ -224,7 +225,7 @@ public class Engine
 
             if (!options.DisableReflections && closest.Material.Reflection > 0 && depth < options.TraceDepth)
             {
-                Vector3 reflectionDirection = Vector3.Reflect(ray.Direction, normal);
+                Vector3 reflectionDirection = Vector3.Normalize(Vector3.Reflect(ray.Direction, normal));
                 Ray reflectedRay = new(intersection + reflectionDirection * 0.001f, reflectionDirection);
                 Vector3 reflectedColor = Vector3.Zero;
                 float reflectedDistance = float.MaxValue;

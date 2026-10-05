@@ -82,7 +82,8 @@ var scenes = new Dictionary<string, (Func<Scene> Create, Vector3 Position, Vecto
     ["orbital"] = (() => new OrbitalScene(), new(30, 28, -55), new(3, -1, 15)),
     ["observatory"] = (() => new ObservatoryScene(), new(17, 8, -30), new(0, 5, 12)),
     ["synthwave"] = (() => new SynthwaveScene(), new(0, 7, -12), new(0, 9, 100)),
-    ["synthwave-distant"] = (() => new SynthwaveScene(distantMountains: true), new(0, 5, -12), new(0, 7, 100))
+    ["synthwave-distant"] = (() => new SynthwaveScene(distantMountains: true), new(0, 5, -12), new(0, 7, 100)),
+    ["chromatic"] = (() => new ChromaticScene(), new(23,16,-28), new(0,3,12))
 };
 
 if (sceneName.Equals("list", StringComparison.OrdinalIgnoreCase))
