@@ -12,6 +12,8 @@ int height = 600;
 string outPath = "render.png";
 int depth = 2;
 int samplesPerPixel = 1;
+int frames = 1;
+int fps = 30;
 
 // camera defaults
 Vector3? cameraPos = null;
@@ -21,6 +23,12 @@ for (int i = 0; i < argsList.Length; i++)
 {
     switch (argsList[i])
     {
+        case "--frames":
+            if (i + 1 < argsList.Length) int.TryParse(argsList[++i], out frames);
+            break;
+        case "--fps":
+            if (i + 1 < argsList.Length) int.TryParse(argsList[++i], out fps);
+            break;
         case "--scene":
             if (i + 1 < argsList.Length) sceneName = argsList[++i];
             break;
@@ -73,7 +81,8 @@ var scenes = new Dictionary<string, (Func<Scene> Create, Vector3 Position, Vecto
     ["future-city"] = (() => new FutureCityScene(), new(26, 18, -32), new(0, 5, 12)),
     ["orbital"] = (() => new OrbitalScene(), new(30, 28, -55), new(3, -1, 15)),
     ["observatory"] = (() => new ObservatoryScene(), new(17, 8, -30), new(0, 5, 12)),
-    ["synthwave"] = (() => new SynthwaveScene(), new(0, 7, -12), new(0, 9, 100))
+    ["synthwave"] = (() => new SynthwaveScene(), new(0, 7, -12), new(0, 9, 100)),
+    ["synthwave-distant"] = (() => new SynthwaveScene(distantMountains: true), new(0, 5, -12), new(0, 7, 100))
 };
 
 if (sceneName.Equals("list", StringComparison.OrdinalIgnoreCase))
@@ -90,6 +99,41 @@ if (!scenes.TryGetValue(sceneName, out var preset))
 Scene scene = preset.Create();
 cameraPos ??= preset.Position;
 cameraTarget ??= preset.Target;
+
+if (frames < 1 || fps < 1)
+{
+    Console.Error.WriteLine("Frames and fps must be positive.");
+    Environment.ExitCode = 1;
+    return;
+}
+if (frames > 1)
+{
+    if (scene is not SynthwaveScene animated)
+    {
+        Console.Error.WriteLine("Sequence rendering currently supports --scene synthwave.");
+        Environment.ExitCode = 1;
+        return;
+    }
+    Directory.CreateDirectory(outPath);
+    for (int frame = 0; frame < frames; frame++)
+    {
+        float progress = (float)frame / frames;
+        animated.SetAnimationProgress(progress);
+        var frameOptions = new RenderOptions
+        {
+            Width = width, Height = height, TraceDepth = depth,
+            CameraPosition = cameraPos.Value,
+            CameraTarget = (cameraTarget ?? new Vector3(0, 9, 100)),
+            DisableReflections = false, SamplesPerPixel = samplesPerPixel
+        };
+        using var frameImage = new Engine(scene, frameOptions).Render();
+        frameImage.SaveAsPng(Path.Combine(outPath, $"frame-{frame:00000}.png"));
+        if (frame % fps == 0 || frame == frames - 1)
+            Console.WriteLine($"Rendered {frame + 1}/{frames} frames");
+    }
+    Console.WriteLine($"Saved sequence to {outPath}");
+    return;
+}
 
 var options = new RenderOptions
 {

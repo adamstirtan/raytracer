@@ -10,17 +10,47 @@ namespace RayTracer.Core.Scenes;
 /// <summary>A luminous grid valley beneath a pink sunset and purple star field.</summary>
 public class SynthwaveScene : Scene
 {
-    public SynthwaveScene()
+    private readonly Valley valley;
+    private readonly Sky sky;
+    private readonly GridGround? ground;
+    public SynthwaveScene(bool distantMountains = false)
     {
         string directory = Path.Combine(AppContext.BaseDirectory, "Textures", "Synthwave");
         Texture Load(string name) => new(Path.Combine(directory, name + ".png"));
-        AddObject(new Valley(Load("grid")));
-        AddObject(new Sunset(Load("sun")));
-        AddObject(new Sky(Load("sky")));
+        valley = new Valley(Load("grid"), distantMountains);
+        sky = new Sky(Load("sky"));
+        if (distantMountains)
+        {
+            sky.D = 26000;
+            ground = new GridGround(Load("grid"));
+            AddObject(ground);
+        }
+        AddObject(valley);
+        var sunset = new Sunset(Load("sun"));
+        if (distantMountains) { sunset.Center *= 10; sunset.Radius *= 10; }
+        AddObject(sunset);
+        AddObject(sky);
         Camera.Target = new Vector3(0, 9, 100);
     }
 
-    private sealed class Sunset(Texture texture) : Disk(new Vector3(0, 44, 210), -Vector3.UnitZ, 33,
+    private sealed class GridGround(Texture texture) : Primitives.Plane(Vector3.UnitY, 0,
+        new Material(Vector3.One) { Emission = 1 }, texture)
+    {
+        public float Travel { get; set; }
+        public override Vector2 GetUV(Vector3 position) => new(position.X / 4, (position.Z + Travel) / 6);
+    }
+
+    public void SetAnimationProgress(float progress)
+    {
+        if (!float.IsFinite(progress) || progress < 0 || progress > 1)
+            throw new ArgumentOutOfRangeException(nameof(progress));
+        float phase = progress == 1 ? 0 : progress;
+        if (ground == null) valley.SetPhase(phase);
+        else ground.Travel = phase * 240;
+        sky.Phase = phase;
+    }
+
+    private sealed class Sunset(Texture texture) : Disk(new Vector3(0, 340, 2000), -Vector3.UnitZ, 300,
         new Material(Vector3.One) { Emission = 1 }, texture)
     {
         public override Vector2 GetUV(Vector3 position)
@@ -28,39 +58,53 @@ public class SynthwaveScene : Scene
                 .5f - (position.Y - Center.Y) / (Radius * 2));
     }
 
-    private sealed class Sky(Texture texture) : Primitives.Plane(-Vector3.UnitZ, 260,
+    private sealed class Sky(Texture texture) : Primitives.Plane(-Vector3.UnitZ, 2600,
         new Material(Vector3.One) { Emission = 1 }, texture)
     {
+        public float Phase { get; set; }
         public override Vector2 GetUV(Vector3 position)
-            => new((position.X + 210) / 420, System.Math.Clamp((130 - position.Y) / 140, .001f, .999f));
+            => new((position.X / (D / 2600) + 2100) / 4200 + .025f * MathF.Sin(Phase * MathF.Tau),
+                System.Math.Clamp((1300 - position.Y / (D / 2600)) / 1400, .001f, .999f));
     }
 
     // Walk only the grid cells crossed by a ray instead of searching every terrain triangle.
     private sealed class Valley : Primitive
     {
         private const int Columns = 80, Rows = 44;
-        private const float MinX = -160, MinZ = -24, StepX = 4, StepZ = 6;
+        private readonly float MinX, MinZ, StepX, StepZ;
+        private readonly float scale;
         private readonly Vector3[,] vertices = new Vector3[Columns + 1, Rows + 1];
 
-        public Valley(Texture texture) : base(new Material(Vector3.One) { Emission = 1 }, texture)
+        private float travel;
+        public Valley(Texture texture, bool distantMountains) : base(new Material(Vector3.One) { Emission = 1 }, texture)
         {
-            var random = new Random(1984);
+            scale = distantMountains ? 10 : 1;
+            MinX = -160 * scale; MinZ = distantMountains ? 500 : -24;
+            StepX = 4 * scale; StepZ = 6 * scale;
+            SetPhase(0);
+        }
+
+        public void SetPhase(float phase)
+        {
+            travel = phase * 240;
             for (int x = 0; x <= Columns; x++)
                 for (int z = 0; z <= Rows; z++)
                 {
                     float px = MinX + x * StepX, pz = MinZ + z * StepZ;
-                    float shoulder = MathF.Max(0, MathF.Abs(px) - (8 + MathF.Max(pz, 0) * .025f));
-                    float ridge = 1 + .32f * MathF.Sin(pz * .16f + px * .12f)
-                        + .24f * MathF.Sin(pz * .31f - px * .23f);
+                    float localX = px / scale, localZ = pz / scale;
+                    float shoulder = MathF.Max(0, MathF.Abs(localX) - (scale > 1 ? 20 : 10));
+                    float angle = (localZ + travel) / 240 * MathF.Tau;
+                    float ridge = 1 + .32f * MathF.Sin(angle * 6 + localX * .12f)
+                        + .24f * MathF.Sin(angle * 12 - localX * .23f);
                     float height = MathF.Min(shoulder * .55f, 27) * ridge
-                        + MathF.Min(shoulder * .16f, 5) * (float)random.NextDouble();
-                    vertices[x, z] = new Vector3(px, height, pz);
+                        + MathF.Min(shoulder * .16f, 5) * (.5f + .5f * MathF.Sin(angle * 17 + localX * 1.73f));
+                    vertices[x, z] = new Vector3(px, scale > 1 && z == 0 ? 0 : height * scale, pz);
                 }
         }
 
         public override PrimitiveType GetPrimitiveType() => PrimitiveType.Mesh;
         public override Vector2 GetUV(Vector3 position)
-            => new((position.X - MinX) * 2 / StepX, (position.Z - MinZ) * 2 / StepZ);
+            => new((position.X - MinX) * 2 / StepX, (position.Z - MinZ + travel) * 2 / StepZ);
 
         public override IntersectionResult Intersect(Ray ray, float maxDistance)
         {

@@ -12,6 +12,10 @@
 
 *Synthwave — a neon grid valley, jagged terrain, and a giant pink sun beneath a purple star field. Rendered at 1920 × 1110 with 16 samples per pixel.*
 
+<a href="assets/synthwave_driving_loop.mp4"><img src="assets/synthwave_driving_loop.gif" alt="Animated synthwave drive with a rushing blue foreground grid, rigid distant mountains, a stationary pink planet, and drifting stars" width="1280" /></a>
+
+*Synthwave Drive — a seamless ten-second loop with fast foreground motion, huge distant mountains, and drifting stars. [Download the 1080p, 30 fps MP4](assets/synthwave_driving_loop.mp4).*
+
 <img src="assets/future_city_textured.png" alt="Textured futuristic spaceport with metal-clad towers, patterned windows, a suspended reactor halo, segmented glass domes, and reflections on a tiled plaza beneath a dusk sky" width="1280" />
 
 *Future City — metal cladding, patterned windows, ceramic panels, and segmented glass domes around a suspended reactor halo, reflected in a tiled plaza beneath a dusk sky.*
@@ -163,5 +167,7 @@ The closest-hit rule is essential for meshes: a triangle encountered first in th
 | [assets](assets) | OBJ models and example renders |
 
 The showcases use the CLI's `synthwave`, `future-city`, `orbital`, `observatory`, and `billiards` scenes, defined in [SynthwaveScene.cs](RayTracer.Core/Scenes/SynthwaveScene.cs), [FutureCityScene.cs](RayTracer.Core/Scenes/FutureCityScene.cs), [OrbitalScene.cs](RayTracer.Core/Scenes/OrbitalScene.cs), [ObservatoryScene.cs](RayTracer.Core/Scenes/ObservatoryScene.cs), and [BilliardsScene.cs](RayTracer.Core/Scenes/BilliardsScene.cs). The skull uses `mesh`. Other scenes include `sphere`, `triangle`, `box`, `cylinder`, `disk`, `hand`, `torus`, and `reflective`.
+
+The animated showcase uses `synthwave-distant`. Render its 300-frame sequence with `--width 1920 --height 1080 --spp 9 --depth 1 --frames 300 --fps 30 --out frames`, then encode it with [encode_synthwave_loop.py](assets/texture-tools/encode_synthwave_loop.py). The encoder uses FFmpeg or the `imageio-ffmpeg` Python package. Terrain and sky return to their initial state after each cycle, with no fade or duplicate endpoint frame.
 
 This is a classic direct-light ray tracer with recursive mirror reflections. Mesh intersections currently check every triangle; a spatial acceleration structure is a natural next step for larger models.
