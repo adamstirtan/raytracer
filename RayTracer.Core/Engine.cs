@@ -189,7 +189,11 @@ public class Engine
 
             foreach (Light light in scene.OfType<Light>())
             {
-                Vector3 lightDirection = Vector3.Normalize(light.Center - intersection);
+                Vector3 toLight = light.Center - intersection;
+                float lightDistance = toLight.Length();
+                if (lightDistance <= 0.001f) continue;
+                Vector3 lightDirection = toLight / lightDistance;
+                if (IsOccluded(scene, intersection, lightDirection, lightDistance)) continue;
                 float dot = Vector3.Dot(normal, lightDirection);
 
                 if (!options.DisableDiffuse && dot > 0)
@@ -227,5 +231,25 @@ public class Engine
         }
 
         return closest;
+    }
+
+    private static bool IsOccluded(Scene scene, Vector3 position, Vector3 lightDirection, float lightDistance)
+    {
+        // Offset toward the light to avoid hitting the originating surface at t = 0.
+        const float bias = 0.001f;
+        Ray shadowRay = new(position + lightDirection * bias, lightDirection);
+        float maxDistance = lightDistance - bias;
+
+        foreach (Primitive primitive in scene)
+        {
+            // Lights are emitters, including the non-geometric point lights used by scenes.
+            if (primitive is Light) continue;
+            float distance = maxDistance;
+            RayIntersection result = primitive.Intersects(shadowRay, ref distance);
+            if (result != RayIntersection.Miss && distance >= 0f && distance < maxDistance)
+                return true;
+        }
+
+        return false;
     }
 }
