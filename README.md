@@ -8,9 +8,9 @@
 ![.NET 10](https://img.shields.io/badge/.NET-10-512BD4?logo=dotnet&logoColor=white)
 ![CPU rendering](https://img.shields.io/badge/rendering-CPU-222222)
 
-<img src="assets/skull_face.png" alt="Ray-traced skull mesh with warm lighting, detailed teeth, and dark eye sockets" width="960" />
+<img src="assets/future_city.png" alt="Futuristic spaceport with layered towers, a suspended reactor halo, domed landing pads, and reflections beneath an angular mountain skyline" width="1280" />
 
-*An OBJ skull, rendered by tracing rays through its triangles and shading the closest visible surface.*
+*Future City — a spaceport built from boxes, cylinders, spheres, disks, tori, and triangles. Rendered at 1280 × 800 with four samples per pixel, cast shadows, and recursive reflections.*
 
 [How it works](#how-it-works) · [The rendering loop](#the-rendering-loop) · [Inside the project](#inside-the-project)
 
@@ -21,6 +21,12 @@ This project began as a university assignment and has grown through years of ret
 ## Light, surfaces, and a little recursion
 
 <table>
+<tr>
+<td colspan="2"><img src="assets/skull_face.png" alt="Ray-traced skull mesh with warm lighting, detailed teeth, and dark eye sockets" width="960" /></td>
+</tr>
+<tr>
+<td colspan="2"><strong>Imported geometry</strong><br />An OBJ skull, rendered by tracing rays through its triangles and shading the closest visible surface.</td>
+</tr>
 <tr>
 <td width="50%"><img src="assets/sphere_shadows.png" alt="Red and blue spheres casting overlapping shadows on a reflective floor" width="480" /></td>
 <td width="50%"><img src="assets/box_lighting.png" alt="Blue box with distinct lighting on each visible face and a floor reflection" width="480" /></td>
@@ -134,6 +140,6 @@ The closest-hit rule is essential for meshes: a triangle encountered first in th
 | [RayTracer.Core.Tests](RayTracer.Core.Tests) | Regression tests for intersections, normals, shadows, camera targets, and small renders |
 | [assets](assets) | OBJ models and example renders |
 
-The skull uses the CLI's `mesh` scene. Other scenes include `sphere`, `triangle`, `box`, `cylinder`, `disk`, `billiards`, `hand`, `torus`, and `reflective`.
+The showcase uses the CLI's `future-city` scene, defined in [FutureCityScene.cs](RayTracer.Core/Scenes/FutureCityScene.cs). The skull uses `mesh`. Other scenes include `sphere`, `triangle`, `box`, `cylinder`, `disk`, `billiards`, `hand`, `torus`, and `reflective`.
 
 This is a classic direct-light ray tracer with recursive mirror reflections. Mesh intersections currently check every triangle; a spatial acceleration structure is a natural next step for larger models.

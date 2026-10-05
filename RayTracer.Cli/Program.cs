@@ -70,6 +70,7 @@ Scene scene = sceneName.ToLower() switch
     "hand" => new HandScene(),
     "torus" => new RayTracer.Core.Scenes.TorusScene(),
     "reflective" => new RayTracer.Core.Scenes.ReflectiveSphereScene(),
+    "future-city" => new FutureCityScene(),
     "list" => throw new System.ArgumentException("list is not a scene"),
     _ => new SphereScene()
 };
@@ -93,6 +94,11 @@ else if (sceneName.ToLower() == "mesh")
     // Position camera to the front-left-top of the model and look at its center
     cameraPos = new Vector3(6f, 2.5f, 6f);
     cameraTarget = new Vector3(0f, 1.0f, 8.0f);
+}
+else if (sceneName.ToLower() == "future-city")
+{
+    cameraPos = new Vector3(26f, 18f, -32f);
+    cameraTarget = new Vector3(0f, 5f, 12f);
 }
 
 var options = new RenderOptions
