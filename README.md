@@ -34,6 +34,10 @@ Future City and Orbital are rendered at 1600 × 1000 with nine samples per pixel
 
 *Chromatic — 360 non-overlapping spheres, suspended spirals, and a chrome centerpiece on a mirror floor. Rendered at 1920 × 1080 with nine samples per pixel and reflection depth five.*
 
+<a href="assets/falling_spheres_physics.mp4"><img src="assets/falling_spheres_physics.gif" alt="Ray-traced animation of colorful reflective spheres falling from above, bouncing on a mirror floor, colliding, and scattering" width="1280" /></a>
+
+*Falling Spheres — 240 polished balls under Earth gravity, with collisions, friction, and diminishing bounces. Every frame is ray traced. [Download the ten-second 1080p, 30 fps MP4](assets/falling_spheres_physics.mp4).*
+
 <img src="assets/billiards_textured.png" alt="Pool table with green felt, walnut rails, six pockets, a cue ball, and a rack of numbered billiards balls" width="1280" />
 
 *Billiards — woven felt, walnut grain, and glossy numbered solids and stripes on a six-pocket table.*
@@ -173,5 +177,7 @@ The closest-hit rule is essential for meshes: a triangle encountered first in th
 The showcases use the CLI's `synthwave`, `future-city`, `orbital`, `observatory`, `chromatic`, and `billiards` scenes, defined in [SynthwaveScene.cs](RayTracer.Core/Scenes/SynthwaveScene.cs), [FutureCityScene.cs](RayTracer.Core/Scenes/FutureCityScene.cs), [OrbitalScene.cs](RayTracer.Core/Scenes/OrbitalScene.cs), [ObservatoryScene.cs](RayTracer.Core/Scenes/ObservatoryScene.cs), [ChromaticScene.cs](RayTracer.Core/Scenes/ChromaticScene.cs), and [BilliardsScene.cs](RayTracer.Core/Scenes/BilliardsScene.cs). The skull uses `mesh`. Other scenes include `sphere`, `triangle`, `box`, `cylinder`, `disk`, `hand`, `torus`, and `reflective`.
 
 The animated showcase uses `synthwave-distant`. Render its 300-frame sequence with `--width 1920 --height 1080 --spp 9 --depth 1 --frames 300 --fps 30 --out frames`, then encode it with [encode_synthwave_loop.py](assets/texture-tools/encode_synthwave_loop.py). The encoder uses FFmpeg or the `imageio-ffmpeg` Python package. Terrain and sky return to their initial state after each cycle, with no fade or duplicate endpoint frame.
+
+The physics animation uses `falling-spheres`, defined in [FallingSpheresScene.cs](RayTracer.Core/Scenes/FallingSpheresScene.cs). [SphereDynamics.cs](RayTracer.Core/Physics/SphereDynamics.cs) advances the simulation at 240 steps per second with gravity of 9.80665 m/s², mass based on sphere volume, collision impulses, friction, and restitution. Its 300 frames use four samples per pixel and reflection depth three; the same encoder assembles them into a ten-second video.
 
 This is a classic direct-light ray tracer with recursive mirror reflections. Mesh intersections currently check every triangle; a spatial acceleration structure is a natural next step for larger models.

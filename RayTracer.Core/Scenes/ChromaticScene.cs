@@ -9,7 +9,7 @@ namespace RayTracer.Core.Scenes;
 /// <summary>A polished sphere garden and suspended double helix in a reflective studio.</summary>
 public class ChromaticScene : Scene
 {
-    public ChromaticScene()
+    public ChromaticScene(bool falling = false)
     {
         var spheres = new List<Sphere>();
         Vector3[] palette = { new(.05f,.55f,.65f), new(.8f,.2f,.065f), new(.55f,.09f,.38f),
@@ -25,6 +25,8 @@ public class ChromaticScene : Scene
             return true;
         }
 
+        if (!falling)
+        {
         Place(new Vector3(0,2.2f,11),2.2f,5);
         Place(new Vector3(-5,1.5f,5),1.5f,0);
         Place(new Vector3(5,1.7f,7),1.7f,4);
@@ -45,6 +47,17 @@ public class ChromaticScene : Scene
             Place(new Vector3(x,radius,z),radius,attempt);
         }
         if(spheres.Count!=360) throw new InvalidOperationException("Could not place the sphere garden.");
+        }
+        else
+        {
+            var random = new Random(1969);
+            for(int i=0;i<240;i++)
+            {
+                float radius = .35f + (float)random.NextDouble() * .35f;
+                int column=i%12, row=i/12%10, layer=i/120;
+                Place(new Vector3((column-5.5f)*1.75f,32+row*.6f+layer*9,3+row*1.9f),radius,i);
+            }
+        }
 
         AddObject(new Primitives.Plane(Vector3.UnitY,0,
             new Material(new Vector3(.055f,.07f,.1f),.55f,.55f,.1f){Shininess=100},null));

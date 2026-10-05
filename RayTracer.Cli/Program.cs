@@ -83,7 +83,8 @@ var scenes = new Dictionary<string, (Func<Scene> Create, Vector3 Position, Vecto
     ["observatory"] = (() => new ObservatoryScene(), new(17, 8, -30), new(0, 5, 12)),
     ["synthwave"] = (() => new SynthwaveScene(), new(0, 7, -12), new(0, 9, 100)),
     ["synthwave-distant"] = (() => new SynthwaveScene(distantMountains: true), new(0, 5, -12), new(0, 7, 100)),
-    ["chromatic"] = (() => new ChromaticScene(), new(23,16,-28), new(0,3,12))
+    ["chromatic"] = (() => new ChromaticScene(), new(23,16,-28), new(0,3,12)),
+    ["falling-spheres"] = (() => new FallingSpheresScene(), new(23,16,-28), new(0,3,12))
 };
 
 if (sceneName.Equals("list", StringComparison.OrdinalIgnoreCase))
@@ -109,9 +110,9 @@ if (frames < 1 || fps < 1)
 }
 if (frames > 1)
 {
-    if (scene is not SynthwaveScene animated)
+    if (scene is not SynthwaveScene && scene is not FallingSpheresScene)
     {
-        Console.Error.WriteLine("Sequence rendering currently supports --scene synthwave.");
+        Console.Error.WriteLine("Sequence rendering supports synthwave, synthwave-distant, and falling-spheres.");
         Environment.ExitCode = 1;
         return;
     }
@@ -119,7 +120,8 @@ if (frames > 1)
     for (int frame = 0; frame < frames; frame++)
     {
         float progress = (float)frame / frames;
-        animated.SetAnimationProgress(progress);
+        if (scene is SynthwaveScene animated) animated.SetAnimationProgress(progress);
+        if (scene is FallingSpheresScene falling && frame > 0) falling.Dynamics.Advance(1.0 / fps);
         var frameOptions = new RenderOptions
         {
             Width = width, Height = height, TraceDepth = depth,
