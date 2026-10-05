@@ -10,7 +10,13 @@
 
 <img src="assets/future_city.png" alt="Futuristic spaceport with layered towers, a suspended reactor halo, domed landing pads, and reflections beneath an angular mountain skyline" width="1280" />
 
-*Future City — a spaceport built from boxes, cylinders, spheres, disks, tori, and triangles. Rendered at 1280 × 800 with four samples per pixel, cast shadows, and recursive reflections.*
+*Future City — layered towers, a suspended reactor halo, and domed landing pads on a reflective plaza.*
+
+<img src="assets/orbital_asteroids.png" alt="Orbital station and docking ship beside a banded gas giant, surrounded by an irregular asteroid belt beneath a star field" width="1280" />
+
+*Orbital — a station beside a banded gas giant, a distant moon, and a belt of 180 faceted asteroids.*
+
+Both scenes are rendered at 1280 × 800 with four samples per pixel, cast shadows, and recursive reflections.
 
 [How it works](#how-it-works) · [The rendering loop](#the-rendering-loop) · [Inside the project](#inside-the-project)
 
@@ -140,6 +146,6 @@ The closest-hit rule is essential for meshes: a triangle encountered first in th
 | [RayTracer.Core.Tests](RayTracer.Core.Tests) | Regression tests for intersections, normals, shadows, camera targets, and small renders |
 | [assets](assets) | OBJ models and example renders |
 
-The showcase uses the CLI's `future-city` scene, defined in [FutureCityScene.cs](RayTracer.Core/Scenes/FutureCityScene.cs). The skull uses `mesh`. Other scenes include `sphere`, `triangle`, `box`, `cylinder`, `disk`, `billiards`, `hand`, `torus`, and `reflective`.
+The showcases use the CLI's `future-city` and `orbital` scenes, defined in [FutureCityScene.cs](RayTracer.Core/Scenes/FutureCityScene.cs) and [OrbitalScene.cs](RayTracer.Core/Scenes/OrbitalScene.cs). The skull uses `mesh`. Other scenes include `sphere`, `triangle`, `box`, `cylinder`, `disk`, `billiards`, `hand`, `torus`, and `reflective`.
 
 This is a classic direct-light ray tracer with recursive mirror reflections. Mesh intersections currently check every triangle; a spatial acceleration structure is a natural next step for larger models.

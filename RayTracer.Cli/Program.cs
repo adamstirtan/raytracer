@@ -71,6 +71,7 @@ Scene scene = sceneName.ToLower() switch
     "torus" => new RayTracer.Core.Scenes.TorusScene(),
     "reflective" => new RayTracer.Core.Scenes.ReflectiveSphereScene(),
     "future-city" => new FutureCityScene(),
+    "orbital" => new OrbitalScene(),
     "list" => throw new System.ArgumentException("list is not a scene"),
     _ => new SphereScene()
 };
@@ -99,6 +100,11 @@ else if (sceneName.ToLower() == "future-city")
 {
     cameraPos = new Vector3(26f, 18f, -32f);
     cameraTarget = new Vector3(0f, 5f, 12f);
+}
+else if (sceneName.ToLower() == "orbital")
+{
+    cameraPos = new Vector3(30, 28, -55);
+    cameraTarget = new Vector3(3, -1, 15);
 }
 
 var options = new RenderOptions
