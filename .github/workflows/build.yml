@@ -24,12 +24,10 @@ jobs:
           dotnet-version: ${{ env.NET_VERSION }}
 
       - name: Restore
-        run: dotnet restore
+        run: dotnet restore RayTracer.sln
 
-      - name: Build Core and CLI projects
-        run: |
-          dotnet build RayTracer.Core/RayTracer.Core.csproj --no-restore -c Release
-          dotnet build RayTracer.Cli/RayTracer.Cli.csproj --no-restore -c Release
+      - name: Build solution
+        run: dotnet build RayTracer.sln --no-restore -c Release
 
       - name: Run unit tests
         run: dotnet test RayTracer.Core.Tests/RayTracer.Core.Tests.csproj --no-build -c Release
