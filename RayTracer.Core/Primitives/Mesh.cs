@@ -11,9 +11,6 @@ public class Mesh : Primitive
     public readonly List<(int a,int b,int c)> Triangles = new();
     public readonly List<Vector3> VertexNormals = new();
 
-    // last hit normal captured during Intersects for GetNormal()
-    private Vector3 _lastHitNormal = Vector3.UnitY;
-
     public Mesh(Material material, Texture? texture) : base(material, texture) { }
 
     public static Mesh FromObj(string path, Material material)
@@ -163,6 +160,13 @@ public class Mesh : Primitive
 
     public override RayIntersection Intersects(Ray ray, ref float distance)
     {
+        IntersectionResult result = Intersect(ray, distance);
+        distance = result.Distance;
+        return result.RayIntersection;
+    }
+
+    public override IntersectionResult Intersect(Ray ray, float maxDistance)
+    {
         // brute-force triangle checks
         foreach (var tri in Triangles)
         {
@@ -184,21 +188,43 @@ public class Mesh : Primitive
             float v = Vector3.Dot(ray.Direction, qvec) * invDet;
             if (v < 0 || u + v > 1) continue;
             float t = Vector3.Dot(edge2, qvec) * invDet;
-            if (t > 1e-6f && t < distance)
+            if (t > 1e-6f && t < maxDistance)
             {
-                distance = t;
-                // compute triangle normal and store
-                _lastHitNormal = Vector3.Normalize(Vector3.Cross(edge1, edge2));
-                return RayIntersection.Hit;
+                Vector3 normal = Vector3.Normalize(Vector3.Cross(edge1, edge2));
+                return new IntersectionResult(RayIntersection.Hit, t, normal);
             }
         }
-        return RayIntersection.Miss;
+        return new IntersectionResult(RayIntersection.Miss, maxDistance);
     }
 
     public override Vector3 GetNormal(Vector3 position)
     {
-        // return last computed triangle normal
-        return _lastHitNormal;
+        // Legacy position-only API: resolve the face from geometry, without shared hit state.
+        // Rendering uses Intersect's captured normal and avoids this additional search.
+        foreach (var tri in Triangles)
+        {
+            Vector3 a = Vertices[tri.a];
+            Vector3 edge1 = Vertices[tri.b] - a;
+            Vector3 edge2 = Vertices[tri.c] - a;
+            Vector3 cross = Vector3.Cross(edge1, edge2);
+            if (cross.LengthSquared() == 0) continue;
+            Vector3 normal = Vector3.Normalize(cross);
+            Vector3 offset = position - a;
+            if (System.MathF.Abs(Vector3.Dot(offset, normal)) > 1e-4f) continue;
+
+            float d00 = Vector3.Dot(edge1, edge1);
+            float d01 = Vector3.Dot(edge1, edge2);
+            float d11 = Vector3.Dot(edge2, edge2);
+            float d20 = Vector3.Dot(offset, edge1);
+            float d21 = Vector3.Dot(offset, edge2);
+            float denominator = d00 * d11 - d01 * d01;
+            if (denominator <= 0) continue;
+            float u = (d11 * d20 - d01 * d21) / denominator;
+            float v = (d00 * d21 - d01 * d20) / denominator;
+            if (u >= -1e-4f && v >= -1e-4f && u + v <= 1.0001f) return normal;
+        }
+
+        throw new System.ArgumentException("Position must lie on a mesh triangle.", nameof(position));
     }
 
     public override Vector2 GetUV(Vector3 position)

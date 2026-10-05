@@ -148,17 +148,17 @@ public class Engine
 
         float minDistance = float.MaxValue;
         Primitive? closest = null;
-        RayIntersection result;
+        Vector3 closestNormal = Vector3.Zero;
 
         foreach (Primitive primitive in scene)
         {
-            float currentDistance = distance;
-            result = primitive.Intersects(ray, ref currentDistance);
+            IntersectionResult result = primitive.Intersect(ray, distance);
 
-            if (result == RayIntersection.Hit && currentDistance < minDistance)
+            if (result.RayIntersection == RayIntersection.Hit && result.Distance < minDistance)
             {
-                minDistance = currentDistance;
+                minDistance = result.Distance;
                 closest = primitive;
+                closestNormal = result.Normal;
             }
         }
 
@@ -177,7 +177,7 @@ public class Engine
         else
         {
             Vector3 intersection = Vector3.Add(ray.Origin, Vector3.Multiply(distance, ray.Direction));
-            Vector3 normal = closest.GetNormal(intersection);
+            Vector3 normal = closestNormal;
 
             Vector3 baseColor = closest.Material.Color;
 
