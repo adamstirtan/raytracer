@@ -209,7 +209,7 @@ public class Engine
                 if (!options.DisableSpeculation)
                 {
                     Vector3 reflectionDirection = Vector3.Reflect(-lightDirection, normal);
-                    float specularFactor = MathF.Pow(MathF.Max(Vector3.Dot(reflectionDirection, -ray.Direction), 0), closest.Material.Specular);
+                    float specularFactor = MathF.Pow(MathF.Max(Vector3.Dot(reflectionDirection, -ray.Direction), 0), closest.Material.Shininess ?? closest.Material.Specular);
                     color += specularFactor * closest.Material.Specular * light.Material.Color;
                 }
             }

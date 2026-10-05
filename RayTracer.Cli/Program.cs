@@ -65,7 +65,7 @@ var scenes = new Dictionary<string, (Func<Scene> Create, Vector3 Position, Vecto
     ["box"] = (() => new BoxScene(), new(0, 0, -5), null),
     ["cylinder"] = (() => new CylinderScene(), new(0, 0, -5), null),
     ["disk"] = (() => new DiskScene(), new(0, 0, -5), null),
-    ["billiards"] = (() => new BilliardsScene(), new(0.7f, 1, -4), new(0, 0.2f, 1.8f)),
+    ["billiards"] = (() => new BilliardsScene(), new(7, 8, -11), new(0, 0, 0.5f)),
     ["mesh"] = (() => new MeshScene(), new(6, 2.5f, 6), new(0, 1, 8)),
     ["hand"] = (() => new HandScene(), new(0, 0, -5), null),
     ["torus"] = (() => new TorusScene(), new(0, 0, -5), null),

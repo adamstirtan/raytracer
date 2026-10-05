@@ -19,5 +19,7 @@ public class Material
     public Vector3 Color { get; set; }
     public float Diffuse { get; set; }
     public float Specular { get; set; }
+    // Optional highlight exponent; unspecified preserves existing scene appearance.
+    public float? Shininess { get; set; }
     public float Reflection { get; set; }
 }
