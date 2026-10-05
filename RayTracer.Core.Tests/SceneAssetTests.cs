@@ -29,6 +29,7 @@ public class SceneAssetTests
             Assert.IsNotNull(new TexturedSphere());
             Assert.IsNotNull(new MeshScene());
             Assert.IsNotNull(new HandScene());
+            Assert.IsNotNull(new OrbitalScene());
         }
         finally
         {

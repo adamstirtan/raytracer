@@ -190,6 +190,8 @@ public class Engine
                 baseColor = closest.Texture.Sample(uv.X, uv.Y);
             }
 
+            color += baseColor * closest.Material.Emission;
+
             foreach (Light light in scene.OfType<Light>())
             {
                 Vector3 toLight = light.Center - intersection;

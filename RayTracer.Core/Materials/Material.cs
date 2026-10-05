@@ -22,4 +22,5 @@ public class Material
     // Optional highlight exponent; unspecified preserves existing scene appearance.
     public float? Shininess { get; set; }
     public float Reflection { get; set; }
+    public float Emission { get; set; }
 }

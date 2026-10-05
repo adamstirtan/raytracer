@@ -12,11 +12,11 @@
 
 *Future City — layered towers, a suspended reactor halo, and domed landing pads on a reflective plaza.*
 
-<img src="assets/orbital_asteroids.png" alt="Orbital station and docking ship beside a banded gas giant, surrounded by an irregular asteroid belt beneath a star field" width="1280" />
+<img src="assets/orbital_textured.png" alt="Textured orbital station and docking ship beside a gas giant with swirling cloud bands and a copper storm, a cratered moon, and an asteroid belt against a faint nebula" width="1280" />
 
-*Orbital — a station beside a banded gas giant, a distant moon, and a belt of 180 faceted asteroids.*
+*Orbital — detailed hull panels and solar cells beside a swirling gas giant, a cratered moon, and 180 textured asteroids beneath a subtle nebula.*
 
-Future City and Orbital are rendered at 1280 × 800 with four samples per pixel, cast shadows, and recursive reflections.
+Future City is rendered at 1280 × 800 with four samples per pixel. Orbital uses 1600 × 1000, nine samples per pixel, and reflection depth three. Both use cast shadows and recursive reflections.
 
 <img src="assets/observatory.png" alt="Alien observatory with tilted golden orbital rings around a blue orb, terraced platforms, angular mountains, and a planet reflected in a mirror lake" width="1280" />
 
