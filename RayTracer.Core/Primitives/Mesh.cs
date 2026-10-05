@@ -167,6 +167,10 @@ public class Mesh : Primitive
 
     public override IntersectionResult Intersect(Ray ray, float maxDistance)
     {
+        float closestDistance = maxDistance;
+        Vector3 closestNormal = Vector3.Zero;
+        bool hit = false;
+
         // brute-force triangle checks
         foreach (var tri in Triangles)
         {
@@ -188,13 +192,15 @@ public class Mesh : Primitive
             float v = Vector3.Dot(ray.Direction, qvec) * invDet;
             if (v < 0 || u + v > 1) continue;
             float t = Vector3.Dot(edge2, qvec) * invDet;
-            if (t > 1e-6f && t < maxDistance)
+            if (t > 1e-6f && t < closestDistance)
             {
-                Vector3 normal = Vector3.Normalize(Vector3.Cross(edge1, edge2));
-                return new IntersectionResult(RayIntersection.Hit, t, normal);
+                closestDistance = t;
+                closestNormal = Vector3.Normalize(Vector3.Cross(edge1, edge2));
+                hit = true;
             }
         }
-        return new IntersectionResult(RayIntersection.Miss, maxDistance);
+        return new IntersectionResult(hit ? RayIntersection.Hit : RayIntersection.Miss,
+            closestDistance, closestNormal);
     }
 
     public override Vector3 GetNormal(Vector3 position)

@@ -10,6 +10,54 @@ namespace RayTracer.Core.Tests;
 [TestClass]
 public class MeshTests
 {
+    private static Mesh CreateOverlappingMesh(bool nearFirst)
+    {
+        var mesh = new Mesh(new Material(Vector3.One), null);
+        mesh.Vertices.AddRange(new[]
+        {
+            new Vector3(-1, -1, 5), new Vector3(1, -1, 5), new Vector3(0, 1, 5),
+            new Vector3(-1, -1, 2), new Vector3(0, 1, 2), new Vector3(1, -1, 2)
+        });
+        mesh.Triangles.AddRange(nearFirst
+            ? new[] { (3, 4, 5), (0, 1, 2) }
+            : new[] { (0, 1, 2), (3, 4, 5) });
+        return mesh;
+    }
+
+    [TestMethod]
+    [DataRow(false)]
+    [DataRow(true)]
+    public void OverlappingTriangles_ReturnNearestDistanceAndNormal_RegardlessOfOrder(bool nearFirst)
+    {
+        Mesh mesh = CreateOverlappingMesh(nearFirst);
+        var ray = new Ray(Vector3.Zero, Vector3.UnitZ);
+        IntersectionResult result = mesh.Intersect(ray, float.MaxValue);
+
+        Assert.AreEqual(RayIntersection.Hit, result.RayIntersection);
+        Assert.AreEqual(2f, result.Distance);
+        Assert.AreEqual(-Vector3.UnitZ, result.Normal);
+
+        float distance = float.MaxValue;
+        Assert.AreEqual(RayIntersection.Hit, mesh.Intersects(ray, ref distance));
+        Assert.AreEqual(2f, distance);
+    }
+
+    [TestMethod]
+    public void OverlappingTriangles_RespectMaximumDistance()
+    {
+        Mesh mesh = CreateOverlappingMesh(false);
+        var ray = new Ray(Vector3.Zero, Vector3.UnitZ);
+
+        IntersectionResult hit = mesh.Intersect(ray, 3f);
+        Assert.AreEqual(RayIntersection.Hit, hit.RayIntersection);
+        Assert.AreEqual(2f, hit.Distance);
+        Assert.AreEqual(-Vector3.UnitZ, hit.Normal);
+
+        IntersectionResult miss = mesh.Intersect(ray, 2f);
+        Assert.AreEqual(RayIntersection.Miss, miss.RayIntersection);
+        Assert.AreEqual(2f, miss.Distance);
+    }
+
     private static Mesh CreateMesh()
     {
         var mesh = new Mesh(new Material(Vector3.One), null);
