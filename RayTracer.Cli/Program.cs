@@ -15,7 +15,7 @@ int samplesPerPixel = 1;
 
 // camera defaults
 Vector3 cameraPos = new Vector3(0, 0, -5);
-Vector3 cameraTarget = Vector3.Zero;
+Vector3? cameraTarget = null;
 
 for (int i = 0; i < argsList.Length; i++)
 {

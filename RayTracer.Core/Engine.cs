@@ -64,10 +64,10 @@ public class Engine
 
         // Camera basis using CameraPosition and CameraTarget/Scene Camera Target
         Vector3 camPos = _scene.Camera.Position;
-        // Prefer explicit CameraTarget from options when provided (non-zero), otherwise fall back to scene's camera target
-        Vector3 camTarget = _options.CameraTarget != Vector3.Zero ? _options.CameraTarget : (_scene.Camera.Target ?? Vector3.Zero);
-        Vector3 camForward = Vector3.Normalize(camTarget - camPos);
-        if (camForward == Vector3.Zero) camForward = Vector3.UnitZ;
+        Vector3 camTarget = _options.CameraTarget ?? _scene.Camera.Target ?? Vector3.Zero;
+        Vector3 toTarget = camTarget - camPos;
+        // A coincident target has no direction; use +Z before normalization can produce NaNs.
+        Vector3 camForward = toTarget == Vector3.Zero ? Vector3.UnitZ : Vector3.Normalize(toTarget);
         Vector3 worldUp = Vector3.UnitY;
         // Handle the case where camera forward is parallel to world up (overhead camera)
         if (System.MathF.Abs(Vector3.Dot(camForward, worldUp)) > 0.999f)
