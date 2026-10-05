@@ -1,85 +1,139 @@
+<div align="center">
+
 # Ray Tracer
-### An extensible ray tracer made with .NET
 
-![Skull render](./assets/skull_face.png)
+**From a university assignment to a C# renderer, one ray at a time.**
 
-Overview
+[![Build and tests](https://github.com/adamstirtan/raytracer/actions/workflows/build.yml/badge.svg)](https://github.com/adamstirtan/raytracer/actions/workflows/build.yml)
+![.NET 10](https://img.shields.io/badge/.NET-10-512BD4?logo=dotnet&logoColor=white)
+![CPU rendering](https://img.shields.io/badge/rendering-CPU-222222)
 
-This repository contains a small, extensible ray tracer written in C# targeting .NET 10. It started as a university project and has been modernized to include a core rendering library, unit tests, and a command-line interface for rendering scenes.
+<img src="assets/skull_face.png" alt="Ray-traced skull mesh with warm lighting, detailed teeth, and dark eye sockets" width="960" />
 
-Projects
+*An OBJ skull, rendered by tracing rays through its triangles and shading the closest visible surface.*
 
-- RayTracer.Core — core ray tracing library: primitives (Sphere, Plane, Triangle, Box, Cylinder, Disk), materials, scenes, and the rendering engine.
-- Raytracer.Cli — console app to render scenes from the command line.
-- RayTracer.Core.Tests — unit tests for primitives and basic rendering features (MSTest).
+[How it works](#how-it-works) · [The rendering loop](#the-rendering-loop) · [Inside the project](#inside-the-project)
 
-Top-level structure
+</div>
 
-- RayTracer.sln — Visual Studio/.NET solution file
-- RayTracer.Core/ — main library and scene definitions
-- Raytracer.Cli/ — CLI that exposes scenes and rendering options
-- RayTracer.Core.Tests/ — MSTest unit tests
-- assets/ — example textures and produced renders used in the README
+This project began as a university assignment and has grown through years of returning to the same question: **how do geometry and light become an image?** Today it is a CPU ray tracer written in C# on .NET 10, with imported meshes, textured materials, cast shadows, and recursive reflections.
 
-Available scenes (CLI)
+## Light, surfaces, and a little recursion
 
-- sphere — simple sphere scene
-- triangle — ground plane + triangle
-- box — axis-aligned box scene
-- cylinder — finite cylinder scene
-- disk — circular disk scene
-- billiards — billiards table with multiple colored balls (shown above)
-- crystal-orchard — decorative crystalline Orchard (larger scene)
+<table>
+<tr>
+<td width="50%"><img src="assets/sphere_shadows.png" alt="Red and blue spheres casting overlapping shadows on a reflective floor" width="480" /></td>
+<td width="50%"><img src="assets/box_lighting.png" alt="Blue box with distinct lighting on each visible face and a floor reflection" width="480" /></td>
+</tr>
+<tr>
+<td><strong>Shadows & reflections</strong><br />Visibility rays determine which lights reach a surface. Reflected rays reveal the surrounding scene.</td>
+<td><strong>Surface normals</strong><br />Each face's orientation controls how much light it receives. The same geometry appears in the reflective floor.</td>
+</tr>
+</table>
 
-Developer quickstart (local)
+| Part of the renderer | What it contributes |
+| :--- | :--- |
+| **Geometry** | Spheres, planes, triangles, boxes, capped cylinders, disks, and ray-marched tori |
+| **OBJ meshes** | Polygon triangulation and the nearest triangle intersection for each ray |
+| **Materials** | Surface color, UV textures, diffuse lighting, specular highlights, and reflection strength |
+| **Camera** | Perspective projection, look-at targets, and runtime position controls |
+| **Sampling** | A regular subpixel grid—1, 4, 9, or more square-count samples—to smooth edges |
+| **Execution** | Parallel image rows and immutable intersection results carrying each hit's normal |
 
-Prerequisites
-- .NET 10 SDK (tested with /usr/local/share/dotnet/dotnet 10.0.x)
-- Optional: GitHub CLI (`gh`) if you want to open PRs from the command line
+## How it works
 
-Build and run
-1. Clone the repository and change into it:
-   - git clone https://github.com/adamstirtan/raytracer.git
-   - cd raytracer
-2. Restore and build:
-   - dotnet restore
-   - dotnet build -c Release
-3. Run tests:
-   - dotnet test -c Release
-4. Render a scene with the CLI (example):
-   - dotnet run --project Raytracer.Cli/Raytracer.Cli.csproj -c Release -- --scene billiards --width 1024 --height 768 --out ./billiards.png
+A ray starts at the camera and passes through a sample within a pixel. The renderer finds the nearest surface along that ray, calculates its lighting, and follows additional rays where needed.
 
-Notes about the runtime and testing
-- Tests use MSTest in RayTracer.Core.Tests and exercise primitive intersection logic and small scene renders. Running `dotnet test` will run the unit suite.
-- If you see compiler errors referencing ambiguous types (e.g., Plane vs System.Numerics.Plane or Math vs RayTracer.Core.Math), fully-qualify the type (e.g., `RayTracer.Core.Primitives.Plane` or `System.Math.PI`) or add a using alias to disambiguate.
+```mermaid
+flowchart LR
+    A[Camera ray] --> B{Nearest surface?}
+    B -->|Miss| C[Black background]
+    B -->|Hit| D[Color or UV texture]
+    D --> E[Shadow rays toward lights]
+    E --> F[Visible diffuse and specular light]
+    F --> G{Reflective surface?}
+    G -->|Yes| H[Trace reflected ray]
+    H --> I[Combine contributions]
+    G -->|No| I
+    I --> J[Average pixel samples]
+```
 
-Coding conventions & tips
-- Prefer `System.Math` or `MathF` for math constants and functions to avoid collisions with the `RayTracer.Core.Math` namespace.
-- Use `System.Numerics.Vector3` for vectors; the project already uses these types across primitives and math utilities.
-- Keep scene construction in the Scenes folder (RayTracer.Core/Scenes) and make small, reviewable changes to avoid large render regressions.
+Three ray types do the work:
 
-Adding scenes & assets
-- Add a new Scene class under RayTracer.Core/Scenes/ and register objects using AddObject/AddLight in the scene constructor.
-- Add any textures to `RayTracer.Core/Textures` (the csproj copies a few textures to output by default).
+- **Camera rays** answer “what surface is visible at this pixel?”
+- **Shadow rays** answer “can this surface see the light?” A blocker counts only when it lies before the light.
+- **Reflection rays** answer “what is visible in the mirror direction?” They repeat the same tracing process up to a depth limit.
 
-CLI notes
-- The CLI accepts a `--scene` argument that names a scene; check Raytracer.Cli/Program.cs for CLI options and add flags there for additional rendering controls (antialiasing, samples, threads).
+## The rendering loop
 
-CI & automation suggestions
-- Add a GitHub Actions workflow that runs `dotnet restore`, `dotnet build`, and `dotnet test` on PRs.
-- Optionally add a workflow to produce sample renders as artifacts for PR previews (run the CLI on a small scene at low resolution).
+The following pseudocode summarizes the renderer. Small offsets keep secondary rays from immediately intersecting the surface they just left.
 
-Common troubleshooting
-- Build errors about ambiguous types: qualify the type with the namespace or add an alias.
-- Tests failing due to numeric tolerances: some tests validate intersection distances — small floating-point variations between runtimes may require relaxed assertions.
+```text
+function render(scene, camera, samplesPerPixel, maxDepth):
+    basis = lookAt(camera.position, camera.target)
+    # If position equals target, use the +Z direction.
 
-Contributing
-- Fork or branch, implement changes, run `dotnet test` locally, open a PR with clear description and small commits.
-- For larger changes (mesh loader, BVH acceleration), open an RFC issue describing design, benchmarks, and an incremental plan.
+    parallel for each image row:
+        for each pixel in row:
+            colors = []
 
-If you want, I can:
-- Add a GitHub Actions workflow that runs the build and tests on PRs (I can open a PR with the workflow). 
-- Add a small CONTRIBUTING.md with typical developer steps and code style rules.
-- Add a script to produce sample renders (batch) and save artifacts to `assets/renders/` for PR previews.
+            for each sample in a regular grid within pixel:
+                ray = perspectiveRay(camera.position, basis, sample)
+                colors.append(trace(scene, ray, depth = 1, maxDepth))
 
-— Dex
+            image[pixel] = clamp(average(colors), 0, 1)
+
+    return image
+```
+
+The tracing function turns one intersection into a color:
+
+```text
+function trace(scene, ray, depth, maxDepth):
+    if depth > maxDepth:
+        return BLACK
+
+    hit = nearestIntersection(scene, ray)
+    if hit does not exist:
+        return BLACK
+    if hit.object is a light:
+        return hit.object.color
+
+    normal = hit.normal
+    if ray started inside the sphere:
+        normal = -normal            # Shade the interior-facing surface.
+
+    baseColor = sampleTexture(hit.uv) if textured else hit.material.color
+    color = BLACK
+
+    for each light in scene:
+        direction = normalize(light.position - hit.position)
+        shadowRay = rayFrom(hit.position + direction * epsilon, direction)
+        blocked = any non-light object intersects shadowRay before light
+
+        if not blocked:
+            color += diffuse(normal, direction, baseColor, light)
+            color += specular(normal, direction, ray, light)
+
+    if hit.material.reflection > 0 and depth < maxDepth:
+        direction = reflect(ray.direction, normal)
+        reflectedRay = rayFrom(hit.position + direction * epsilon, direction)
+        color += hit.material.reflection * trace(scene, reflectedRay, depth + 1, maxDepth)
+
+    return color
+```
+
+The closest-hit rule is essential for meshes: a triangle encountered first in the OBJ file may sit behind another triangle. Each ray searches the mesh for the smallest valid positive intersection distance and keeps that triangle's normal with the result.
+
+## Inside the project
+
+| Project | Responsibility |
+| :--- | :--- |
+| [RayTracer.Core](RayTracer.Core) | Geometry, materials, cameras, scenes, and the rendering engine |
+| [RayTracer.Cli](RayTracer.Cli) | Scene selection, camera and sampling options, and PNG output |
+| [RayTracer.Core.Tests](RayTracer.Core.Tests) | Regression tests for intersections, normals, shadows, camera targets, and small renders |
+| [assets](assets) | OBJ models and example renders |
+
+The skull uses the CLI's `mesh` scene. Other scenes include `sphere`, `triangle`, `box`, `cylinder`, `disk`, `billiards`, `hand`, `torus`, and `reflective`.
+
+This is a classic direct-light ray tracer with recursive mirror reflections. Mesh intersections currently check every triangle; a spatial acceleration structure is a natural next step for larger models.
