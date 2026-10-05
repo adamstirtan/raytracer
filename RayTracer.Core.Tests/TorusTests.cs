@@ -10,6 +10,28 @@ namespace RayTracer.Core.Tests;
 public class TorusTests
 {
     [TestMethod]
+    public void InsideRay_ReturnsExit()
+    {
+        var torus = new Torus(new Material(Vector3.One), null);
+        float distance = float.MaxValue;
+        Assert.AreEqual(RayIntersection.Inside, torus.Intersects(new Ray(new Vector3(2, 0, 0), Vector3.UnitX), ref distance));
+        Assert.AreEqual(0.5f, distance, 0.001f);
+    }
+
+    [TestMethod]
+    public void DistantRay_HitsBeyondOneHundredUnits()
+    {
+        var torus = new Torus(new Material(Vector3.One), null);
+        var ray = new Ray(new Vector3(0, 0, -150), Vector3.UnitZ);
+        float distance = 147f;
+        Assert.AreEqual(RayIntersection.Miss, torus.Intersects(ray, ref distance));
+        Assert.AreEqual(147f, distance);
+        distance = 200f;
+        Assert.AreEqual(RayIntersection.Hit, torus.Intersects(ray, ref distance));
+        Assert.AreEqual(147.5f, distance, 0.001f);
+    }
+
+    [TestMethod]
     public void Torus_PrimitiveType_IsTorus()
     {
         var torus = new Torus(new Material(new System.Numerics.Vector3(0.8f,0.3f,0.2f)), null, 2.0f, 0.5f);

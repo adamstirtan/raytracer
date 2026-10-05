@@ -34,25 +34,33 @@ public class Torus : Primitive
 
     public override RayIntersection Intersects(Ray ray, ref float distance)
     {
-        // Ray-marching using SDF. Not perfect but simple and robust for tests/scenes.
-        const int maxSteps = 300; // increase steps for finer intersections
-        const float hitEps = 5e-4f;   // tighter hit epsilon for crisper surface
-        const float maxDist = 100f;
+        const int maxSteps = 512;
+        const float hitEps = 5e-4f;
+        Vector3 origin = ray.Origin - Center;
+        float speed = ray.Direction.Length();
+        if (speed == 0f) return RayIntersection.Miss;
 
-        float t = 0f;
-        for (int i = 0; i < maxSteps && t < distance && t < maxDist; i++)
+        // Restrict marching to the bounding sphere, rather than an arbitrary world range.
+        float bound = MajorRadius + MinorRadius + hitEps;
+        float a = Vector3.Dot(ray.Direction, ray.Direction);
+        float b = Vector3.Dot(origin, ray.Direction);
+        float c = Vector3.Dot(origin, origin) - bound * bound;
+        float discriminant = b * b - a * c;
+        if (discriminant < 0f) return RayIntersection.Miss;
+        float root = System.MathF.Sqrt(discriminant);
+        float end = System.MathF.Min(distance, (-b + root) / a);
+        float t = System.MathF.Max(1e-6f, (-b - root) / a);
+        bool inside = SDF(origin) < 0f;
+
+        for (int i = 0; i < maxSteps && t < distance && t <= end; i++)
         {
-            var p = ray.Origin + ray.Direction * t;
-            var localPoint = p - Center;
-            float d = SDF(localPoint);
-            if (d < hitEps)
+            float d = SDF(origin + ray.Direction * t);
+            if (System.MathF.Abs(d) < hitEps)
             {
                 distance = t;
-                return RayIntersection.Hit;
+                return inside ? RayIntersection.Inside : RayIntersection.Hit;
             }
-            t += d;
-            if (d < 0) // inside surface, step out
-                t += hitEps;
+            t += System.MathF.Abs(d) / speed;
         }
         return RayIntersection.Miss;
     }

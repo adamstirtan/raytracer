@@ -60,9 +60,9 @@ public class Box : Primitive
         float dy = System.MathF.Min(System.MathF.Abs(position.Y - Min.Y), System.MathF.Abs(position.Y - Max.Y));
         float dz = System.MathF.Min(System.MathF.Abs(position.Z - Min.Z), System.MathF.Abs(position.Z - Max.Z));
 
-        if (dx < dy && dx < dz)
+        if (dx <= dy && dx <= dz)
             return System.MathF.Abs(position.X - Min.X) < System.MathF.Abs(position.X - Max.X) ? -Vector3.UnitX : Vector3.UnitX;
-        else if (dy < dx && dy < dz)
+        else if (dy <= dz)
             return System.MathF.Abs(position.Y - Min.Y) < System.MathF.Abs(position.Y - Max.Y) ? -Vector3.UnitY : Vector3.UnitY;
         else
             return System.MathF.Abs(position.Z - Min.Z) < System.MathF.Abs(position.Z - Max.Z) ? -Vector3.UnitZ : Vector3.UnitZ;

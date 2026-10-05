@@ -10,6 +10,17 @@ namespace RayTracer.Core.Tests;
 public class BoxTests
 {
     [TestMethod]
+    [DataRow(1f, 1f, 0f, 1f, 0f, 0f)]
+    [DataRow(-1f, -1f, 0f, -1f, 0f, 0f)]
+    [DataRow(0f, 1f, 1f, 0f, 1f, 0f)]
+    [DataRow(1f, 1f, 1f, 1f, 0f, 0f)]
+    public void EdgeNormal_SelectsOneOfTheAdjacentFaces(float x, float y, float z, float nx, float ny, float nz)
+    {
+        var box = new Box(-Vector3.One, Vector3.One, new Material(Vector3.One), null);
+        Assert.AreEqual(new Vector3(nx, ny, nz), box.GetNormal(new Vector3(x, y, z)));
+    }
+
+    [TestMethod]
     [DataRow(2f, 7f, 9f, -1f, 0f, 0f)]
     [DataRow(6f, 7f, 9f, 1f, 0f, 0f)]
     [DataRow(4f, 4f, 9f, 0f, -1f, 0f)]

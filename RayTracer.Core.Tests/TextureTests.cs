@@ -7,6 +7,14 @@ namespace RayTracer.Core.Tests
     public class TextureTests
     {
         [TestMethod]
+        public void NegativeCoordinates_WrapToSameTexel()
+        {
+            var tex = new Texture(System.IO.Path.Combine(System.AppContext.BaseDirectory, "Textures", "earth.jpg"));
+            Assert.AreEqual(tex.Sample(0.75f, 0.5f), tex.Sample(-0.25f, -1.5f));
+            Assert.AreEqual(tex.Sample(0f, 0f), tex.Sample(-1f, -2f));
+        }
+
+        [TestMethod]
         public void Sample_ReturnsValidColor_ForWrappedCoords()
         {
             var tex = new Texture("Textures/green-felt.jpg");

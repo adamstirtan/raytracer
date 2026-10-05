@@ -9,8 +9,8 @@ public class TexturedSphere : Scene
 {
     public TexturedSphere()
     {
-        Texture earthTexture = new("Textures/earth.jpg");
-        Texture moonTexture = new("Textures/moon.jpg");
+        Texture earthTexture = new(System.IO.Path.Combine(System.AppContext.BaseDirectory, "Textures", "earth.jpg"));
+        Texture moonTexture = new(System.IO.Path.Combine(System.AppContext.BaseDirectory, "Textures", "moon.jpg"));
 
         Sphere earth = new(new Vector3(-1, 0, 15f), 4.5f, new Material(new Vector3(0, 0, 0),
             diffuse: 1f,

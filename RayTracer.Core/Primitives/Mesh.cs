@@ -1,4 +1,5 @@
 using System.Numerics;
+using System.Globalization;
 using System.Collections.Generic;
 using RayTracer.Core.Materials;
 using RayTracer.Core.Math;
@@ -25,17 +26,17 @@ public class Mesh : Primitive
             if (line.StartsWith("v "))
             {
                 var parts = line.Split(' ', System.StringSplitOptions.RemoveEmptyEntries);
-                float x = float.Parse(parts[1]);
-                float y = float.Parse(parts[2]);
-                float z = float.Parse(parts[3]);
+                float x = float.Parse(parts[1], CultureInfo.InvariantCulture);
+                float y = float.Parse(parts[2], CultureInfo.InvariantCulture);
+                float z = float.Parse(parts[3], CultureInfo.InvariantCulture);
                 mesh.Vertices.Add(new Vector3(x,y,z));
             }
             else if (line.StartsWith("vn "))
             {
                 var parts = line.Split(' ', System.StringSplitOptions.RemoveEmptyEntries);
-                float x = float.Parse(parts[1]);
-                float y = float.Parse(parts[2]);
-                float z = float.Parse(parts[3]);
+                float x = float.Parse(parts[1], CultureInfo.InvariantCulture);
+                float y = float.Parse(parts[2], CultureInfo.InvariantCulture);
+                float z = float.Parse(parts[3], CultureInfo.InvariantCulture);
                 normals.Add(new Vector3(x,y,z));
             }
             else if (line.StartsWith("f "))
@@ -47,10 +48,12 @@ public class Mesh : Primitive
                 for (int i = 1; i < parts.Length; i++)
                 {
                     var comps = parts[i].Split('/');
-                    int v = int.Parse(comps[0]) - 1;
+                    int index = int.Parse(comps[0], CultureInfo.InvariantCulture);
+                    int v = ResolveIndex(index, mesh.Vertices.Count);
                     vIndices.Add(v);
                     int ni = -1;
-                    if (comps.Length >= 3 && comps[2] != "") ni = int.Parse(comps[2]) - 1;
+                    if (comps.Length >= 3 && comps[2] != "")
+                        ni = ResolveIndex(int.Parse(comps[2], CultureInfo.InvariantCulture), normals.Count);
                     nIndices.Add(ni);
                 }
 
@@ -154,6 +157,14 @@ public class Mesh : Primitive
         }
 
         return mesh;
+    }
+
+    private static int ResolveIndex(int index, int count)
+    {
+        int resolved = index > 0 ? index - 1 : count + index;
+        if (index == 0 || resolved < 0 || resolved >= count)
+            throw new System.FormatException($"OBJ index {index} is outside the available {count} entries.");
+        return resolved;
     }
 
     public override PrimitiveType GetPrimitiveType() => PrimitiveType.Mesh;

@@ -11,8 +11,8 @@ public class MeshScene : Scene
         AddObject(new RayTracer.Core.Primitives.Plane(new Vector3(0,1,0), 1000, new Material(new Vector3(0.2f,0.2f,0.2f), 0.9f, 0f, 0.1f), null));
 
         // Load the skull OBJ if present; fall back to the small teapot placeholder
-        string skullPath = "assets/skull.obj";
-        string modelPath = System.IO.File.Exists(skullPath) ? skullPath : "assets/teapot.obj";
+        string skullPath = System.IO.Path.Combine(System.AppContext.BaseDirectory, "assets", "skull.obj");
+        string modelPath = System.IO.File.Exists(skullPath) ? skullPath : System.IO.Path.Combine(System.AppContext.BaseDirectory, "assets", "teapot.obj");
         var mesh = Mesh.FromObj(modelPath, new Material(new Vector3(0.8f,0.5f,0.3f), 0.7f, 0.2f, 0.5f));
         AddObject(mesh);
 

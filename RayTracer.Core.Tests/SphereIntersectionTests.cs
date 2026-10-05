@@ -10,6 +10,16 @@ namespace RayTracer.Core.Tests;
 public class SphereIntersectionTests
 {
     [TestMethod]
+    public void RadiusChange_UpdatesDistanceAndNormal()
+    {
+        var sphere = new Sphere(Vector3.Zero, 1, new Material(Vector3.One), null) { Radius = 2 };
+        var hit = sphere.Intersect(new Ray(new Vector3(0, 0, -5), Vector3.UnitZ), float.MaxValue);
+        Assert.AreEqual(RayIntersection.Hit, hit.RayIntersection);
+        Assert.AreEqual(3f, hit.Distance);
+        Assert.AreEqual(-Vector3.UnitZ, hit.Normal);
+    }
+
+    [TestMethod]
     public void RayStartingInsideSphere_ReturnsPositiveExitDistance()
     {
         var center = new Vector3(2, 3, 4);

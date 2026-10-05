@@ -9,7 +9,7 @@ public class BilliardsScene : Scene
     public BilliardsScene()
     {
         // Table plane with green felt texture
-        var felt = new RayTracer.Core.Materials.Texture("Textures/green-felt.jpg");
+        var felt = new RayTracer.Core.Materials.Texture(System.IO.Path.Combine(System.AppContext.BaseDirectory, "Textures", "green-felt.jpg"));
         AddObject(new RayTracer.Core.Primitives.Plane(new Vector3(0,1,0), 1000,
             new Material(new Vector3(1f,1f,1f), 1.0f, 0.0f, 0.1f), felt));
 

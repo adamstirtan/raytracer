@@ -11,8 +11,10 @@ public class Texture(string filePath)
 
     public Vector3 Sample(float u, float v)
     {
-        int x = (int)(_image.Width * u) % _image.Width;
-        int y = (int)(_image.Height * v) % _image.Height;
+        u -= System.MathF.Floor(u);
+        v -= System.MathF.Floor(v);
+        int x = System.Math.Min((int)(_image.Width * u), _image.Width - 1);
+        int y = System.Math.Min((int)(_image.Height * v), _image.Height - 1);
 
         Rgba32 pixel = _image[x, y];
 

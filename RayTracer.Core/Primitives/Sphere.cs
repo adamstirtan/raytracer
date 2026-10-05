@@ -7,7 +7,6 @@ namespace RayTracer.Core.Primitives;
 
 public class Sphere : Primitive
 {
-    private readonly float _radiusSquared;
 
     public Vector3 Center { get; set; }
     public float Radius { get; set; }
@@ -18,7 +17,6 @@ public class Sphere : Primitive
         Center = center;
         Radius = radius;
 
-        _radiusSquared = (float)System.Math.Pow(Radius, 2);
     }
 
     public override PrimitiveType GetPrimitiveType()
@@ -31,7 +29,7 @@ public class Sphere : Primitive
         var v = ray.Origin - Center;
 
         float b = -Vector3.Dot(v, ray.Direction);
-        float det = (b * b) - Vector3.Dot(v, v) + _radiusSquared;
+        float det = (b * b) - Vector3.Dot(v, v) + Radius * Radius;
 
         if (det > 0)
         {

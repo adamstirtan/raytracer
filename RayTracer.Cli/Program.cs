@@ -14,7 +14,7 @@ int depth = 2;
 int samplesPerPixel = 1;
 
 // camera defaults
-Vector3 cameraPos = new Vector3(0, 0, -5);
+Vector3? cameraPos = null;
 Vector3? cameraTarget = null;
 
 for (int i = 0; i < argsList.Length; i++)
@@ -58,61 +58,44 @@ for (int i = 0; i < argsList.Length; i++)
     }
 }
 
-Scene scene = sceneName.ToLower() switch
+var scenes = new Dictionary<string, (Func<Scene> Create, Vector3 Position, Vector3? Target)>(StringComparer.OrdinalIgnoreCase)
 {
-    "sphere" => new SphereScene(),
-    "triangle" => new TriangleScene(),
-    "box" => new BoxScene(),
-    "cylinder" => new CylinderScene(),
-    "disk" => new DiskScene(),
-    "billiards" => new BilliardsScene(),
-    "mesh" => new MeshScene(),
-    "hand" => new HandScene(),
-    "torus" => new RayTracer.Core.Scenes.TorusScene(),
-    "reflective" => new RayTracer.Core.Scenes.ReflectiveSphereScene(),
-    "future-city" => new FutureCityScene(),
-    "orbital" => new OrbitalScene(),
-    "list" => throw new System.ArgumentException("list is not a scene"),
-    _ => new SphereScene()
+    ["sphere"] = (() => new SphereScene(), new(0, 0, -5), null),
+    ["triangle"] = (() => new TriangleScene(), new(0, 0, -5), null),
+    ["box"] = (() => new BoxScene(), new(0, 0, -5), null),
+    ["cylinder"] = (() => new CylinderScene(), new(0, 0, -5), null),
+    ["disk"] = (() => new DiskScene(), new(0, 0, -5), null),
+    ["billiards"] = (() => new BilliardsScene(), new(0.7f, 1, -4), new(0, 0.2f, 1.8f)),
+    ["mesh"] = (() => new MeshScene(), new(6, 2.5f, 6), new(0, 1, 8)),
+    ["hand"] = (() => new HandScene(), new(0, 0, -5), null),
+    ["torus"] = (() => new TorusScene(), new(0, 0, -5), null),
+    ["reflective"] = (() => new ReflectiveSphereScene(), new(0, 0, -5), null),
+    ["future-city"] = (() => new FutureCityScene(), new(26, 18, -32), new(0, 5, 12)),
+    ["orbital"] = (() => new OrbitalScene(), new(30, 28, -55), new(3, -1, 15)),
+    ["observatory"] = (() => new ObservatoryScene(), new(17, 8, -30), new(0, 5, 12))
 };
 
-if (sceneName.ToLower() == "list")
+if (sceneName.Equals("list", StringComparison.OrdinalIgnoreCase))
 {
-    Console.WriteLine("Available scenes: sphere, triangle, box, cylinder, disk, billiards, mesh");
-    System.Environment.Exit(0);
+    Console.WriteLine("Available scenes: " + string.Join(", ", scenes.Keys));
+    return;
 }
-
-if (sceneName.ToLower() == "billiards")
+if (!scenes.TryGetValue(sceneName, out var preset))
 {
-    // Position camera slightly above and behind the cue ball, looking toward the rack
-    // Cue ball sits around y=0.2, z ~ -2.0; place camera a bit higher and further back for a natural human viewpoint
-    // Move the camera slightly back and to the right for a more natural over-the-shoulder cue view
-    cameraPos = new Vector3(0.7f, 1.0f, -4.0f);
-    cameraTarget = new Vector3(0f, 0.2f, 1.8f);
+    Console.Error.WriteLine($"Unknown scene '{sceneName}'. Use --scene list to see available scenes.");
+    Environment.ExitCode = 1;
+    return;
 }
-else if (sceneName.ToLower() == "mesh")
-{
-    // Position camera to the front-left-top of the model and look at its center
-    cameraPos = new Vector3(6f, 2.5f, 6f);
-    cameraTarget = new Vector3(0f, 1.0f, 8.0f);
-}
-else if (sceneName.ToLower() == "future-city")
-{
-    cameraPos = new Vector3(26f, 18f, -32f);
-    cameraTarget = new Vector3(0f, 5f, 12f);
-}
-else if (sceneName.ToLower() == "orbital")
-{
-    cameraPos = new Vector3(30, 28, -55);
-    cameraTarget = new Vector3(3, -1, 15);
-}
+Scene scene = preset.Create();
+cameraPos ??= preset.Position;
+cameraTarget ??= preset.Target;
 
 var options = new RenderOptions
 {
     Width = width,
     Height = height,
     TraceDepth = depth,
-    CameraPosition = cameraPos,
+    CameraPosition = cameraPos.Value,
     CameraTarget = cameraTarget,
     DisableReflections = false,
     SamplesPerPixel = samplesPerPixel
