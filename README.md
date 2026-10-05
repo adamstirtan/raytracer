@@ -8,15 +8,15 @@
 ![.NET 10](https://img.shields.io/badge/.NET-10-512BD4?logo=dotnet&logoColor=white)
 ![CPU rendering](https://img.shields.io/badge/rendering-CPU-222222)
 
-<img src="assets/future_city.png" alt="Futuristic spaceport with layered towers, a suspended reactor halo, domed landing pads, and reflections beneath an angular mountain skyline" width="1280" />
+<img src="assets/future_city_textured.png" alt="Textured futuristic spaceport with metal-clad towers, patterned windows, a suspended reactor halo, segmented glass domes, and reflections on a tiled plaza beneath a dusk sky" width="1280" />
 
-*Future City — layered towers, a suspended reactor halo, and domed landing pads on a reflective plaza.*
+*Future City — metal cladding, patterned windows, ceramic panels, and segmented glass domes around a suspended reactor halo, reflected in a tiled plaza beneath a dusk sky.*
 
 <img src="assets/orbital_textured.png" alt="Textured orbital station and docking ship beside a gas giant with swirling cloud bands and a copper storm, a cratered moon, and an asteroid belt against a faint nebula" width="1280" />
 
 *Orbital — detailed hull panels and solar cells beside a swirling gas giant, a cratered moon, and 180 textured asteroids beneath a subtle nebula.*
 
-Future City is rendered at 1280 × 800 with four samples per pixel. Orbital uses 1600 × 1000, nine samples per pixel, and reflection depth three. Both use cast shadows and recursive reflections.
+Future City and Orbital are rendered at 1600 × 1000 with nine samples per pixel, cast shadows, and recursive reflections. Future City uses reflection depth four; Orbital uses depth three.
 
 <img src="assets/observatory.png" alt="Alien observatory with tilted golden orbital rings around a blue orb, terraced platforms, angular mountains, and a planet reflected in a mirror lake" width="1280" />
 
