@@ -32,4 +32,4 @@ jobs:
           dotnet build RayTracer.Cli/RayTracer.Cli.csproj --no-restore -c Release
 
       - name: Run unit tests
-        run: dotnet test RayTracer.Core.Tests/RayTracer.Core.Tests.csproj --no-build -c Release --verbosity minimal
+        run: dotnet test RayTracer.Core.Tests/RayTracer.Core.Tests.csproj --no-build -c Release
