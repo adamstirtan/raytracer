@@ -30,45 +30,50 @@ public class Cylinder : Primitive
         float b = 2 * (o.X * d.X + o.Z * d.Z);
         float c = o.X * o.X + o.Z * o.Z - Radius * Radius;
 
-        float disc = b * b - 4 * a * c;
-        if (disc < 0) return RayIntersection.Miss;
+        float closestDistance = distance;
+        float halfHeight = Height / 2f;
+        bool hit = false;
 
-        float sqrt = System.MathF.Sqrt(disc);
-        float t0 = (-b - sqrt) / (2 * a);
-        float t1 = (-b + sqrt) / (2 * a);
-
-        float t = float.MaxValue;
-        if (t0 > 1e-6f) t = t0;
-        else if (t1 > 1e-6f) t = t1;
-
-        if (t < float.MaxValue)
+        void CheckSide(float t)
         {
+            if (t <= 1e-6f || t >= closestDistance) return;
             float y = o.Y + d.Y * t;
-            if (y >= -Height/2 && y <= Height/2 && t < distance)
-            {
-                distance = t;
-                return RayIntersection.Hit;
-            }
+            if (y < -halfHeight || y > halfHeight) return;
+            closestDistance = t;
+            hit = true;
         }
 
-        // caps
-        if (System.MathF.Abs(d.Y) > 1e-6f)
+        void CheckCap(float y)
         {
-            float tcap1 = (-Height/2 - o.Y) / d.Y;
-            float tcap2 = (Height/2 - o.Y) / d.Y;
-            float tcap = tcap1 > 1e-6f ? tcap1 : (tcap2 > 1e-6f ? tcap2 : float.MaxValue);
-            if (tcap < distance)
+            float t = (y - o.Y) / d.Y;
+            if (t <= 1e-6f || t >= closestDistance) return;
+            Vector3 p = o + d * t;
+            if (p.X * p.X + p.Z * p.Z > Radius * Radius) return;
+            closestDistance = t;
+            hit = true;
+        }
+
+        // Axis-parallel rays have no side roots; still test the caps.
+        if (a > 0f)
+        {
+            float disc = b * b - 4 * a * c;
+            if (disc >= 0f)
             {
-                Vector3 p = o + d * tcap;
-                if (p.X*p.X + p.Z*p.Z <= Radius*Radius)
-                {
-                    distance = tcap;
-                    return RayIntersection.Hit;
-                }
+                float sqrt = System.MathF.Sqrt(disc);
+                CheckSide((-b - sqrt) / (2 * a));
+                CheckSide((-b + sqrt) / (2 * a));
             }
         }
 
-        return RayIntersection.Miss;
+        if (d.Y != 0f)
+        {
+            CheckCap(-halfHeight);
+            CheckCap(halfHeight);
+        }
+
+        if (!hit) return RayIntersection.Miss;
+        distance = closestDistance;
+        return RayIntersection.Hit;
     }
 
     public override Vector3 GetNormal(Vector3 position)
