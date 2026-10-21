@@ -58,7 +58,11 @@ public class Engine
 
         // Camera FOV and basis
         float verticalFOV = MathF.PI / 4; // 45 degrees
-        float aspectRatio = (float)_options.Width / _options.Height;
+        int fullWidth = _options.FullWidth ?? _options.Width;
+        if (fullWidth < _options.Width || _options.HorizontalOffset < 0 ||
+            _options.HorizontalOffset > fullWidth - _options.Width)
+            throw new ArgumentOutOfRangeException(nameof(_options), "Crop must fit within the full camera view.");
+        float aspectRatio = (float)fullWidth / _options.Height;
         float viewPlaneHeight = 2 * MathF.Tan(verticalFOV / 2);
         float viewPlaneWidth = viewPlaneHeight * aspectRatio;
 
@@ -83,7 +87,7 @@ public class Engine
         Vector3 viewCenter = camPos + camForward; // distance 1
         Vector3 topLeft3D = viewCenter - (camRight * (viewPlaneWidth / 2)) + (camUp * (viewPlaneHeight / 2));
 
-        float deltaX = viewPlaneWidth / _options.Width;
+        float deltaX = viewPlaneWidth / fullWidth;
         float deltaY = viewPlaneHeight / _options.Height;
 
         Image<Rgba32> render = new(_options.Width, _options.Height);
@@ -112,7 +116,7 @@ public class Engine
                         float jitterX = (sx + 0.5f) / side;
                         float jitterY = (sy + 0.5f) / side;
 
-                        Vector3 pixelPosSS = pixelStart + camRight * ((x + jitterX) * deltaX) - camUp * (jitterY * deltaY);
+                        Vector3 pixelPosSS = pixelStart + camRight * ((x + _options.HorizontalOffset + jitterX) * deltaX) - camUp * (jitterY * deltaY);
                         Vector3 dirSS = Vector3.Normalize(pixelPosSS - camPos);
 
                         Ray ssRay = new(camPos, dirSS);

@@ -9,6 +9,9 @@ public class RenderOptions
     public Vector3? CameraTarget { get; init; }
     public required int Width { get; init; }
     public required int Height { get; init; }
+    // Render a horizontal crop of a wider camera view, retaining off-panel reflections.
+    public int? FullWidth { get; init; }
+    public int HorizontalOffset { get; init; }
     public int TraceDepth { get; init; } = 3;
     public required bool DisableReflections { get; init; }
     public bool DisableDiffuse { get; init; }

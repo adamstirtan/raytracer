@@ -1,0 +1,22 @@
+{
+  "Scene": "conversation",
+  "PanelWidthCm": 31,
+  "PanelHeightCm": 41.00874078120732,
+  "VisibleImageGapCm": 21.59,
+  "Width": 3661,
+  "Height": 4843,
+  "GapPixels": 2550,
+  "FullWidth": 9872,
+  "SamplesPerPixel": 16,
+  "TraceDepth": 6,
+  "CameraPosition": [
+    0,
+    7,
+    -28
+  ],
+  "CameraTarget": [
+    0,
+    5,
+    7
+  ]
+}

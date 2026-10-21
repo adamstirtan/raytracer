@@ -14,6 +14,9 @@ int depth = 2;
 int samplesPerPixel = 1;
 int frames = 1;
 int fps = 30;
+bool diptych = false;
+double gapCm = 21.59; // 8.5 inches measured between the visible image openings.
+double panelWidthCm = 31;
 
 // camera defaults
 Vector3? cameraPos = null;
@@ -23,6 +26,15 @@ for (int i = 0; i < argsList.Length; i++)
 {
     switch (argsList[i])
     {
+        case "--diptych":
+            diptych = true;
+            break;
+        case "--gap-cm":
+            if (i + 1 < argsList.Length) gapCm = double.Parse(argsList[++i], System.Globalization.CultureInfo.InvariantCulture);
+            break;
+        case "--panel-width-cm":
+            if (i + 1 < argsList.Length) panelWidthCm = double.Parse(argsList[++i], System.Globalization.CultureInfo.InvariantCulture);
+            break;
         case "--frames":
             if (i + 1 < argsList.Length) int.TryParse(argsList[++i], out frames);
             break;
@@ -84,7 +96,8 @@ var scenes = new Dictionary<string, (Func<Scene> Create, Vector3 Position, Vecto
     ["synthwave"] = (() => new SynthwaveScene(), new(0, 7, -12), new(0, 9, 100)),
     ["synthwave-distant"] = (() => new SynthwaveScene(distantMountains: true), new(0, 5, -12), new(0, 7, 100)),
     ["chromatic"] = (() => new ChromaticScene(), new(23,16,-28), new(0,3,12)),
-    ["falling-spheres"] = (() => new FallingSpheresScene(), new(23,16,-28), new(0,3,12))
+    ["falling-spheres"] = (() => new FallingSpheresScene(), new(23,16,-28), new(0,3,12)),
+    ["conversation"] = (() => new ConversationScene(), new(0,7,-28), new(0,5,7))
 };
 
 if (sceneName.Equals("list", StringComparison.OrdinalIgnoreCase))
@@ -101,6 +114,39 @@ if (!scenes.TryGetValue(sceneName, out var preset))
 Scene scene = preset.Create();
 cameraPos ??= preset.Position;
 cameraTarget ??= preset.Target;
+
+if (diptych)
+{
+    if (frames != 1 || width < 1 || height < 1 || !double.IsFinite(gapCm) || gapCm < 0 ||
+        !double.IsFinite(panelWidthCm) || panelWidthCm <= 0)
+        throw new ArgumentException("Diptych requires one frame, positive dimensions and panel width, and a nonnegative gap.");
+    int gapPixels = checked((int)Math.Round(width * gapCm / panelWidthCm));
+    int fullWidth = checked(width * 2 + gapPixels);
+    Directory.CreateDirectory(outPath);
+    foreach (var panel in new[] { (Name: "left", Offset: 0), (Name: "right", Offset: fullWidth - width) })
+    {
+        var panelOptions = new RenderOptions
+        {
+            Width = width, Height = height, FullWidth = fullWidth, HorizontalOffset = panel.Offset,
+            CameraPosition = cameraPos.Value, CameraTarget = cameraTarget,
+            TraceDepth = depth, DisableReflections = false, SamplesPerPixel = samplesPerPixel
+        };
+        var panelEngine = new Engine(scene, panelOptions);
+        panelEngine.RenderCompleted += (_, elapsed) => Console.WriteLine($"{panel.Name}: {elapsed}");
+        using var panelImage = panelEngine.Render();
+        panelImage.SaveAsPng(Path.Combine(outPath, $"{panel.Name}.png"));
+    }
+    File.WriteAllText(Path.Combine(outPath, "layout.json"), System.Text.Json.JsonSerializer.Serialize(new
+    {
+        Scene = sceneName, PanelWidthCm = panelWidthCm, PanelHeightCm = height * panelWidthCm / width,
+        VisibleImageGapCm = gapCm, Width = width, Height = height, GapPixels = gapPixels,
+        FullWidth = fullWidth, SamplesPerPixel = samplesPerPixel, TraceDepth = depth,
+        CameraPosition = new[] { cameraPos.Value.X, cameraPos.Value.Y, cameraPos.Value.Z },
+        CameraTarget = cameraTarget.HasValue ? new[] { cameraTarget.Value.X, cameraTarget.Value.Y, cameraTarget.Value.Z } : null
+    }, new System.Text.Json.JsonSerializerOptions { WriteIndented = true }));
+    Console.WriteLine($"Saved diptych to {outPath}; hidden strip {gapCm} cm ({gapPixels} pixels).");
+    return;
+}
 
 if (frames < 1 || fps < 1)
 {

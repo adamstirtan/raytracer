@@ -167,6 +167,16 @@ The closest-hit rule is essential for meshes: a triangle encountered first in th
 
 ## Inside the project
 
+### Two-panel wall art
+
+The `conversation` scene places a copper ring, an angled mirror, a blue sculpture, and a chrome sphere in a shared reflective studio. `--diptych` renders two crops through one wide camera, preserving reflections of objects in the opposite panel and skipping the hidden strip between the visible image openings.
+
+```sh
+dotnet run --project RayTracer.Cli -c Release -- --scene conversation --diptych --gap-cm 21.59 --width 620 --height 820 --spp 4 --depth 6 --out art/conversation/preview
+```
+
+Width and height apply to each panel; physical panel width defaults to 31 cm and can be set with `--panel-width-cm`. See [the print layout and reproduction instructions](art/conversation/README.md) for the 31 × 41 cm, 300 DPI outputs and framed wall proof.
+
 | Project | Responsibility |
 | :--- | :--- |
 | [RayTracer.Core](RayTracer.Core) | Geometry, materials, cameras, scenes, and the rendering engine |
