@@ -1,0 +1,23 @@
+{
+  "Scene": "impact",
+  "PanelWidthCm": 31,
+  "PanelHeightCm": 41,
+  "VisibleImageGapCm": 21.59,
+  "Width": 310,
+  "Height": 410,
+  "GapPixels": 216,
+  "FullWidth": 836,
+  "SamplesPerPixel": 4,
+  "TraceDepth": 4,
+  "SimulationTimeSeconds": 3.45,
+  "CameraPosition": [
+    0,
+    6,
+    -8
+  ],
+  "CameraTarget": [
+    0,
+    3.5,
+    11
+  ]
+}

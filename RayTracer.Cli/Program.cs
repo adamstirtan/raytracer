@@ -17,6 +17,7 @@ int fps = 30;
 bool diptych = false;
 double gapCm = 21.59; // 8.5 inches measured between the visible image openings.
 double panelWidthCm = 31;
+double? snapshotTime = null;
 
 // camera defaults
 Vector3? cameraPos = null;
@@ -26,6 +27,9 @@ for (int i = 0; i < argsList.Length; i++)
 {
     switch (argsList[i])
     {
+        case "--time":
+            if (i + 1 < argsList.Length) snapshotTime = double.Parse(argsList[++i], System.Globalization.CultureInfo.InvariantCulture);
+            break;
         case "--diptych":
             diptych = true;
             break;
@@ -97,7 +101,9 @@ var scenes = new Dictionary<string, (Func<Scene> Create, Vector3 Position, Vecto
     ["synthwave-distant"] = (() => new SynthwaveScene(distantMountains: true), new(0, 5, -12), new(0, 7, 100)),
     ["chromatic"] = (() => new ChromaticScene(), new(23,16,-28), new(0,3,12)),
     ["falling-spheres"] = (() => new FallingSpheresScene(), new(23,16,-28), new(0,3,12)),
-    ["conversation"] = (() => new ConversationScene(), new(0,7,-28), new(0,5,7))
+    ["conversation"] = (() => new ConversationScene(), new(0,7,-28), new(0,5,7)),
+    ["order-escape"] = (() => new OrderEscapeScene(), new(0,8,-28), new(0,6,9)),
+    ["impact"] = (() => new ImpactScene(snapshotTime ?? 3.15), new(0,6.5f,-10), new(0,4.2f,11))
 };
 
 if (sceneName.Equals("list", StringComparison.OrdinalIgnoreCase))
@@ -111,7 +117,12 @@ if (!scenes.TryGetValue(sceneName, out var preset))
     Environment.ExitCode = 1;
     return;
 }
+if (snapshotTime.HasValue && (!sceneName.Equals("impact", StringComparison.OrdinalIgnoreCase) &&
+    !sceneName.Equals("falling-spheres", StringComparison.OrdinalIgnoreCase) ||
+    !double.IsFinite(snapshotTime.Value) || snapshotTime.Value < 0 || frames != 1))
+    throw new ArgumentException("--time requires a nonnegative finite time and a single-frame impact or falling-spheres scene.");
 Scene scene = preset.Create();
+if (scene is FallingSpheresScene snapshot && snapshotTime.HasValue) snapshot.Dynamics.Advance(snapshotTime.Value);
 cameraPos ??= preset.Position;
 cameraTarget ??= preset.Target;
 
@@ -141,6 +152,7 @@ if (diptych)
         Scene = sceneName, PanelWidthCm = panelWidthCm, PanelHeightCm = height * panelWidthCm / width,
         VisibleImageGapCm = gapCm, Width = width, Height = height, GapPixels = gapPixels,
         FullWidth = fullWidth, SamplesPerPixel = samplesPerPixel, TraceDepth = depth,
+        SimulationTimeSeconds = scene is ImpactScene impact ? impact.SimulationTimeSeconds : snapshotTime,
         CameraPosition = new[] { cameraPos.Value.X, cameraPos.Value.Y, cameraPos.Value.Z },
         CameraTarget = cameraTarget.HasValue ? new[] { cameraTarget.Value.X, cameraTarget.Value.Y, cameraTarget.Value.Z } : null
     }, new System.Text.Json.JsonSerializerOptions { WriteIndented = true }));

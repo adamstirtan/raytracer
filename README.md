@@ -177,6 +177,10 @@ dotnet run --project RayTracer.Cli -c Release -- --scene conversation --diptych 
 
 Width and height apply to each panel; physical panel width defaults to 31 cm and can be set with `--panel-width-cm`. See [the print layout and reproduction instructions](art/conversation/README.md) for the 31 × 41 cm, 300 DPI outputs and framed wall proof.
 
+The `order-escape` scene revisits the university assignment's spheres with synthwave colours: a rigid lattice unfolds into a floating spiral across the same measured gap. Chrome spheres reflect the opposite arrangement. See [Order / Escape](art/order-escape/README.md) for the high-resolution prints and reproduction command.
+
+The `impact` scene freezes the original falling-sphere physics at 3.15 seconds, with synthwave materials and lighting. `--time` selects another instant without changing the simulation. See [Impact](art/impact/README.md) for the contact sheet, framed preview, and high-resolution diptych prints.
+
 | Project | Responsibility |
 | :--- | :--- |
 | [RayTracer.Core](RayTracer.Core) | Geometry, materials, cameras, scenes, and the rendering engine |
