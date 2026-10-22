@@ -181,6 +181,10 @@ The `order-escape` scene revisits the university assignment's spheres with synth
 
 The `impact` scene freezes the original falling-sphere physics at 3.15 seconds, with synthwave materials and lighting. `--time` selects another instant without changing the simulation. See [Impact](art/impact/README.md) for the contact sheet, framed preview, and high-resolution diptych prints.
 
+The `skull-echo` scene uses the detailed skull mesh in a dark ivory-and-metal still life. An angled mirror and an obsidian floor connect the two portrait views. See [Memento / Echo](art/skull-echo/README.md) for the high-resolution prints and reproduction command.
+
+The `skull-dialogue` scene pares the composition down to two large, inward-facing skulls in pearl and polished silver. Irving Penn’s sculptural still-life photography informs its neutral palette and precise studio lighting. See [Dialogue](art/skull-dialogue/README.md) for the print pair. Its background and reflected studio light come from `Scene.Environment`; `Scene.AddLighting()` supplies illumination without adding visible objects.
+
 | Project | Responsibility |
 | :--- | :--- |
 | [RayTracer.Core](RayTracer.Core) | Geometry, materials, cameras, scenes, and the rendering engine |
@@ -194,4 +198,4 @@ The animated showcase uses `synthwave-distant`. Render its 300-frame sequence wi
 
 The physics animation uses `falling-spheres`, defined in [FallingSpheresScene.cs](RayTracer.Core/Scenes/FallingSpheresScene.cs). [SphereDynamics.cs](RayTracer.Core/Physics/SphereDynamics.cs) advances the simulation at 240 steps per second with gravity of 9.80665 m/s², mass based on sphere volume, collision impulses, friction, and restitution. Its 300 frames use four samples per pixel and reflection depth three; the same encoder assembles them into a ten-second video.
 
-This is a classic direct-light ray tracer with recursive mirror reflections. Mesh intersections currently check every triangle; a spatial acceleration structure is a natural next step for larger models.
+This is a classic direct-light ray tracer with recursive mirror reflections. Finished meshes can opt into a bounding-volume hierarchy with `Mesh.BuildAcceleration()`, skipping triangle groups a ray cannot reach. The `skull-echo` scene uses this acceleration with smooth vertex-normal shading; older mesh presets retain their existing rendering behaviour.

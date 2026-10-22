@@ -12,6 +12,21 @@ namespace RayTracer.Core.Tests;
 public class ObjLoaderTests
 {
     [TestMethod]
+    public void RawLoad_PreservesFileCoordinatesAndNormals()
+    {
+        string path = Path.GetTempFileName();
+        try
+        {
+            File.WriteAllText(path, "v 10 20 30\nv 12 20 30\nv 10 23 30\nvn 0 0 1\nf 1//1 2//1 3//1\n");
+            Mesh mesh = Mesh.FromObj(path, new Material(Vector3.One), normalize: false);
+            Assert.AreEqual(new Vector3(10,20,30), mesh.Vertices[0]);
+            Assert.AreEqual(new Vector3(12,20,30), mesh.Vertices[1]);
+            Assert.AreEqual(Vector3.UnitZ, mesh.VertexNormals[0]);
+        }
+        finally { File.Delete(path); }
+    }
+
+    [TestMethod]
     public void NegativeVertexAndNormalIndices_AreResolvedRelativeToTheirLists()
     {
         string path = Path.GetTempFileName();

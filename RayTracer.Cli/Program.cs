@@ -103,7 +103,9 @@ var scenes = new Dictionary<string, (Func<Scene> Create, Vector3 Position, Vecto
     ["falling-spheres"] = (() => new FallingSpheresScene(), new(23,16,-28), new(0,3,12)),
     ["conversation"] = (() => new ConversationScene(), new(0,7,-28), new(0,5,7)),
     ["order-escape"] = (() => new OrderEscapeScene(), new(0,8,-28), new(0,6,9)),
-    ["impact"] = (() => new ImpactScene(snapshotTime ?? 3.15), new(0,6.5f,-10), new(0,4.2f,11))
+    ["impact"] = (() => new ImpactScene(snapshotTime ?? 3.15), new(0,6.5f,-10), new(0,4.2f,11)),
+    ["skull-echo"] = (() => new SkullEchoScene(), new(0,7,-26), new(0,5,10)),
+    ["skull-dialogue"] = (() => new SkullDialogueScene(), new(0,0,-30), new(0,0,6))
 };
 
 if (sceneName.Equals("list", StringComparison.OrdinalIgnoreCase))

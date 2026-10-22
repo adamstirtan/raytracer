@@ -171,7 +171,7 @@ public class Engine
 
         if (closest == null)
         {
-            color = new Vector3(0, 0, 0);
+            color = scene.Environment?.Invoke(ray.Direction) ?? Vector3.Zero;
             return null;
         }
 
@@ -196,7 +196,7 @@ public class Engine
 
             color += baseColor * closest.Material.Emission;
 
-            foreach (Light light in scene.OfType<Light>())
+            foreach (Light light in scene.Lighting)
             {
                 Vector3 toLight = light.Center - intersection;
                 float lightDistance = toLight.Length();

@@ -11,10 +11,14 @@ public class Mesh : Primitive
     public readonly List<Vector3> Vertices = new();
     public readonly List<(int a,int b,int c)> Triangles = new();
     public readonly List<Vector3> VertexNormals = new();
+    private MeshAcceleration? acceleration;
+
+    /// <summary>Snapshot the finished geometry into a BVH. Rebuild after editing vertices, faces, or normals.</summary>
+    public void BuildAcceleration(bool smoothShading = false) => acceleration = new MeshAcceleration(this, smoothShading);
 
     public Mesh(Material material, Texture? texture) : base(material, texture) { }
 
-    public static Mesh FromObj(string path, Material material)
+    public static Mesh FromObj(string path, Material material, bool normalize = true)
     {
         var mesh = new Mesh(material, null);
         var lines = System.IO.File.ReadAllLines(path);
@@ -104,7 +108,7 @@ public class Mesh : Primitive
         }
 
         // Compute bounding box and normalize/center the mesh so it fits in a unit cube centered at origin
-        if (mesh.Vertices.Count > 0)
+        if (normalize && mesh.Vertices.Count > 0)
         {
             var min = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
             var max = new Vector3(float.MinValue, float.MinValue, float.MinValue);
@@ -178,6 +182,7 @@ public class Mesh : Primitive
 
     public override IntersectionResult Intersect(Ray ray, float maxDistance)
     {
+        if (acceleration != null) return acceleration.Intersect(ray, maxDistance);
         float closestDistance = maxDistance;
         Vector3 closestNormal = Vector3.Zero;
         bool hit = false;

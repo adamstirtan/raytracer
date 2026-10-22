@@ -1,0 +1,23 @@
+{
+  "Scene": "skull-echo",
+  "PanelWidthCm": 31,
+  "PanelHeightCm": 41.00874078120732,
+  "VisibleImageGapCm": 21.59,
+  "Width": 3661,
+  "Height": 4843,
+  "GapPixels": 2550,
+  "FullWidth": 9872,
+  "SamplesPerPixel": 9,
+  "TraceDepth": 6,
+  "SimulationTimeSeconds": null,
+  "CameraPosition": [
+    0,
+    7,
+    -26
+  ],
+  "CameraTarget": [
+    0,
+    5,
+    10
+  ]
+}
