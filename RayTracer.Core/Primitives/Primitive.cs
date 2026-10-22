@@ -35,4 +35,11 @@ public abstract class Primitive
     public abstract Vector3 GetNormal(Vector3 position);
 
     public abstract Vector2 GetUV(Vector3 position);
+
+    public virtual Vector3 SampleSurfaceColor(Vector3 position, Vector3 normal)
+    {
+        if (Texture == null) return Material.Color;
+        Vector2 uv = GetUV(position);
+        return Texture.Sample(uv.X, uv.Y);
+    }
 }

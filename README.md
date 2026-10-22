@@ -185,6 +185,10 @@ The `skull-echo` scene uses the detailed skull mesh in a dark ivory-and-metal st
 
 The `skull-dialogue` scene pares the composition down to two large, inward-facing skulls in pearl and polished silver. Irving Penn’s sculptural still-life photography informs its neutral palette and precise studio lighting. See [Dialogue](art/skull-dialogue/README.md) for the print pair. Its background and reflected studio light come from `Scene.Environment`; `Scene.AddLighting()` supplies illumination without adding visible objects.
 
+The `skull-chromatic` variation uses copper orange and cobalt blue, with polished brow facets that show larger, recognizable reflections of the opposite face. See [Chromatic Dialogue](art/skull-chromatic/README.md) for the new print pair.
+
+The `skull-bone` variation pairs procedurally textured ivory bone with dark reflective gray metal. Both use the complete original skull mesh; the metal’s curved surface reflects the bone skull across the measured frame gap. See [Bone / Echo](art/skull-bone/README.md) for prints, texture generation, and rendering instructions.
+
 | Project | Responsibility |
 | :--- | :--- |
 | [RayTracer.Core](RayTracer.Core) | Geometry, materials, cameras, scenes, and the rendering engine |

@@ -186,13 +186,7 @@ public class Engine
             Vector3 intersection = Vector3.Add(ray.Origin, Vector3.Multiply(distance, ray.Direction));
             Vector3 normal = Vector3.Normalize(closestNormal);
 
-            Vector3 baseColor = closest.Material.Color;
-
-            if (closest.Texture != null)
-            {
-                Vector2 uv = closest.GetUV(intersection);
-                baseColor = closest.Texture.Sample(uv.X, uv.Y);
-            }
+            Vector3 baseColor = closest.SampleSurfaceColor(intersection, normal);
 
             color += baseColor * closest.Material.Emission;
 

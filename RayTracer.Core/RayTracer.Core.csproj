@@ -14,6 +14,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Update="Textures/Skull/*.png" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
     <None Include="RenderOptions.cs" />
   </ItemGroup>
 

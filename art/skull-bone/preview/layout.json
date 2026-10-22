@@ -1,0 +1,23 @@
+{
+  "Scene": "skull-bone",
+  "PanelWidthCm": 31,
+  "PanelHeightCm": 41,
+  "VisibleImageGapCm": 21.59,
+  "Width": 620,
+  "Height": 820,
+  "GapPixels": 432,
+  "FullWidth": 1672,
+  "SamplesPerPixel": 9,
+  "TraceDepth": 6,
+  "SimulationTimeSeconds": null,
+  "CameraPosition": [
+    0,
+    0,
+    -30
+  ],
+  "CameraTarget": [
+    0,
+    0,
+    6
+  ]
+}

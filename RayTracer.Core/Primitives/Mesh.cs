@@ -12,6 +12,9 @@ public class Mesh : Primitive
     public readonly List<(int a,int b,int c)> Triangles = new();
     public readonly List<Vector3> VertexNormals = new();
     private MeshAcceleration? acceleration;
+    // Opt-in world-space projection for meshes whose OBJ has no texture coordinates.
+    public float? TriplanarTextureScale { get; set; }
+    public Vector3 TextureOrigin { get; set; }
 
     /// <summary>Snapshot the finished geometry into a BVH. Rebuild after editing vertices, faces, or normals.</summary>
     public void BuildAcceleration(bool smoothShading = false) => acceleration = new MeshAcceleration(this, smoothShading);
@@ -252,5 +255,12 @@ public class Mesh : Primitive
     public override Vector2 GetUV(Vector3 position)
     {
         return Vector2.Zero;
+    }
+
+    public override Vector3 SampleSurfaceColor(Vector3 position, Vector3 normal)
+    {
+        if (Texture != null && TriplanarTextureScale.HasValue)
+            return Texture.SampleTriplanar((position - TextureOrigin) * TriplanarTextureScale.Value, normal);
+        return base.SampleSurfaceColor(position, normal);
     }
 }
