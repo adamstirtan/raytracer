@@ -24,7 +24,9 @@ public class Scene : IEnumerable<Primitive>, IEnumerable<Light>
 
     public Camera Camera { get; init; }
     // A studio environment supplies background and reflected light without scene geometry.
-    public Func<Vector3, Vector3>? Environment { get; init; }
+    // Settable (not init-only) so scenes built at runtime — e.g. from a JSON file —
+    // can install an environment function after construction.
+    public Func<Vector3, Vector3>? Environment { get; set; }
     public IEnumerable<Light> Lighting => _objects.OfType<Light>().Concat(_lightingOnly);
     public void AddLighting(Light light) => _lightingOnly.Add(light);
 

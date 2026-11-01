@@ -13,7 +13,7 @@ public class DiptychTests
     [TestMethod]
     public void PanelPixels_MatchTheSameRegionOfOneWideCamera()
     {
-        Scene scene = new ConversationScene();
+        Scene scene = JsonSceneLoader.Load(JsonSceneLoader.FindBundled("conversation")!);
         RenderOptions Options(int width, int offset) => new()
         {
             Width = width, Height = 82, FullWidth = 167, HorizontalOffset = offset,
@@ -33,7 +33,7 @@ public class DiptychTests
     [TestMethod]
     public void LeftRing_ChangesTheRightPanelOnlyThroughReflections()
     {
-        var scene = new ConversationScene();
+        var scene = JsonSceneLoader.Load(JsonSceneLoader.FindBundled("conversation")!);
         var ring = scene.First<Primitive>(item => item.GetPrimitiveType() == PrimitiveType.Torus);
         var original = ring.Material;
         var diagnostic = new Material(new(1, 0, 1)) { Emission = 1 };

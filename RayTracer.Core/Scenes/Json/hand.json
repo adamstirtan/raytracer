@@ -1,0 +1,72 @@
+{
+  "format": "raytracer-scene",
+  "version": 1,
+  "name": "hand",
+  "camera": {
+    "position": [
+      0,
+      0,
+      -5
+    ],
+    "target": [
+      0,
+      0,
+      0
+    ]
+  },
+  "objects": [
+    {
+      "type": "plane",
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "d": 1000,
+      "material": {
+        "color": [
+          0.2,
+          0.2,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0.1
+      }
+    },
+    {
+      "type": "mesh",
+      "obj": "assets/hand.obj",
+      "normalize": true,
+      "material": {
+        "color": [
+          0.9,
+          0.9,
+          0.9
+        ],
+        "diffuse": 0.7,
+        "reflection": 0.2,
+        "specular": 0.3
+      }
+    },
+    {
+      "type": "light",
+      "center": [
+        0,
+        8,
+        -5
+      ],
+      "material": {
+        "color": [
+          1,
+          1,
+          0.95
+        ],
+        "diffuse": 0,
+        "reflection": 0,
+        "specular": 0
+      },
+      "visible": true
+    }
+  ]
+}

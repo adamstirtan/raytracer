@@ -1,0 +1,77 @@
+{
+  "format": "raytracer-scene",
+  "version": 1,
+  "name": "cylinder",
+  "camera": {
+    "position": [
+      0,
+      0,
+      -5
+    ],
+    "target": [
+      0,
+      0,
+      0
+    ]
+  },
+  "objects": [
+    {
+      "type": "plane",
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "d": 1000,
+      "material": {
+        "color": [
+          0.9,
+          0.9,
+          0.9
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0.1
+      }
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        0,
+        1,
+        8
+      ],
+      "radius": 1,
+      "height": 2,
+      "material": {
+        "color": [
+          0.2,
+          0.4,
+          0.8
+        ],
+        "diffuse": 0.8,
+        "reflection": 0.3,
+        "specular": 0.4
+      }
+    },
+    {
+      "type": "light",
+      "center": [
+        0,
+        5,
+        -5
+      ],
+      "material": {
+        "color": [
+          0.9,
+          0.9,
+          0.9
+        ],
+        "diffuse": 0,
+        "reflection": 0,
+        "specular": 0
+      },
+      "visible": true
+    }
+  ]
+}

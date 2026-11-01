@@ -1,0 +1,168 @@
+{
+  "format": "raytracer-scene",
+  "version": 1,
+  "name": "skull-bone",
+  "camera": {
+    "position": [
+      0,
+      0,
+      -30
+    ],
+    "target": [
+      0,
+      0,
+      6
+    ]
+  },
+  "objects": [
+    {
+      "type": "mesh",
+      "obj": "assets/skull.obj",
+      "normalize": false,
+      "smooth": true,
+      "accelerate": true,
+      "fit": {
+        "height": 20.5,
+        "yawDegrees": 60,
+        "x": 18.7,
+        "z": 6,
+        "centerY": 0.4
+      },
+      "material": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "diffuse": 0.7,
+        "reflection": 0.015,
+        "specular": 0.025,
+        "shininess": 35,
+        "emission": 0.085
+      },
+      "texture": {
+        "path": "Textures/Skull/bone-albedo.png",
+        "triplanarScale": 0.125,
+        "origin": [
+          18.7,
+          0.4,
+          6
+        ]
+      }
+    },
+    {
+      "type": "mesh",
+      "obj": "assets/skull.obj",
+      "normalize": false,
+      "smooth": true,
+      "accelerate": true,
+      "fit": {
+        "height": 20.5,
+        "yawDegrees": -60,
+        "x": -18.7,
+        "z": 6,
+        "centerY": 0.4
+      },
+      "material": {
+        "color": [
+          0.15,
+          0.155,
+          0.16
+        ],
+        "diffuse": 0.16,
+        "reflection": 0.82,
+        "specular": 0.075,
+        "shininess": 140,
+        "emission": 0.015
+      }
+    },
+    {
+      "type": "light",
+      "center": [
+        -25,
+        26,
+        -24
+      ],
+      "material": {
+        "color": [
+          0.85,
+          0.83,
+          0.79
+        ],
+        "diffuse": 0,
+        "reflection": 0,
+        "specular": 0
+      },
+      "visible": false
+    },
+    {
+      "type": "light",
+      "center": [
+        25,
+        20,
+        -24
+      ],
+      "material": {
+        "color": [
+          0.53,
+          0.54,
+          0.55
+        ],
+        "diffuse": 0,
+        "reflection": 0,
+        "specular": 0
+      },
+      "visible": false
+    },
+    {
+      "type": "light",
+      "center": [
+        0,
+        5,
+        -24
+      ],
+      "material": {
+        "color": [
+          0.13,
+          0.13,
+          0.13
+        ],
+        "diffuse": 0,
+        "reflection": 0,
+        "specular": 0
+      },
+      "visible": false
+    }
+  ],
+  "environment": {
+    "type": "studio",
+    "dark": [
+      0.105,
+      0.11,
+      0.115
+    ],
+    "light": [
+      0.47,
+      0.455,
+      0.425
+    ],
+    "yFactor": 0.045,
+    "apertures": [
+      {
+        "center": [
+          0,
+          1.1
+        ],
+        "size": [
+          1.35,
+          0.5
+        ],
+        "color": [
+          0.8,
+          0.79,
+          0.76
+        ]
+      }
+    ]
+  }
+}

@@ -167,6 +167,43 @@ The closest-hit rule is essential for meshes: a triangle encountered first in th
 
 ## Inside the project
 
+### JSON scenes
+
+Scenes can also be written as JSON files instead of C# classes — see
+[docs/scene-format.md](docs/scene-format.md) for the full schema, including
+materials, textures, lights (visible and lighting-only), rotated primitives,
+meshes (OBJ, inline geometry, and the skull `fit` transform), custom UV
+mappings, and the studio / night-sky environment functions. Bundled JSON
+scenes live in `RayTracer.Core/Scenes/Json/` and are copied to the CLI
+output directory at build time:
+
+```sh
+dotnet run --project RayTracer.Cli -c Release -- --scene-file RayTracer.Core/Scenes/Json/sphere.json --width 800 --height 600 --out render.png
+dotnet run --project RayTracer.Cli -c Release -- --scene json:sphere --width 800 --height 600 --out render.png
+```
+
+A plain `--scene <name>` still loads a code scene when one exists, and
+otherwise falls back to a bundled JSON file — which is now how all
+converted scenes are loaded, since their C# classes have been deleted.
+`--cam-pos` and `--cam-target` override the JSON camera, and `--diptych`
+works with JSON scenes. JSON scenes are static, so `--frames > 1` is
+rejected.
+
+Converted to JSON (verified pixel-identical to the code scene at the same
+size, depth, and samples per pixel, unless noted): `sphere`, `triangle`,
+`box`, `cylinder`, `disk`, `torus`, `reflective`, `billiards`, `dex`,
+`hand`, `mesh`, `future-city`, `orbital`, `observatory`, `chromatic`,
+`conversation`, `order-escape`, `crystal-orchard`, `reflective-garden`,
+`textured-sphere`, `skull-echo`, `skull-dialogue`, `skull-bone`, plus
+frozen snapshots `impact` (default 3.15 s) and `falling-spheres` (time 0,
+before any physics step). Still code-only: `synthwave` and
+`synthwave-distant` (the animated valley is a bespoke primitive) and
+`skull-chromatic` (its polished brow facets are made by subdividing and
+re-partitioning the skull mesh in code). The C# classes for the converted
+scenes have been deleted; only `synthwave`, `synthwave-distant`,
+`skull-chromatic`, `falling-spheres`, and `impact` remain in code, plus
+`ChromaticScene` as the base class for `falling-spheres`.
+
 ### Two-panel wall art
 
 The `conversation` scene places a copper ring, an angled mirror, a blue sculpture, and a chrome sphere in a shared reflective studio. `--diptych` renders two crops through one wide camera, preserving reflections of objects in the opposite panel and skipping the hidden strip between the visible image openings.
@@ -196,7 +233,7 @@ The `skull-bone` variation pairs procedurally textured ivory bone with dark refl
 | [RayTracer.Core.Tests](RayTracer.Core.Tests) | Regression tests for intersections, normals, shadows, camera targets, and small renders |
 | [assets](assets) | OBJ models and example renders |
 
-The showcases use the CLI's `synthwave`, `future-city`, `orbital`, `observatory`, `chromatic`, and `billiards` scenes, defined in [SynthwaveScene.cs](RayTracer.Core/Scenes/SynthwaveScene.cs), [FutureCityScene.cs](RayTracer.Core/Scenes/FutureCityScene.cs), [OrbitalScene.cs](RayTracer.Core/Scenes/OrbitalScene.cs), [ObservatoryScene.cs](RayTracer.Core/Scenes/ObservatoryScene.cs), [ChromaticScene.cs](RayTracer.Core/Scenes/ChromaticScene.cs), and [BilliardsScene.cs](RayTracer.Core/Scenes/BilliardsScene.cs). The skull uses `mesh`. Other scenes include `sphere`, `triangle`, `box`, `cylinder`, `disk`, `hand`, `torus`, and `reflective`.
+The showcases use the CLI's `synthwave` code scene plus the JSON scenes `future-city`, `orbital`, `observatory`, `chromatic`, and `billiards` (see [docs/scene-format.md](docs/scene-format.md)). The skull uses `mesh` (JSON). Other JSON scenes include `sphere`, `triangle`, `box`, `cylinder`, `disk`, `hand`, `torus`, and `reflective`.
 
 The animated showcase uses `synthwave-distant`. Render its 300-frame sequence with `--width 1920 --height 1080 --spp 9 --depth 1 --frames 300 --fps 30 --out frames`, then encode it with [encode_synthwave_loop.py](assets/texture-tools/encode_synthwave_loop.py). The encoder uses FFmpeg or the `imageio-ffmpeg` Python package. Terrain and sky return to their initial state after each cycle, with no fade or duplicate endpoint frame.
 

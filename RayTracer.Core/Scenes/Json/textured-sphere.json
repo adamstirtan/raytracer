@@ -1,0 +1,78 @@
+{
+  "format": "raytracer-scene",
+  "version": 1,
+  "name": "textured-sphere",
+  "camera": {
+    "position": [
+      0,
+      0,
+      -5
+    ],
+    "target": [
+      0,
+      0,
+      15
+    ]
+  },
+  "objects": [
+    {
+      "type": "sphere",
+      "center": [
+        -1,
+        0,
+        15
+      ],
+      "radius": 4.5,
+      "material": {
+        "color": [
+          0,
+          0,
+          0
+        ],
+        "diffuse": 1,
+        "reflection": 0.2,
+        "specular": 0.6
+      },
+      "texture": "Textures/earth.jpg"
+    },
+    {
+      "type": "sphere",
+      "center": [
+        6,
+        2,
+        22
+      ],
+      "radius": 2.2,
+      "material": {
+        "color": [
+          0,
+          0,
+          0
+        ],
+        "diffuse": 1,
+        "reflection": 0.4,
+        "specular": 0.1
+      },
+      "texture": "Textures/moon.jpg"
+    },
+    {
+      "type": "light",
+      "center": [
+        0,
+        50,
+        -50
+      ],
+      "material": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "diffuse": 0,
+        "reflection": 0,
+        "specular": 0
+      },
+      "visible": true
+    }
+  ]
+}

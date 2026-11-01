@@ -1,0 +1,155 @@
+{
+  "format": "raytracer-scene",
+  "version": 1,
+  "name": "skull-dialogue",
+  "camera": {
+    "position": [
+      0,
+      0,
+      -30
+    ],
+    "target": [
+      0,
+      0,
+      6
+    ]
+  },
+  "objects": [
+    {
+      "type": "mesh",
+      "obj": "assets/skull.obj",
+      "normalize": false,
+      "smooth": true,
+      "accelerate": true,
+      "fit": {
+        "height": 20.5,
+        "yawDegrees": 65,
+        "x": 18.7,
+        "z": 6,
+        "centerY": 0.4
+      },
+      "material": {
+        "color": [
+          0.75,
+          0.73,
+          0.69
+        ],
+        "diffuse": 0.48,
+        "reflection": 0.55,
+        "specular": 0.09,
+        "shininess": 110,
+        "emission": 0.04
+      }
+    },
+    {
+      "type": "mesh",
+      "obj": "assets/skull.obj",
+      "normalize": false,
+      "smooth": true,
+      "accelerate": true,
+      "fit": {
+        "height": 20.5,
+        "yawDegrees": -65,
+        "x": -18.7,
+        "z": 6,
+        "centerY": 0.4
+      },
+      "material": {
+        "color": [
+          0.32,
+          0.33,
+          0.34
+        ],
+        "diffuse": 0.16,
+        "reflection": 0.88,
+        "specular": 0.08,
+        "shininess": 140,
+        "emission": 0.025
+      }
+    },
+    {
+      "type": "light",
+      "center": [
+        -28,
+        32,
+        -25
+      ],
+      "material": {
+        "color": [
+          0.88,
+          0.86,
+          0.82
+        ],
+        "diffuse": 0,
+        "reflection": 0,
+        "specular": 0
+      },
+      "visible": false
+    },
+    {
+      "type": "light",
+      "center": [
+        28,
+        15,
+        -25
+      ],
+      "material": {
+        "color": [
+          0.4,
+          0.41,
+          0.42
+        ],
+        "diffuse": 0,
+        "reflection": 0,
+        "specular": 0
+      },
+      "visible": false
+    }
+  ],
+  "environment": {
+    "type": "studio",
+    "dark": [
+      0.105,
+      0.11,
+      0.115
+    ],
+    "light": [
+      0.71,
+      0.695,
+      0.665
+    ],
+    "yFactor": 0.055,
+    "apertures": [
+      {
+        "center": [
+          0.8,
+          0.65
+        ],
+        "size": [
+          0.65,
+          1.2
+        ],
+        "color": [
+          1.02,
+          1,
+          0.96
+        ]
+      },
+      {
+        "center": [
+          -1.25,
+          0.35
+        ],
+        "size": [
+          0.38,
+          1.55
+        ],
+        "color": [
+          0.62,
+          0.64,
+          0.66
+        ]
+      }
+    ]
+  }
+}

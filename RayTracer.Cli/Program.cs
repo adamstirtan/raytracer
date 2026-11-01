@@ -7,6 +7,7 @@ using SixLabors.ImageSharp.PixelFormats;
 var argsList = args;
 
 string sceneName = "sphere";
+string? sceneFile = null;
 int width = 800;
 int height = 600;
 string outPath = "render.png";
@@ -48,6 +49,9 @@ for (int i = 0; i < argsList.Length; i++)
         case "--scene":
             if (i + 1 < argsList.Length) sceneName = argsList[++i];
             break;
+        case "--scene-file":
+            if (i + 1 < argsList.Length) sceneFile = argsList[++i];
+            break;
         case "--width":
             if (i + 1 < argsList.Length) int.TryParse(argsList[++i], out width);
             break;
@@ -82,40 +86,71 @@ for (int i = 0; i < argsList.Length; i++)
     }
 }
 
+// Code scenes that cannot be pure JSON scenes: synthwave is a bespoke
+// animated primitive, skull-chromatic subdivides a mesh in code, and
+// falling-spheres / impact are physics scenes whose state depends on time.
+// Every other former code scene is now a bundled JSON scene in
+// RayTracer.Core/Scenes/Json/ and is resolved by the fallback below.
 var scenes = new Dictionary<string, (Func<Scene> Create, Vector3 Position, Vector3? Target)>(StringComparer.OrdinalIgnoreCase)
 {
-    ["sphere"] = (() => new SphereScene(), new(0, 0, -5), null),
-    ["triangle"] = (() => new TriangleScene(), new(0, 0, -5), null),
-    ["box"] = (() => new BoxScene(), new(0, 0, -5), null),
-    ["cylinder"] = (() => new CylinderScene(), new(0, 0, -5), null),
-    ["disk"] = (() => new DiskScene(), new(0, 0, -5), null),
-    ["billiards"] = (() => new BilliardsScene(), new(7, 8, -11), new(0, 0, 0.5f)),
-    ["mesh"] = (() => new MeshScene(), new(6, 2.5f, 6), new(0, 1, 8)),
-    ["hand"] = (() => new HandScene(), new(0, 0, -5), null),
-    ["torus"] = (() => new TorusScene(), new(0, 0, -5), null),
-    ["reflective"] = (() => new ReflectiveSphereScene(), new(0, 0, -5), null),
-    ["future-city"] = (() => new FutureCityScene(), new(26, 18, -32), new(0, 5, 12)),
-    ["orbital"] = (() => new OrbitalScene(), new(30, 28, -55), new(3, -1, 15)),
-    ["observatory"] = (() => new ObservatoryScene(), new(17, 8, -30), new(0, 5, 12)),
     ["synthwave"] = (() => new SynthwaveScene(), new(0, 7, -12), new(0, 9, 100)),
     ["synthwave-distant"] = (() => new SynthwaveScene(distantMountains: true), new(0, 5, -12), new(0, 7, 100)),
-    ["chromatic"] = (() => new ChromaticScene(), new(23,16,-28), new(0,3,12)),
     ["falling-spheres"] = (() => new FallingSpheresScene(), new(23,16,-28), new(0,3,12)),
-    ["conversation"] = (() => new ConversationScene(), new(0,7,-28), new(0,5,7)),
-    ["order-escape"] = (() => new OrderEscapeScene(), new(0,8,-28), new(0,6,9)),
     ["impact"] = (() => new ImpactScene(snapshotTime ?? 3.15), new(0,6.5f,-10), new(0,4.2f,11)),
-    ["skull-echo"] = (() => new SkullEchoScene(), new(0,7,-26), new(0,5,10)),
-    ["skull-dialogue"] = (() => new SkullDialogueScene(), new(0,0,-30), new(0,0,6)),
     ["skull-chromatic"] = (() => new SkullChromaticScene(), new(0,0,-30), new(0,0,6)),
-    ["skull-bone"] = (() => new SkullBoneScene(), new(0,0,-30), new(0,0,6))
 };
 
+// JSON scenes: --scene-file <path> wins; otherwise --scene json:<name> loads a
+// bundled Scenes/Json/<name>.json. A plain --scene <name> uses a code scene
+// when one exists, and otherwise falls back to a bundled JSON file — which
+// is now how all converted scenes (sphere, billiards, dex, future-city,
+// etc.) are loaded.
+string? jsonPath = sceneFile;
+if (jsonPath is null && !sceneName.Equals("list", StringComparison.OrdinalIgnoreCase))
+{
+    if (sceneName.StartsWith("json:", StringComparison.OrdinalIgnoreCase))
+        jsonPath = JsonSceneLoader.FindBundled(sceneName["json:".Length..]);
+    else if (!scenes.ContainsKey(sceneName))
+        jsonPath = JsonSceneLoader.FindBundled(sceneName);
+}
 if (sceneName.Equals("list", StringComparison.OrdinalIgnoreCase))
 {
-    Console.WriteLine("Available scenes: " + string.Join(", ", scenes.Keys));
+    var jsonNames = Directory.Exists(JsonSceneLoader.BundledDirectory)
+        ? Directory.GetFiles(JsonSceneLoader.BundledDirectory, "*.json").Select(f => Path.GetFileNameWithoutExtension(f)).OrderBy(n => n)
+        : Enumerable.Empty<string>();
+    Console.WriteLine("Code scenes: " + string.Join(", ", scenes.Keys));
+    Console.WriteLine("JSON scenes: " + string.Join(", ", jsonNames));
     return;
 }
-if (!scenes.TryGetValue(sceneName, out var preset))
+Scene scene;
+Vector3 presetPosition;
+Vector3? presetTarget;
+if (jsonPath is not null)
+{
+    JsonScene jsonScene;
+    try
+    {
+        jsonScene = JsonSceneLoader.Load(jsonPath);
+    }
+    catch (Exception ex) when (ex is InvalidDataException or FileNotFoundException or IOException)
+    {
+        Console.Error.WriteLine($"Could not load JSON scene '{jsonPath}': {ex.Message}");
+        Environment.ExitCode = 1;
+        return;
+    }
+    Console.WriteLine($"Loaded JSON scene '{jsonScene.SceneName ?? sceneName}' from {jsonPath}");
+    scene = jsonScene;
+    // The JSON camera is the preset; --cam-pos/--cam-target still override it.
+    presetPosition = jsonScene.Camera.Position;
+    presetTarget = jsonScene.Camera.Target;
+}
+else if (scenes.TryGetValue(sceneName, out var preset))
+{
+    scene = preset.Create();
+    presetPosition = preset.Position;
+    presetTarget = preset.Target;
+}
+else
 {
     Console.Error.WriteLine($"Unknown scene '{sceneName}'. Use --scene list to see available scenes.");
     Environment.ExitCode = 1;
@@ -125,10 +160,9 @@ if (snapshotTime.HasValue && (!sceneName.Equals("impact", StringComparison.Ordin
     !sceneName.Equals("falling-spheres", StringComparison.OrdinalIgnoreCase) ||
     !double.IsFinite(snapshotTime.Value) || snapshotTime.Value < 0 || frames != 1))
     throw new ArgumentException("--time requires a nonnegative finite time and a single-frame impact or falling-spheres scene.");
-Scene scene = preset.Create();
 if (scene is FallingSpheresScene snapshot && snapshotTime.HasValue) snapshot.Dynamics.Advance(snapshotTime.Value);
-cameraPos ??= preset.Position;
-cameraTarget ??= preset.Target;
+cameraPos ??= presetPosition;
+cameraTarget ??= presetTarget;
 
 if (diptych)
 {
@@ -172,6 +206,12 @@ if (frames < 1 || fps < 1)
 }
 if (frames > 1)
 {
+    if (scene is JsonScene)
+    {
+        Console.Error.WriteLine("JSON scenes are static: multi-frame sequences are only supported for synthwave, synthwave-distant, and falling-spheres code scenes.");
+        Environment.ExitCode = 1;
+        return;
+    }
     if (scene is not SynthwaveScene && scene is not FallingSpheresScene)
     {
         Console.Error.WriteLine("Sequence rendering supports synthwave, synthwave-distant, and falling-spheres.");

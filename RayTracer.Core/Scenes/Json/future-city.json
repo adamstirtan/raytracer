@@ -1,0 +1,5254 @@
+{
+  "format": "raytracer-scene",
+  "version": 1,
+  "name": "future-city",
+  "camera": {
+    "position": [
+      26,
+      18,
+      -32
+    ],
+    "target": [
+      0,
+      5,
+      12
+    ]
+  },
+  "objects": [
+    {
+      "type": "plane",
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "d": 0,
+      "material": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "diffuse": 0.8,
+        "reflection": 0.22,
+        "specular": 0.04,
+        "shininess": 64
+      },
+      "texture": "Textures/FutureCity/paving.png",
+      "uv": {
+        "mode": "xzScale",
+        "scaleX": 0.125,
+        "scaleZ": 0.125
+      }
+    },
+    {
+      "type": "plane",
+      "normal": [
+        -0,
+        -0,
+        -1
+      ],
+      "d": 105,
+      "material": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "diffuse": 0,
+        "reflection": 0,
+        "specular": 0,
+        "emission": 1
+      },
+      "texture": "Textures/FutureCity/sky.png",
+      "uv": {
+        "mode": "planeMapped",
+        "offsetX": 150,
+        "width": 300,
+        "offsetY": 70,
+        "height": 100,
+        "wrap": false
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -16,
+        0,
+        -4
+      ],
+      "max": [
+        16,
+        0.4,
+        30
+      ],
+      "material": {
+        "color": [
+          0.045,
+          0.075,
+          0.12
+        ],
+        "diffuse": 0.8,
+        "reflection": 0.25,
+        "specular": 0.03,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/paving.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -10,
+        0.4,
+        0
+      ],
+      "max": [
+        10,
+        0.7,
+        24
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.3,
+          0.42
+        ],
+        "diffuse": 0.8,
+        "reflection": 0.18,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/paving.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -5,
+        0,
+        -8
+      ],
+      "max": [
+        5,
+        0.12,
+        -7
+      ],
+      "material": {
+        "color": [
+          0.62,
+          0.72,
+          0.78
+        ],
+        "diffuse": 0.85,
+        "reflection": 0.12,
+        "specular": 0.04,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/ceramic.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -5.4,
+        0,
+        -7
+      ],
+      "max": [
+        5.4,
+        0.24,
+        -6
+      ],
+      "material": {
+        "color": [
+          0.62,
+          0.72,
+          0.78
+        ],
+        "diffuse": 0.85,
+        "reflection": 0.12,
+        "specular": 0.04,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/ceramic.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -5.8,
+        0,
+        -6
+      ],
+      "max": [
+        5.8,
+        0.35999998,
+        -5
+      ],
+      "material": {
+        "color": [
+          0.62,
+          0.72,
+          0.78
+        ],
+        "diffuse": 0.85,
+        "reflection": 0.12,
+        "specular": 0.04,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/ceramic.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -6.2,
+        0,
+        -5
+      ],
+      "max": [
+        6.2,
+        0.48,
+        -4
+      ],
+      "material": {
+        "color": [
+          0.62,
+          0.72,
+          0.78
+        ],
+        "diffuse": 0.85,
+        "reflection": 0.12,
+        "specular": 0.04,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/ceramic.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -6.6,
+        0,
+        -4
+      ],
+      "max": [
+        6.6,
+        0.59999996,
+        -3
+      ],
+      "material": {
+        "color": [
+          0.62,
+          0.72,
+          0.78
+        ],
+        "diffuse": 0.85,
+        "reflection": 0.12,
+        "specular": 0.04,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/ceramic.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -7.14,
+        0.71,
+        -1
+      ],
+      "max": [
+        -6.86,
+        0.76,
+        24
+      ],
+      "material": {
+        "color": [
+          0.04,
+          0.85,
+          0.92
+        ],
+        "diffuse": 1,
+        "reflection": 0.2,
+        "specular": 0.08,
+        "shininess": 48,
+        "emission": 0.35
+      },
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -7.4,
+        0.4,
+        0
+      ],
+      "max": [
+        -6.6,
+        0.7,
+        0.6
+      ],
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -7.4,
+        0.4,
+        4
+      ],
+      "max": [
+        -6.6,
+        0.7,
+        4.6
+      ],
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -7.4,
+        0.4,
+        8
+      ],
+      "max": [
+        -6.6,
+        0.7,
+        8.6
+      ],
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -7.4,
+        0.4,
+        12
+      ],
+      "max": [
+        -6.6,
+        0.7,
+        12.6
+      ],
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -7.4,
+        0.4,
+        16
+      ],
+      "max": [
+        -6.6,
+        0.7,
+        16.6
+      ],
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -7.4,
+        0.4,
+        20
+      ],
+      "max": [
+        -6.6,
+        0.7,
+        20.6
+      ],
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -7.4,
+        0.4,
+        24
+      ],
+      "max": [
+        -6.6,
+        0.7,
+        24.6
+      ],
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        6.86,
+        0.71,
+        -1
+      ],
+      "max": [
+        7.14,
+        0.76,
+        24
+      ],
+      "material": {
+        "color": [
+          0.04,
+          0.85,
+          0.92
+        ],
+        "diffuse": 1,
+        "reflection": 0.2,
+        "specular": 0.08,
+        "shininess": 48,
+        "emission": 0.35
+      },
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        6.6,
+        0.4,
+        0
+      ],
+      "max": [
+        7.4,
+        0.7,
+        0.6
+      ],
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        6.6,
+        0.4,
+        4
+      ],
+      "max": [
+        7.4,
+        0.7,
+        4.6
+      ],
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        6.6,
+        0.4,
+        8
+      ],
+      "max": [
+        7.4,
+        0.7,
+        8.6
+      ],
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        6.6,
+        0.4,
+        12
+      ],
+      "max": [
+        7.4,
+        0.7,
+        12.6
+      ],
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        6.6,
+        0.4,
+        16
+      ],
+      "max": [
+        7.4,
+        0.7,
+        16.6
+      ],
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        6.6,
+        0.4,
+        20
+      ],
+      "max": [
+        7.4,
+        0.7,
+        20.6
+      ],
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        6.6,
+        0.4,
+        24
+      ],
+      "max": [
+        7.4,
+        0.7,
+        24.6
+      ],
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        0,
+        1.1,
+        12
+      ],
+      "radius": 5.2,
+      "height": 0.8,
+      "material": {
+        "color": [
+          0.62,
+          0.72,
+          0.78
+        ],
+        "diffuse": 0.85,
+        "reflection": 0.12,
+        "specular": 0.04,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/ceramic.png"
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        0,
+        1.75,
+        12
+      ],
+      "radius": 4.3,
+      "height": 0.5,
+      "material": {
+        "color": [
+          0.045,
+          0.075,
+          0.12
+        ],
+        "diffuse": 0.8,
+        "reflection": 0.25,
+        "specular": 0.03,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/dark.png"
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        0,
+        5.75,
+        12
+      ],
+      "radius": 2.7,
+      "height": 7.5,
+      "material": {
+        "color": [
+          0.22,
+          0.3,
+          0.42
+        ],
+        "diffuse": 0.8,
+        "reflection": 0.18,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/alloy.png"
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        0,
+        2.6799998,
+        12
+      ],
+      "radius": 2.85,
+      "height": 0.16,
+      "material": {
+        "color": [
+          0.04,
+          0.85,
+          0.92
+        ],
+        "diffuse": 1,
+        "reflection": 0.2,
+        "specular": 0.08,
+        "shininess": 48,
+        "emission": 0.35
+      }
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        0,
+        2.9199998,
+        12
+      ],
+      "radius": 3.1,
+      "height": 0.24,
+      "material": {
+        "color": [
+          0.62,
+          0.72,
+          0.78
+        ],
+        "diffuse": 0.85,
+        "reflection": 0.12,
+        "specular": 0.04,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/ceramic.png"
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        0,
+        4.0299997,
+        12
+      ],
+      "radius": 2.85,
+      "height": 0.16,
+      "material": {
+        "color": [
+          0.04,
+          0.85,
+          0.92
+        ],
+        "diffuse": 1,
+        "reflection": 0.2,
+        "specular": 0.08,
+        "shininess": 48,
+        "emission": 0.35
+      }
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        0,
+        4.27,
+        12
+      ],
+      "radius": 3.1,
+      "height": 0.24,
+      "material": {
+        "color": [
+          0.62,
+          0.72,
+          0.78
+        ],
+        "diffuse": 0.85,
+        "reflection": 0.12,
+        "specular": 0.04,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/ceramic.png"
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        0,
+        5.38,
+        12
+      ],
+      "radius": 2.85,
+      "height": 0.16,
+      "material": {
+        "color": [
+          0.04,
+          0.85,
+          0.92
+        ],
+        "diffuse": 1,
+        "reflection": 0.2,
+        "specular": 0.08,
+        "shininess": 48,
+        "emission": 0.35
+      }
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        0,
+        5.62,
+        12
+      ],
+      "radius": 3.1,
+      "height": 0.24,
+      "material": {
+        "color": [
+          0.62,
+          0.72,
+          0.78
+        ],
+        "diffuse": 0.85,
+        "reflection": 0.12,
+        "specular": 0.04,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/ceramic.png"
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        0,
+        6.73,
+        12
+      ],
+      "radius": 2.85,
+      "height": 0.16,
+      "material": {
+        "color": [
+          0.04,
+          0.85,
+          0.92
+        ],
+        "diffuse": 1,
+        "reflection": 0.2,
+        "specular": 0.08,
+        "shininess": 48,
+        "emission": 0.35
+      }
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        0,
+        6.9700003,
+        12
+      ],
+      "radius": 3.1,
+      "height": 0.24,
+      "material": {
+        "color": [
+          0.62,
+          0.72,
+          0.78
+        ],
+        "diffuse": 0.85,
+        "reflection": 0.12,
+        "specular": 0.04,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/ceramic.png"
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        0,
+        8.08,
+        12
+      ],
+      "radius": 2.85,
+      "height": 0.16,
+      "material": {
+        "color": [
+          0.04,
+          0.85,
+          0.92
+        ],
+        "diffuse": 1,
+        "reflection": 0.2,
+        "specular": 0.08,
+        "shininess": 48,
+        "emission": 0.35
+      }
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        0,
+        8.32,
+        12
+      ],
+      "radius": 3.1,
+      "height": 0.24,
+      "material": {
+        "color": [
+          0.62,
+          0.72,
+          0.78
+        ],
+        "diffuse": 0.85,
+        "reflection": 0.12,
+        "specular": 0.04,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/ceramic.png"
+    },
+    {
+      "type": "sphere",
+      "center": [
+        0,
+        9.3,
+        12
+      ],
+      "radius": 2.65,
+      "material": {
+        "color": [
+          0.12,
+          0.28,
+          0.46
+        ],
+        "diffuse": 0.65,
+        "reflection": 0.55,
+        "specular": 0.12,
+        "shininess": 48,
+        "emission": 0.08
+      },
+      "texture": "Textures/FutureCity/dome.png"
+    },
+    {
+      "type": "torus",
+      "center": [
+        0,
+        11.7,
+        12
+      ],
+      "major": 4.8,
+      "minor": 0.24,
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png"
+    },
+    {
+      "type": "torus",
+      "center": [
+        0,
+        11.7,
+        12
+      ],
+      "major": 5.4,
+      "minor": 0.08,
+      "material": {
+        "color": [
+          0.04,
+          0.85,
+          0.92
+        ],
+        "diffuse": 1,
+        "reflection": 0.2,
+        "specular": 0.08,
+        "shininess": 48,
+        "emission": 0.35
+      }
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        0,
+        12,
+        12
+      ],
+      "radius": 0.2,
+      "height": 5,
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png"
+    },
+    {
+      "type": "sphere",
+      "center": [
+        0,
+        14.5,
+        12
+      ],
+      "radius": 0.48,
+      "material": {
+        "color": [
+          0.04,
+          0.85,
+          0.92
+        ],
+        "diffuse": 1,
+        "reflection": 0.2,
+        "specular": 0.08,
+        "shininess": 48,
+        "emission": 0.35
+      }
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        4,
+        2.75,
+        12
+      ],
+      "radius": 0.28,
+      "height": 2.7,
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png"
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        2.828427,
+        2.75,
+        14.828427
+      ],
+      "radius": 0.28,
+      "height": 2.7,
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png"
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        -1.7484555E-07,
+        2.75,
+        16
+      ],
+      "radius": 0.28,
+      "height": 2.7,
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png"
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        -2.828427,
+        2.75,
+        14.828427
+      ],
+      "radius": 0.28,
+      "height": 2.7,
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png"
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        -4,
+        2.75,
+        12
+      ],
+      "radius": 0.28,
+      "height": 2.7,
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png"
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        -2.8284266,
+        2.75,
+        9.171573
+      ],
+      "radius": 0.28,
+      "height": 2.7,
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png"
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        4.7699523E-08,
+        2.75,
+        8
+      ],
+      "radius": 0.28,
+      "height": 2.7,
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png"
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        2.828428,
+        2.75,
+        9.171574
+      ],
+      "radius": 0.28,
+      "height": 2.7,
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png"
+    },
+    {
+      "type": "box",
+      "min": [
+        -14.370454,
+        0.4,
+        3.6
+      ],
+      "max": [
+        -11.629546,
+        10.3448515,
+        6.4
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.3,
+          0.42
+        ],
+        "diffuse": 0.8,
+        "reflection": 0.18,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/alloy.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -13.959317,
+        10.3448515,
+        4
+      ],
+      "max": [
+        -12.040683,
+        11.544851,
+        6
+      ],
+      "material": {
+        "color": [
+          0.62,
+          0.72,
+          0.78
+        ],
+        "diffuse": 0.85,
+        "reflection": 0.12,
+        "specular": 0.04,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/ceramic.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -14.250454,
+        1,
+        3.54
+      ],
+      "max": [
+        -11.749546,
+        9.944852,
+        3.5900002
+      ],
+      "material": {
+        "color": [
+          0.12,
+          0.28,
+          0.46
+        ],
+        "diffuse": 0.65,
+        "reflection": 0.55,
+        "specular": 0.12,
+        "shininess": 48,
+        "emission": 0.08
+      },
+      "texture": "Textures/FutureCity/windows.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -14.400454,
+        1,
+        3.52
+      ],
+      "max": [
+        -11.599546,
+        1.12,
+        6.48
+      ],
+      "material": {
+        "color": [
+          0.04,
+          0.85,
+          0.92
+        ],
+        "diffuse": 1,
+        "reflection": 0.2,
+        "specular": 0.08,
+        "shininess": 48,
+        "emission": 0.35
+      },
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -14.400454,
+        3,
+        3.52
+      ],
+      "max": [
+        -11.599546,
+        3.12,
+        6.48
+      ],
+      "material": {
+        "color": [
+          0.04,
+          0.85,
+          0.92
+        ],
+        "diffuse": 1,
+        "reflection": 0.2,
+        "specular": 0.08,
+        "shininess": 48,
+        "emission": 0.35
+      },
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -14.400454,
+        5,
+        3.52
+      ],
+      "max": [
+        -11.599546,
+        5.12,
+        6.48
+      ],
+      "material": {
+        "color": [
+          0.04,
+          0.85,
+          0.92
+        ],
+        "diffuse": 1,
+        "reflection": 0.2,
+        "specular": 0.08,
+        "shininess": 48,
+        "emission": 0.35
+      },
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -14.400454,
+        7,
+        3.52
+      ],
+      "max": [
+        -11.599546,
+        7.12,
+        6.48
+      ],
+      "material": {
+        "color": [
+          0.04,
+          0.85,
+          0.92
+        ],
+        "diffuse": 1,
+        "reflection": 0.2,
+        "specular": 0.08,
+        "shininess": 48,
+        "emission": 0.35
+      },
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -14.400454,
+        9,
+        3.52
+      ],
+      "max": [
+        -11.599546,
+        9.12,
+        6.48
+      ],
+      "material": {
+        "color": [
+          0.04,
+          0.85,
+          0.92
+        ],
+        "diffuse": 1,
+        "reflection": 0.2,
+        "specular": 0.08,
+        "shininess": 48,
+        "emission": 0.35
+      },
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        -13,
+        12.444851,
+        5
+      ],
+      "radius": 0.08,
+      "height": 1.8,
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png"
+    },
+    {
+      "type": "box",
+      "min": [
+        -14.561382,
+        0.4,
+        8.8
+      ],
+      "max": [
+        -11.438618,
+        6.0041466,
+        11.599999
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.3,
+          0.42
+        ],
+        "diffuse": 0.8,
+        "reflection": 0.18,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/alloy.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -14.092967,
+        6.0041466,
+        9.2
+      ],
+      "max": [
+        -11.907033,
+        7.2041464,
+        11.2
+      ],
+      "material": {
+        "color": [
+          0.62,
+          0.72,
+          0.78
+        ],
+        "diffuse": 0.85,
+        "reflection": 0.12,
+        "specular": 0.04,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/ceramic.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -14.441382,
+        1,
+        8.74
+      ],
+      "max": [
+        -11.558618,
+        5.6041465,
+        8.79
+      ],
+      "material": {
+        "color": [
+          0.12,
+          0.28,
+          0.46
+        ],
+        "diffuse": 0.65,
+        "reflection": 0.55,
+        "specular": 0.12,
+        "shininess": 48,
+        "emission": 0.08
+      },
+      "texture": "Textures/FutureCity/windows.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -14.591382,
+        1,
+        8.719999
+      ],
+      "max": [
+        -11.408618,
+        1.12,
+        11.68
+      ],
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -14.591382,
+        3,
+        8.719999
+      ],
+      "max": [
+        -11.408618,
+        3.12,
+        11.68
+      ],
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -14.591382,
+        5,
+        8.719999
+      ],
+      "max": [
+        -11.408618,
+        5.12,
+        11.68
+      ],
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        -13,
+        8.104146,
+        10.2
+      ],
+      "radius": 0.08,
+      "height": 1.8,
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png"
+    },
+    {
+      "type": "box",
+      "min": [
+        -14.431296,
+        0.4,
+        14
+      ],
+      "max": [
+        -11.568704,
+        6.3474736,
+        16.8
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.3,
+          0.42
+        ],
+        "diffuse": 0.8,
+        "reflection": 0.18,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/alloy.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -14.001907,
+        6.3474736,
+        14.4
+      ],
+      "max": [
+        -11.998093,
+        7.547474,
+        16.4
+      ],
+      "material": {
+        "color": [
+          0.62,
+          0.72,
+          0.78
+        ],
+        "diffuse": 0.85,
+        "reflection": 0.12,
+        "specular": 0.04,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/ceramic.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -14.311296,
+        1,
+        13.94
+      ],
+      "max": [
+        -11.688704,
+        5.9474735,
+        13.99
+      ],
+      "material": {
+        "color": [
+          0.12,
+          0.28,
+          0.46
+        ],
+        "diffuse": 0.65,
+        "reflection": 0.55,
+        "specular": 0.12,
+        "shininess": 48,
+        "emission": 0.08
+      },
+      "texture": "Textures/FutureCity/windows.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -14.461296,
+        1,
+        13.92
+      ],
+      "max": [
+        -11.538704,
+        1.12,
+        16.88
+      ],
+      "material": {
+        "color": [
+          0.04,
+          0.85,
+          0.92
+        ],
+        "diffuse": 1,
+        "reflection": 0.2,
+        "specular": 0.08,
+        "shininess": 48,
+        "emission": 0.35
+      },
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -14.461296,
+        3,
+        13.92
+      ],
+      "max": [
+        -11.538704,
+        3.12,
+        16.88
+      ],
+      "material": {
+        "color": [
+          0.04,
+          0.85,
+          0.92
+        ],
+        "diffuse": 1,
+        "reflection": 0.2,
+        "specular": 0.08,
+        "shininess": 48,
+        "emission": 0.35
+      },
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -14.461296,
+        5,
+        13.92
+      ],
+      "max": [
+        -11.538704,
+        5.12,
+        16.88
+      ],
+      "material": {
+        "color": [
+          0.04,
+          0.85,
+          0.92
+        ],
+        "diffuse": 1,
+        "reflection": 0.2,
+        "specular": 0.08,
+        "shininess": 48,
+        "emission": 0.35
+      },
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        -13,
+        8.447474,
+        15.4
+      ],
+      "radius": 0.08,
+      "height": 1.8,
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png"
+    },
+    {
+      "type": "box",
+      "min": [
+        -14.556461,
+        0.4,
+        19.199999
+      ],
+      "max": [
+        -11.443539,
+        10.795267,
+        21.999998
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.3,
+          0.42
+        ],
+        "diffuse": 0.8,
+        "reflection": 0.18,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/alloy.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -14.089523,
+        10.795267,
+        19.599998
+      ],
+      "max": [
+        -11.910477,
+        11.995267,
+        21.599998
+      ],
+      "material": {
+        "color": [
+          0.62,
+          0.72,
+          0.78
+        ],
+        "diffuse": 0.85,
+        "reflection": 0.12,
+        "specular": 0.04,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/ceramic.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -14.436461,
+        1,
+        19.14
+      ],
+      "max": [
+        -11.563539,
+        10.3952675,
+        19.189999
+      ],
+      "material": {
+        "color": [
+          0.12,
+          0.28,
+          0.46
+        ],
+        "diffuse": 0.65,
+        "reflection": 0.55,
+        "specular": 0.12,
+        "shininess": 48,
+        "emission": 0.08
+      },
+      "texture": "Textures/FutureCity/windows.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -14.586461,
+        1,
+        19.119999
+      ],
+      "max": [
+        -11.413539,
+        1.12,
+        22.079998
+      ],
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -14.586461,
+        3,
+        19.119999
+      ],
+      "max": [
+        -11.413539,
+        3.12,
+        22.079998
+      ],
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -14.586461,
+        5,
+        19.119999
+      ],
+      "max": [
+        -11.413539,
+        5.12,
+        22.079998
+      ],
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -14.586461,
+        7,
+        19.119999
+      ],
+      "max": [
+        -11.413539,
+        7.12,
+        22.079998
+      ],
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -14.586461,
+        9,
+        19.119999
+      ],
+      "max": [
+        -11.413539,
+        9.12,
+        22.079998
+      ],
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        -13,
+        12.895267,
+        20.599998
+      ],
+      "radius": 0.08,
+      "height": 1.8,
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png"
+    },
+    {
+      "type": "box",
+      "min": [
+        -14.680625,
+        0.4,
+        24.4
+      ],
+      "max": [
+        -11.319375,
+        6.3892093,
+        27.199999
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.3,
+          0.42
+        ],
+        "diffuse": 0.8,
+        "reflection": 0.18,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/alloy.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -14.176437,
+        6.3892093,
+        24.8
+      ],
+      "max": [
+        -11.823563,
+        7.5892096,
+        26.8
+      ],
+      "material": {
+        "color": [
+          0.62,
+          0.72,
+          0.78
+        ],
+        "diffuse": 0.85,
+        "reflection": 0.12,
+        "specular": 0.04,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/ceramic.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -14.560625,
+        1,
+        24.34
+      ],
+      "max": [
+        -11.439375,
+        5.989209,
+        24.39
+      ],
+      "material": {
+        "color": [
+          0.12,
+          0.28,
+          0.46
+        ],
+        "diffuse": 0.65,
+        "reflection": 0.55,
+        "specular": 0.12,
+        "shininess": 48,
+        "emission": 0.08
+      },
+      "texture": "Textures/FutureCity/windows.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -14.710625,
+        1,
+        24.32
+      ],
+      "max": [
+        -11.289375,
+        1.12,
+        27.279999
+      ],
+      "material": {
+        "color": [
+          0.04,
+          0.85,
+          0.92
+        ],
+        "diffuse": 1,
+        "reflection": 0.2,
+        "specular": 0.08,
+        "shininess": 48,
+        "emission": 0.35
+      },
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -14.710625,
+        3,
+        24.32
+      ],
+      "max": [
+        -11.289375,
+        3.12,
+        27.279999
+      ],
+      "material": {
+        "color": [
+          0.04,
+          0.85,
+          0.92
+        ],
+        "diffuse": 1,
+        "reflection": 0.2,
+        "specular": 0.08,
+        "shininess": 48,
+        "emission": 0.35
+      },
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -14.710625,
+        5,
+        24.32
+      ],
+      "max": [
+        -11.289375,
+        5.12,
+        27.279999
+      ],
+      "material": {
+        "color": [
+          0.04,
+          0.85,
+          0.92
+        ],
+        "diffuse": 1,
+        "reflection": 0.2,
+        "specular": 0.08,
+        "shininess": 48,
+        "emission": 0.35
+      },
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        -13,
+        8.489209,
+        25.8
+      ],
+      "radius": 0.08,
+      "height": 1.8,
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png"
+    },
+    {
+      "type": "box",
+      "min": [
+        11.57134,
+        0.4,
+        3.6
+      ],
+      "max": [
+        14.42866,
+        6.8767076,
+        6.4
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.3,
+          0.42
+        ],
+        "diffuse": 0.8,
+        "reflection": 0.18,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/alloy.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        11.999937,
+        6.8767076,
+        4
+      ],
+      "max": [
+        14.000063,
+        8.076708,
+        6
+      ],
+      "material": {
+        "color": [
+          0.62,
+          0.72,
+          0.78
+        ],
+        "diffuse": 0.85,
+        "reflection": 0.12,
+        "specular": 0.04,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/ceramic.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        11.6913395,
+        1,
+        3.54
+      ],
+      "max": [
+        14.3086605,
+        6.4767075,
+        3.5900002
+      ],
+      "material": {
+        "color": [
+          0.12,
+          0.28,
+          0.46
+        ],
+        "diffuse": 0.65,
+        "reflection": 0.55,
+        "specular": 0.12,
+        "shininess": 48,
+        "emission": 0.08
+      },
+      "texture": "Textures/FutureCity/windows.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        11.54134,
+        1,
+        3.52
+      ],
+      "max": [
+        14.45866,
+        1.12,
+        6.48
+      ],
+      "material": {
+        "color": [
+          0.04,
+          0.85,
+          0.92
+        ],
+        "diffuse": 1,
+        "reflection": 0.2,
+        "specular": 0.08,
+        "shininess": 48,
+        "emission": 0.35
+      },
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        11.54134,
+        3,
+        3.52
+      ],
+      "max": [
+        14.45866,
+        3.12,
+        6.48
+      ],
+      "material": {
+        "color": [
+          0.04,
+          0.85,
+          0.92
+        ],
+        "diffuse": 1,
+        "reflection": 0.2,
+        "specular": 0.08,
+        "shininess": 48,
+        "emission": 0.35
+      },
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        11.54134,
+        5,
+        3.52
+      ],
+      "max": [
+        14.45866,
+        5.12,
+        6.48
+      ],
+      "material": {
+        "color": [
+          0.04,
+          0.85,
+          0.92
+        ],
+        "diffuse": 1,
+        "reflection": 0.2,
+        "specular": 0.08,
+        "shininess": 48,
+        "emission": 0.35
+      },
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        13,
+        8.976707,
+        5
+      ],
+      "radius": 0.08,
+      "height": 1.8,
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png"
+    },
+    {
+      "type": "box",
+      "min": [
+        11.539884,
+        0.4,
+        8.8
+      ],
+      "max": [
+        14.460116,
+        9.044828,
+        11.599999
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.3,
+          0.42
+        ],
+        "diffuse": 0.8,
+        "reflection": 0.18,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/alloy.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        11.977919,
+        9.044828,
+        9.2
+      ],
+      "max": [
+        14.022081,
+        10.244828,
+        11.2
+      ],
+      "material": {
+        "color": [
+          0.62,
+          0.72,
+          0.78
+        ],
+        "diffuse": 0.85,
+        "reflection": 0.12,
+        "specular": 0.04,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/ceramic.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        11.6598835,
+        1,
+        8.74
+      ],
+      "max": [
+        14.3401165,
+        8.644829,
+        8.79
+      ],
+      "material": {
+        "color": [
+          0.12,
+          0.28,
+          0.46
+        ],
+        "diffuse": 0.65,
+        "reflection": 0.55,
+        "specular": 0.12,
+        "shininess": 48,
+        "emission": 0.08
+      },
+      "texture": "Textures/FutureCity/windows.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        11.509884,
+        1,
+        8.719999
+      ],
+      "max": [
+        14.490116,
+        1.12,
+        11.68
+      ],
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        11.509884,
+        3,
+        8.719999
+      ],
+      "max": [
+        14.490116,
+        3.12,
+        11.68
+      ],
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        11.509884,
+        5,
+        8.719999
+      ],
+      "max": [
+        14.490116,
+        5.12,
+        11.68
+      ],
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        11.509884,
+        7,
+        8.719999
+      ],
+      "max": [
+        14.490116,
+        7.12,
+        11.68
+      ],
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        11.509884,
+        9,
+        8.719999
+      ],
+      "max": [
+        14.490116,
+        9.12,
+        11.68
+      ],
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        13,
+        11.144828,
+        10.2
+      ],
+      "radius": 0.08,
+      "height": 1.8,
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png"
+    },
+    {
+      "type": "box",
+      "min": [
+        11.569878,
+        0.4,
+        14
+      ],
+      "max": [
+        14.430122,
+        8.047757,
+        16.8
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.3,
+          0.42
+        ],
+        "diffuse": 0.8,
+        "reflection": 0.18,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/alloy.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        11.998915,
+        8.047757,
+        14.4
+      ],
+      "max": [
+        14.001085,
+        9.247757,
+        16.4
+      ],
+      "material": {
+        "color": [
+          0.62,
+          0.72,
+          0.78
+        ],
+        "diffuse": 0.85,
+        "reflection": 0.12,
+        "specular": 0.04,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/ceramic.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        11.6898775,
+        1,
+        13.94
+      ],
+      "max": [
+        14.3101225,
+        7.647757,
+        13.99
+      ],
+      "material": {
+        "color": [
+          0.12,
+          0.28,
+          0.46
+        ],
+        "diffuse": 0.65,
+        "reflection": 0.55,
+        "specular": 0.12,
+        "shininess": 48,
+        "emission": 0.08
+      },
+      "texture": "Textures/FutureCity/windows.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        11.539878,
+        1,
+        13.92
+      ],
+      "max": [
+        14.460122,
+        1.12,
+        16.88
+      ],
+      "material": {
+        "color": [
+          0.04,
+          0.85,
+          0.92
+        ],
+        "diffuse": 1,
+        "reflection": 0.2,
+        "specular": 0.08,
+        "shininess": 48,
+        "emission": 0.35
+      },
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        11.539878,
+        3,
+        13.92
+      ],
+      "max": [
+        14.460122,
+        3.12,
+        16.88
+      ],
+      "material": {
+        "color": [
+          0.04,
+          0.85,
+          0.92
+        ],
+        "diffuse": 1,
+        "reflection": 0.2,
+        "specular": 0.08,
+        "shininess": 48,
+        "emission": 0.35
+      },
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        11.539878,
+        5,
+        13.92
+      ],
+      "max": [
+        14.460122,
+        5.12,
+        16.88
+      ],
+      "material": {
+        "color": [
+          0.04,
+          0.85,
+          0.92
+        ],
+        "diffuse": 1,
+        "reflection": 0.2,
+        "specular": 0.08,
+        "shininess": 48,
+        "emission": 0.35
+      },
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        11.539878,
+        7,
+        13.92
+      ],
+      "max": [
+        14.460122,
+        7.12,
+        16.88
+      ],
+      "material": {
+        "color": [
+          0.04,
+          0.85,
+          0.92
+        ],
+        "diffuse": 1,
+        "reflection": 0.2,
+        "specular": 0.08,
+        "shininess": 48,
+        "emission": 0.35
+      },
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        13,
+        10.147757,
+        15.4
+      ],
+      "radius": 0.08,
+      "height": 1.8,
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png"
+    },
+    {
+      "type": "box",
+      "min": [
+        11.682341,
+        0.4,
+        19.199999
+      ],
+      "max": [
+        14.317659,
+        9.139608,
+        21.999998
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.3,
+          0.42
+        ],
+        "diffuse": 0.8,
+        "reflection": 0.18,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/alloy.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        12.077639,
+        9.139608,
+        19.599998
+      ],
+      "max": [
+        13.922361,
+        10.339608,
+        21.599998
+      ],
+      "material": {
+        "color": [
+          0.62,
+          0.72,
+          0.78
+        ],
+        "diffuse": 0.85,
+        "reflection": 0.12,
+        "specular": 0.04,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/ceramic.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        11.8023405,
+        1,
+        19.14
+      ],
+      "max": [
+        14.1976595,
+        8.739609,
+        19.189999
+      ],
+      "material": {
+        "color": [
+          0.12,
+          0.28,
+          0.46
+        ],
+        "diffuse": 0.65,
+        "reflection": 0.55,
+        "specular": 0.12,
+        "shininess": 48,
+        "emission": 0.08
+      },
+      "texture": "Textures/FutureCity/windows.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        11.652341,
+        1,
+        19.119999
+      ],
+      "max": [
+        14.347659,
+        1.12,
+        22.079998
+      ],
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        11.652341,
+        3,
+        19.119999
+      ],
+      "max": [
+        14.347659,
+        3.12,
+        22.079998
+      ],
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        11.652341,
+        5,
+        19.119999
+      ],
+      "max": [
+        14.347659,
+        5.12,
+        22.079998
+      ],
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        11.652341,
+        7,
+        19.119999
+      ],
+      "max": [
+        14.347659,
+        7.12,
+        22.079998
+      ],
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        11.652341,
+        9,
+        19.119999
+      ],
+      "max": [
+        14.347659,
+        9.12,
+        22.079998
+      ],
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        13,
+        11.239608,
+        20.599998
+      ],
+      "radius": 0.08,
+      "height": 1.8,
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png"
+    },
+    {
+      "type": "box",
+      "min": [
+        11.411402,
+        0.4,
+        24.4
+      ],
+      "max": [
+        14.588598,
+        11.5131,
+        27.199999
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.3,
+          0.42
+        ],
+        "diffuse": 0.8,
+        "reflection": 0.18,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/alloy.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        11.887981,
+        11.5131,
+        24.8
+      ],
+      "max": [
+        14.112019,
+        12.7130995,
+        26.8
+      ],
+      "material": {
+        "color": [
+          0.62,
+          0.72,
+          0.78
+        ],
+        "diffuse": 0.85,
+        "reflection": 0.12,
+        "specular": 0.04,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/ceramic.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        11.531402,
+        1,
+        24.34
+      ],
+      "max": [
+        14.468598,
+        11.1131,
+        24.39
+      ],
+      "material": {
+        "color": [
+          0.12,
+          0.28,
+          0.46
+        ],
+        "diffuse": 0.65,
+        "reflection": 0.55,
+        "specular": 0.12,
+        "shininess": 48,
+        "emission": 0.08
+      },
+      "texture": "Textures/FutureCity/windows.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        11.381402,
+        1,
+        24.32
+      ],
+      "max": [
+        14.618598,
+        1.12,
+        27.279999
+      ],
+      "material": {
+        "color": [
+          0.04,
+          0.85,
+          0.92
+        ],
+        "diffuse": 1,
+        "reflection": 0.2,
+        "specular": 0.08,
+        "shininess": 48,
+        "emission": 0.35
+      },
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        11.381402,
+        3,
+        24.32
+      ],
+      "max": [
+        14.618598,
+        3.12,
+        27.279999
+      ],
+      "material": {
+        "color": [
+          0.04,
+          0.85,
+          0.92
+        ],
+        "diffuse": 1,
+        "reflection": 0.2,
+        "specular": 0.08,
+        "shininess": 48,
+        "emission": 0.35
+      },
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        11.381402,
+        5,
+        24.32
+      ],
+      "max": [
+        14.618598,
+        5.12,
+        27.279999
+      ],
+      "material": {
+        "color": [
+          0.04,
+          0.85,
+          0.92
+        ],
+        "diffuse": 1,
+        "reflection": 0.2,
+        "specular": 0.08,
+        "shininess": 48,
+        "emission": 0.35
+      },
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        11.381402,
+        7,
+        24.32
+      ],
+      "max": [
+        14.618598,
+        7.12,
+        27.279999
+      ],
+      "material": {
+        "color": [
+          0.04,
+          0.85,
+          0.92
+        ],
+        "diffuse": 1,
+        "reflection": 0.2,
+        "specular": 0.08,
+        "shininess": 48,
+        "emission": 0.35
+      },
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        11.381402,
+        9,
+        24.32
+      ],
+      "max": [
+        14.618598,
+        9.12,
+        27.279999
+      ],
+      "material": {
+        "color": [
+          0.04,
+          0.85,
+          0.92
+        ],
+        "diffuse": 1,
+        "reflection": 0.2,
+        "specular": 0.08,
+        "shininess": 48,
+        "emission": 0.35
+      },
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        11.381402,
+        11,
+        24.32
+      ],
+      "max": [
+        14.618598,
+        11.12,
+        27.279999
+      ],
+      "material": {
+        "color": [
+          0.04,
+          0.85,
+          0.92
+        ],
+        "diffuse": 1,
+        "reflection": 0.2,
+        "specular": 0.08,
+        "shininess": 48,
+        "emission": 0.35
+      },
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        13,
+        13.613099,
+        25.8
+      ],
+      "radius": 0.08,
+      "height": 1.8,
+      "material": {
+        "color": [
+          0.95,
+          0.46,
+          0.12
+        ],
+        "diffuse": 0.9,
+        "reflection": 0.2,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/gold.png"
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        -12,
+        0.325,
+        -3
+      ],
+      "radius": 3.2,
+      "height": 0.65,
+      "material": {
+        "color": [
+          0.62,
+          0.72,
+          0.78
+        ],
+        "diffuse": 0.85,
+        "reflection": 0.12,
+        "specular": 0.04,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/ceramic.png"
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        -12,
+        0.72499996,
+        -3
+      ],
+      "radius": 2.8,
+      "height": 0.15,
+      "material": {
+        "color": [
+          0.045,
+          0.075,
+          0.12
+        ],
+        "diffuse": 0.8,
+        "reflection": 0.25,
+        "specular": 0.03,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/dark.png"
+    },
+    {
+      "type": "disk",
+      "center": [
+        -12,
+        0.81,
+        -3
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "radius": 2.4,
+      "material": {
+        "color": [
+          0.12,
+          0.28,
+          0.46
+        ],
+        "diffuse": 0.65,
+        "reflection": 0.55,
+        "specular": 0.12,
+        "shininess": 48,
+        "emission": 0.08
+      },
+      "texture": "Textures/FutureCity/dome.png"
+    },
+    {
+      "type": "torus",
+      "center": [
+        -12,
+        0.92,
+        -3
+      ],
+      "major": 2.55,
+      "minor": 0.08,
+      "material": {
+        "color": [
+          0.04,
+          0.85,
+          0.92
+        ],
+        "diffuse": 1,
+        "reflection": 0.2,
+        "specular": 0.08,
+        "shininess": 48,
+        "emission": 0.35
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -12,
+        0.7,
+        -3
+      ],
+      "radius": 1.7,
+      "material": {
+        "color": [
+          0.12,
+          0.28,
+          0.46
+        ],
+        "diffuse": 0.65,
+        "reflection": 0.55,
+        "specular": 0.12,
+        "shininess": 48,
+        "emission": 0.08
+      },
+      "texture": "Textures/FutureCity/dome.png"
+    },
+    {
+      "type": "box",
+      "min": [
+        -12.8,
+        0.8,
+        -5.2
+      ],
+      "max": [
+        -11.2,
+        1.7,
+        -4.3
+      ],
+      "material": {
+        "color": [
+          0.62,
+          0.72,
+          0.78
+        ],
+        "diffuse": 0.85,
+        "reflection": 0.12,
+        "specular": 0.04,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/ceramic.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        12,
+        0.325,
+        -3
+      ],
+      "radius": 3.2,
+      "height": 0.65,
+      "material": {
+        "color": [
+          0.62,
+          0.72,
+          0.78
+        ],
+        "diffuse": 0.85,
+        "reflection": 0.12,
+        "specular": 0.04,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/ceramic.png"
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        12,
+        0.72499996,
+        -3
+      ],
+      "radius": 2.8,
+      "height": 0.15,
+      "material": {
+        "color": [
+          0.045,
+          0.075,
+          0.12
+        ],
+        "diffuse": 0.8,
+        "reflection": 0.25,
+        "specular": 0.03,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/dark.png"
+    },
+    {
+      "type": "disk",
+      "center": [
+        12,
+        0.81,
+        -3
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "radius": 2.4,
+      "material": {
+        "color": [
+          0.12,
+          0.28,
+          0.46
+        ],
+        "diffuse": 0.65,
+        "reflection": 0.55,
+        "specular": 0.12,
+        "shininess": 48,
+        "emission": 0.08
+      },
+      "texture": "Textures/FutureCity/dome.png"
+    },
+    {
+      "type": "torus",
+      "center": [
+        12,
+        0.92,
+        -3
+      ],
+      "major": 2.55,
+      "minor": 0.08,
+      "material": {
+        "color": [
+          0.04,
+          0.85,
+          0.92
+        ],
+        "diffuse": 1,
+        "reflection": 0.2,
+        "specular": 0.08,
+        "shininess": 48,
+        "emission": 0.35
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        12,
+        0.7,
+        -3
+      ],
+      "radius": 1.7,
+      "material": {
+        "color": [
+          0.12,
+          0.28,
+          0.46
+        ],
+        "diffuse": 0.65,
+        "reflection": 0.55,
+        "specular": 0.12,
+        "shininess": 48,
+        "emission": 0.08
+      },
+      "texture": "Textures/FutureCity/dome.png"
+    },
+    {
+      "type": "box",
+      "min": [
+        11.2,
+        0.8,
+        -5.2
+      ],
+      "max": [
+        12.8,
+        1.7,
+        -4.3
+      ],
+      "material": {
+        "color": [
+          0.62,
+          0.72,
+          0.78
+        ],
+        "diffuse": 0.85,
+        "reflection": 0.12,
+        "specular": 0.04,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/ceramic.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -15,
+        5.5,
+        22
+      ],
+      "max": [
+        15,
+        6.1,
+        24
+      ],
+      "material": {
+        "color": [
+          0.62,
+          0.72,
+          0.78
+        ],
+        "diffuse": 0.85,
+        "reflection": 0.12,
+        "specular": 0.04,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/ceramic.png",
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -15,
+        6.12,
+        22
+      ],
+      "max": [
+        15,
+        6.24,
+        22.15
+      ],
+      "material": {
+        "color": [
+          0.04,
+          0.85,
+          0.92
+        ],
+        "diffuse": 1,
+        "reflection": 0.2,
+        "specular": 0.08,
+        "shininess": 48,
+        "emission": 0.35
+      },
+      "uv": {
+        "mode": "facade",
+        "repeat": 4
+      }
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        -9,
+        2.75,
+        23
+      ],
+      "radius": 0.5,
+      "height": 5.5,
+      "material": {
+        "color": [
+          0.22,
+          0.3,
+          0.42
+        ],
+        "diffuse": 0.8,
+        "reflection": 0.18,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/alloy.png"
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        -5,
+        2.75,
+        23
+      ],
+      "radius": 0.5,
+      "height": 5.5,
+      "material": {
+        "color": [
+          0.22,
+          0.3,
+          0.42
+        ],
+        "diffuse": 0.8,
+        "reflection": 0.18,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/alloy.png"
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        5,
+        2.75,
+        23
+      ],
+      "radius": 0.5,
+      "height": 5.5,
+      "material": {
+        "color": [
+          0.22,
+          0.3,
+          0.42
+        ],
+        "diffuse": 0.8,
+        "reflection": 0.18,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/alloy.png"
+    },
+    {
+      "type": "cylinder",
+      "center": [
+        9,
+        2.75,
+        23
+      ],
+      "radius": 0.5,
+      "height": 5.5,
+      "material": {
+        "color": [
+          0.22,
+          0.3,
+          0.42
+        ],
+        "diffuse": 0.8,
+        "reflection": 0.18,
+        "specular": 0.06,
+        "shininess": 48
+      },
+      "texture": "Textures/FutureCity/alloy.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        -48,
+        0,
+        41.384823
+      ],
+      "b": [
+        -40,
+        8.521931,
+        45.384823
+      ],
+      "c": [
+        -35,
+        0,
+        41.384823
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        -35,
+        0,
+        41.384823
+      ],
+      "b": [
+        -40,
+        8.521931,
+        45.384823
+      ],
+      "c": [
+        -42,
+        0,
+        53.384823
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        -42,
+        0,
+        53.384823
+      ],
+      "b": [
+        -40,
+        8.521931,
+        45.384823
+      ],
+      "c": [
+        -48,
+        0,
+        41.384823
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        -41,
+        0,
+        39.540676
+      ],
+      "b": [
+        -33,
+        14.051521,
+        43.540676
+      ],
+      "c": [
+        -28,
+        0,
+        39.540676
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        -28,
+        0,
+        39.540676
+      ],
+      "b": [
+        -33,
+        14.051521,
+        43.540676
+      ],
+      "c": [
+        -35,
+        0,
+        51.540676
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        -35,
+        0,
+        51.540676
+      ],
+      "b": [
+        -33,
+        14.051521,
+        43.540676
+      ],
+      "c": [
+        -41,
+        0,
+        39.540676
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        -34,
+        0,
+        43.89709
+      ],
+      "b": [
+        -26,
+        12.399706,
+        47.89709
+      ],
+      "c": [
+        -21,
+        0,
+        43.89709
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        -21,
+        0,
+        43.89709
+      ],
+      "b": [
+        -26,
+        12.399706,
+        47.89709
+      ],
+      "c": [
+        -28,
+        0,
+        55.89709
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        -28,
+        0,
+        55.89709
+      ],
+      "b": [
+        -26,
+        12.399706,
+        47.89709
+      ],
+      "c": [
+        -34,
+        0,
+        43.89709
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        -27,
+        0,
+        39.26488
+      ],
+      "b": [
+        -19,
+        14.111546,
+        43.26488
+      ],
+      "c": [
+        -14,
+        0,
+        39.26488
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        -14,
+        0,
+        39.26488
+      ],
+      "b": [
+        -19,
+        14.111546,
+        43.26488
+      ],
+      "c": [
+        -21,
+        0,
+        51.26488
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        -21,
+        0,
+        51.26488
+      ],
+      "b": [
+        -19,
+        14.111546,
+        43.26488
+      ],
+      "c": [
+        -27,
+        0,
+        39.26488
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        -20,
+        0,
+        39.886566
+      ],
+      "b": [
+        -12,
+        16.062126,
+        43.886566
+      ],
+      "c": [
+        -7,
+        0,
+        39.886566
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        -7,
+        0,
+        39.886566
+      ],
+      "b": [
+        -12,
+        16.062126,
+        43.886566
+      ],
+      "c": [
+        -14,
+        0,
+        51.886566
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        -14,
+        0,
+        51.886566
+      ],
+      "b": [
+        -12,
+        16.062126,
+        43.886566
+      ],
+      "c": [
+        -20,
+        0,
+        39.886566
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        -13,
+        0,
+        43.155537
+      ],
+      "b": [
+        -5,
+        12.164137,
+        47.155537
+      ],
+      "c": [
+        0,
+        0,
+        43.155537
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        0,
+        0,
+        43.155537
+      ],
+      "b": [
+        -5,
+        12.164137,
+        47.155537
+      ],
+      "c": [
+        -7,
+        0,
+        55.155537
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        -7,
+        0,
+        55.155537
+      ],
+      "b": [
+        -5,
+        12.164137,
+        47.155537
+      ],
+      "c": [
+        -13,
+        0,
+        43.155537
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        -6,
+        0,
+        40.11827
+      ],
+      "b": [
+        2,
+        7.4150996,
+        44.11827
+      ],
+      "c": [
+        7,
+        0,
+        40.11827
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        7,
+        0,
+        40.11827
+      ],
+      "b": [
+        2,
+        7.4150996,
+        44.11827
+      ],
+      "c": [
+        0,
+        0,
+        52.11827
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        0,
+        0,
+        52.11827
+      ],
+      "b": [
+        2,
+        7.4150996,
+        44.11827
+      ],
+      "c": [
+        -6,
+        0,
+        40.11827
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        1,
+        0,
+        40.849197
+      ],
+      "b": [
+        9,
+        12.831603,
+        44.849197
+      ],
+      "c": [
+        14,
+        0,
+        40.849197
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        14,
+        0,
+        40.849197
+      ],
+      "b": [
+        9,
+        12.831603,
+        44.849197
+      ],
+      "c": [
+        7,
+        0,
+        52.849197
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        7,
+        0,
+        52.849197
+      ],
+      "b": [
+        9,
+        12.831603,
+        44.849197
+      ],
+      "c": [
+        1,
+        0,
+        40.849197
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        8,
+        0,
+        43.92639
+      ],
+      "b": [
+        16,
+        7.0395484,
+        47.92639
+      ],
+      "c": [
+        21,
+        0,
+        43.92639
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        21,
+        0,
+        43.92639
+      ],
+      "b": [
+        16,
+        7.0395484,
+        47.92639
+      ],
+      "c": [
+        14,
+        0,
+        55.92639
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        14,
+        0,
+        55.92639
+      ],
+      "b": [
+        16,
+        7.0395484,
+        47.92639
+      ],
+      "c": [
+        8,
+        0,
+        43.92639
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        15,
+        0,
+        42.214333
+      ],
+      "b": [
+        23,
+        15.051845,
+        46.214333
+      ],
+      "c": [
+        28,
+        0,
+        42.214333
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        28,
+        0,
+        42.214333
+      ],
+      "b": [
+        23,
+        15.051845,
+        46.214333
+      ],
+      "c": [
+        21,
+        0,
+        54.214333
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        21,
+        0,
+        54.214333
+      ],
+      "b": [
+        23,
+        15.051845,
+        46.214333
+      ],
+      "c": [
+        15,
+        0,
+        42.214333
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        22,
+        0,
+        43.490154
+      ],
+      "b": [
+        30,
+        10.845737,
+        47.490154
+      ],
+      "c": [
+        35,
+        0,
+        43.490154
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        35,
+        0,
+        43.490154
+      ],
+      "b": [
+        30,
+        10.845737,
+        47.490154
+      ],
+      "c": [
+        28,
+        0,
+        55.490154
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        28,
+        0,
+        55.490154
+      ],
+      "b": [
+        30,
+        10.845737,
+        47.490154
+      ],
+      "c": [
+        22,
+        0,
+        43.490154
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        29,
+        0,
+        39.894714
+      ],
+      "b": [
+        37,
+        7.2633953,
+        43.894714
+      ],
+      "c": [
+        42,
+        0,
+        39.894714
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        42,
+        0,
+        39.894714
+      ],
+      "b": [
+        37,
+        7.2633953,
+        43.894714
+      ],
+      "c": [
+        35,
+        0,
+        51.894714
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        35,
+        0,
+        51.894714
+      ],
+      "b": [
+        37,
+        7.2633953,
+        43.894714
+      ],
+      "c": [
+        29,
+        0,
+        39.894714
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        36,
+        0,
+        39.306053
+      ],
+      "b": [
+        44,
+        14.816429,
+        43.306053
+      ],
+      "c": [
+        49,
+        0,
+        39.306053
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        49,
+        0,
+        39.306053
+      ],
+      "b": [
+        44,
+        14.816429,
+        43.306053
+      ],
+      "c": [
+        42,
+        0,
+        51.306053
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "triangle",
+      "a": [
+        42,
+        0,
+        51.306053
+      ],
+      "b": [
+        44,
+        14.816429,
+        43.306053
+      ],
+      "c": [
+        36,
+        0,
+        39.306053
+      ],
+      "material": {
+        "color": [
+          0.22,
+          0.14,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0
+      },
+      "texture": "Textures/FutureCity/rock.png"
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -24,
+        27,
+        62
+      ],
+      "radius": 6,
+      "material": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "diffuse": 0,
+        "reflection": 0,
+        "specular": 0,
+        "emission": 0.8
+      },
+      "texture": "Textures/FutureCity/planet.png"
+    },
+    {
+      "type": "light",
+      "center": [
+        -15,
+        25,
+        -15
+      ],
+      "material": {
+        "color": [
+          1,
+          1.1,
+          1.2
+        ],
+        "diffuse": 0,
+        "reflection": 0,
+        "specular": 0
+      },
+      "visible": true
+    },
+    {
+      "type": "light",
+      "center": [
+        20,
+        18,
+        20
+      ],
+      "material": {
+        "color": [
+          0.75,
+          0.44,
+          0.28
+        ],
+        "diffuse": 0,
+        "reflection": 0,
+        "specular": 0
+      },
+      "visible": true
+    }
+  ]
+}

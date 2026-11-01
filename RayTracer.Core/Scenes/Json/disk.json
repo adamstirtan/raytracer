@@ -1,0 +1,81 @@
+{
+  "format": "raytracer-scene",
+  "version": 1,
+  "name": "disk",
+  "camera": {
+    "position": [
+      0,
+      0,
+      -5
+    ],
+    "target": [
+      0,
+      0,
+      0
+    ]
+  },
+  "objects": [
+    {
+      "type": "plane",
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "d": 1000,
+      "material": {
+        "color": [
+          0.9,
+          0.9,
+          0.9
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0.1
+      }
+    },
+    {
+      "type": "disk",
+      "center": [
+        0,
+        0,
+        6
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "radius": 2,
+      "material": {
+        "color": [
+          0.8,
+          0.8,
+          0.2
+        ],
+        "diffuse": 0.8,
+        "reflection": 0.1,
+        "specular": 0.2
+      }
+    },
+    {
+      "type": "light",
+      "center": [
+        0,
+        5,
+        -5
+      ],
+      "material": {
+        "color": [
+          0.9,
+          0.9,
+          0.9
+        ],
+        "diffuse": 0,
+        "reflection": 0,
+        "specular": 0
+      },
+      "visible": true
+    }
+  ]
+}

@@ -7,6 +7,9 @@ namespace RayTracer.Core.Materials;
 
 public class Texture(string filePath)
 {
+    /// <summary>The path this texture was loaded from, as given to the constructor.</summary>
+    public string FilePath => filePath;
+
     private readonly Image<Rgba32> _image = Image.Load<Rgba32>(filePath);
 
     public Vector3 Sample(float u, float v)

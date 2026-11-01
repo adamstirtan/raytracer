@@ -25,12 +25,12 @@ public class SceneAssetTests
         try
         {
             Environment.CurrentDirectory = directory;
-            Assert.IsNotNull(new BilliardsScene());
-            Assert.IsNotNull(new TexturedSphere());
-            Assert.IsNotNull(new MeshScene());
-            Assert.IsNotNull(new HandScene());
-            Assert.IsNotNull(new OrbitalScene());
-            Assert.IsNotNull(new FutureCityScene());
+            Assert.IsNotNull(JsonSceneLoader.Load(JsonSceneLoader.FindBundled("billiards")!));
+            Assert.IsNotNull(JsonSceneLoader.Load(JsonSceneLoader.FindBundled("textured-sphere")!));
+            Assert.IsNotNull(JsonSceneLoader.Load(JsonSceneLoader.FindBundled("mesh")!));
+            Assert.IsNotNull(JsonSceneLoader.Load(JsonSceneLoader.FindBundled("hand")!));
+            Assert.IsNotNull(JsonSceneLoader.Load(JsonSceneLoader.FindBundled("orbital")!));
+            Assert.IsNotNull(JsonSceneLoader.Load(JsonSceneLoader.FindBundled("future-city")!));
             Assert.IsNotNull(new SynthwaveScene());
         }
         finally

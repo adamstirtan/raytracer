@@ -19,8 +19,8 @@ public sealed class SkullChromaticScene : Scene
         Material copper = new(new(.95f, .25f, .055f), .5f, .85f, .065f) { Shininess = 120, Emission = .06f };
         Material blue = new(new(.025f, .36f, .72f), .5f, .85f, .065f) { Shininess = 120, Emission = .06f };
         float yaw = 60 * MathF.PI / 180;
-        CopperSkull = SkullEchoScene.Skull(copper, 20.5f, 18.7f, 6, yaw, centerY: .4f);
-        BlueSkull = SkullEchoScene.Skull(blue, 20.5f, -18.7f, 6, -yaw, centerY: .4f);
+        CopperSkull = SkullMesh.Skull(copper, 20.5f, 18.7f, 6, yaw, centerY: .4f);
+        BlueSkull = SkullMesh.Skull(blue, 20.5f, -18.7f, 6, -yaw, centerY: .4f);
         CopperBrow = PolishBrow(CopperSkull, new(18.7f, .4f, 6), new(-18.7f, .4f, 6));
         BlueBrow = PolishBrow(BlueSkull, new(-18.7f, .4f, 6), new(18.7f, .4f, 6));
         AddObject(CopperSkull);

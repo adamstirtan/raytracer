@@ -1,0 +1,96 @@
+{
+  "format": "raytracer-scene",
+  "version": 1,
+  "name": "torus",
+  "camera": {
+    "position": [
+      0,
+      0,
+      -5
+    ],
+    "target": [
+      0,
+      0.5,
+      0
+    ]
+  },
+  "objects": [
+    {
+      "type": "plane",
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "d": 0,
+      "material": {
+        "color": [
+          0.15,
+          0.15,
+          0.15
+        ],
+        "diffuse": 0.85,
+        "reflection": 0.75,
+        "specular": 0.8
+      }
+    },
+    {
+      "type": "torus",
+      "center": [
+        0,
+        0.5,
+        0
+      ],
+      "major": 2,
+      "minor": 0.5,
+      "material": {
+        "color": [
+          0.8,
+          0.3,
+          0.2
+        ],
+        "diffuse": 0.6,
+        "reflection": 0.2,
+        "specular": 0.3
+      }
+    },
+    {
+      "type": "light",
+      "center": [
+        5,
+        8,
+        -3
+      ],
+      "material": {
+        "color": [
+          1,
+          0.95,
+          0.88
+        ],
+        "diffuse": 0,
+        "reflection": 0,
+        "specular": 0
+      },
+      "visible": true
+    },
+    {
+      "type": "light",
+      "center": [
+        -4,
+        5,
+        -5
+      ],
+      "material": {
+        "color": [
+          0.45,
+          0.55,
+          0.8
+        ],
+        "diffuse": 0,
+        "reflection": 0,
+        "specular": 0
+      },
+      "visible": true
+    }
+  ]
+}

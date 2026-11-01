@@ -1,0 +1,72 @@
+{
+  "format": "raytracer-scene",
+  "version": 1,
+  "name": "mesh",
+  "camera": {
+    "position": [
+      6,
+      2.5,
+      6
+    ],
+    "target": [
+      0,
+      1,
+      8
+    ]
+  },
+  "objects": [
+    {
+      "type": "plane",
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "d": 1000,
+      "material": {
+        "color": [
+          0.2,
+          0.2,
+          0.2
+        ],
+        "diffuse": 0.9,
+        "reflection": 0,
+        "specular": 0.1
+      }
+    },
+    {
+      "type": "mesh",
+      "obj": "assets/skull.obj",
+      "normalize": true,
+      "material": {
+        "color": [
+          0.8,
+          0.5,
+          0.3
+        ],
+        "diffuse": 0.7,
+        "reflection": 0.2,
+        "specular": 0.5
+      }
+    },
+    {
+      "type": "light",
+      "center": [
+        0,
+        8,
+        -5
+      ],
+      "material": {
+        "color": [
+          1,
+          1,
+          0.95
+        ],
+        "diffuse": 0,
+        "reflection": 0,
+        "specular": 0
+      },
+      "visible": true
+    }
+  ]
+}

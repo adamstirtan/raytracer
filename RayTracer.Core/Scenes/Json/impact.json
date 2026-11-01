@@ -1,0 +1,5189 @@
+{
+  "format": "raytracer-scene",
+  "version": 1,
+  "name": "impact",
+  "camera": {
+    "position": [
+      0,
+      6.5,
+      -10
+    ],
+    "target": [
+      0,
+      4.2,
+      11
+    ]
+  },
+  "objects": [
+    {
+      "type": "sphere",
+      "center": [
+        -10.6776,
+        1.9580837,
+        7.645832
+      ],
+      "radius": 0.48359042,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -6.842823,
+        8.1668005,
+        3.6469688
+      ],
+      "radius": 0.54550415,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -7.9108214,
+        5.546861,
+        6.5375133
+      ],
+      "radius": 0.37638158,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -3.5097523,
+        3.5062068,
+        -0.35992116
+      ],
+      "radius": 0.639552,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -2.1314049,
+        4.5426645,
+        -0.31793046
+      ],
+      "radius": 0.41350916,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -0.5570644,
+        7.981785,
+        -1.81038
+      ],
+      "radius": 0.44228315,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        5.0622888,
+        1.9362389,
+        -2.9852886
+      ],
+      "radius": 0.3953826,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        3.6358945,
+        5.0111465,
+        5.074311
+      ],
+      "radius": 0.44056845,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        5.2693653,
+        8.172803,
+        3.6331806
+      ],
+      "radius": 0.5515065,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        10.081123,
+        1.142389,
+        7.555628
+      ],
+      "radius": 0.4706155,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        3.5312512,
+        6.8865013,
+        1.5421916
+      ],
+      "radius": 0.67001057,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        14.768428,
+        1.3321904,
+        0.7299829
+      ],
+      "radius": 0.59292006,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -8.920061,
+        7.8451476,
+        4.52944
+      ],
+      "radius": 0.42832786,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -6.9607954,
+        0.99790764,
+        1.9541943
+      ],
+      "radius": 0.64824796,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -6.672875,
+        7.7802954,
+        6.1752443
+      ],
+      "radius": 0.4293642,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -2.6306276,
+        7.427666,
+        5.842436
+      ],
+      "radius": 0.5992041,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -2.8114197,
+        5.0809875,
+        7.101831
+      ],
+      "radius": 0.54228276,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        0.43909943,
+        1.335729,
+        2.4512124
+      ],
+      "radius": 0.62090766,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -0.29455838,
+        2.2758758,
+        5.7549443
+      ],
+      "radius": 0.69257015,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        3.4314954,
+        8.10251,
+        4.7145314
+      ],
+      "radius": 0.60235184,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        2.8700037,
+        2.0899873,
+        -0.27692008
+      ],
+      "radius": 0.5036492,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        4.914779,
+        1.823949,
+        1.920724
+      ],
+      "radius": 0.6706032,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        10.39286,
+        3.5823047,
+        4.4841723
+      ],
+      "radius": 0.61696863,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        10.652872,
+        8.163291,
+        4.6121807
+      ],
+      "radius": 0.6631316,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -12.400164,
+        1.0661635,
+        9.251782
+      ],
+      "radius": 0.5856171,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -12.609764,
+        3.8490248,
+        10.705947
+      ],
+      "radius": 0.68377113,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -4.9593167,
+        4.977998,
+        3.6487439
+      ],
+      "radius": 0.63393134,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -1.8352022,
+        0.6399455,
+        4.6161146
+      ],
+      "radius": 0.5934925,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -3.906249,
+        3.7446508,
+        4.78887
+      ],
+      "radius": 0.49357158,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        0.9186334,
+        1.2057264,
+        8.395928
+      ],
+      "radius": 0.64195037,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -0.206738,
+        0.5284127,
+        9.293108
+      ],
+      "radius": 0.38433424,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        2.9493937,
+        1.1363951,
+        6.5542545
+      ],
+      "radius": 0.38547596,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -0.18783782,
+        0.3967924,
+        10.114148
+      ],
+      "radius": 0.37774163,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        2.1779246,
+        2.5279257,
+        11.03737
+      ],
+      "radius": 0.47341052,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        13.62256,
+        2.0205953,
+        3.2339766
+      ],
+      "radius": 0.41139254,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        11.923241,
+        3.5893366,
+        6.4362507
+      ],
+      "radius": 0.3834314,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -10.671574,
+        7.4778175,
+        9.280896
+      ],
+      "radius": 0.36756235,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -6.7997594,
+        0.4998577,
+        12.482504
+      ],
+      "radius": 0.43826196,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -6.4287963,
+        1.4392761,
+        9.7468195
+      ],
+      "radius": 0.53835267,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -5.9692397,
+        4.0502863,
+        9.869002
+      ],
+      "radius": 0.6866009,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -3.5666463,
+        7.494711,
+        8.5655775
+      ],
+      "radius": 0.3844561,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -0.2816021,
+        0.67655474,
+        5.2623253
+      ],
+      "radius": 0.6128881,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        1.2973514,
+        7.4462266,
+        8.921822
+      ],
+      "radius": 0.5865326,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        2.379612,
+        7.492934,
+        9.220967
+      ],
+      "radius": 0.3826791,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        0.65327334,
+        0.85011816,
+        10.872588
+      ],
+      "radius": 0.36215824,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        5.674363,
+        0.6278811,
+        10.417253
+      ],
+      "radius": 0.62118,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        8.82364,
+        3.9909828,
+        9.158101
+      ],
+      "radius": 0.43153873,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        12.745833,
+        5.117467,
+        6.9367113
+      ],
+      "radius": 0.4561745,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -11.576903,
+        8.313268,
+        10.421462
+      ],
+      "radius": 0.5270085,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -7.0848637,
+        7.525391,
+        11.732857
+      ],
+      "radius": 0.5119822,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -6.126949,
+        7.326961,
+        11.159182
+      ],
+      "radius": 0.40853617,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -5.191059,
+        7.2538977,
+        12.110278
+      ],
+      "radius": 0.40177238,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -2.8162422,
+        1.7030123,
+        10.624046
+      ],
+      "radius": 0.56189144,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -2.724337,
+        1.4469008,
+        12.366758
+      ],
+      "radius": 0.5691902,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -0.25098446,
+        1.5655197,
+        10.773464
+      ],
+      "radius": 0.50649196,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        4.392698,
+        4.474891,
+        10.498527
+      ],
+      "radius": 0.51298714,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        5.0199685,
+        0.71476376,
+        6.425016
+      ],
+      "radius": 0.6285355,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        6.6190815,
+        7.366138,
+        11.136713
+      ],
+      "radius": 0.41325003,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        6.8916473,
+        7.356823,
+        10.226118
+      ],
+      "radius": 0.4039349,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        10.147169,
+        0.6498599,
+        10.6112385
+      ],
+      "radius": 0.42973804,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -7.708489,
+        3.029515,
+        9.668538
+      ],
+      "radius": 0.5083518,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -9.428644,
+        6.7276006,
+        11.476335
+      ],
+      "radius": 0.50189006,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -7.7384086,
+        1.7981663,
+        12.230249
+      ],
+      "radius": 0.64699686,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -6.701479,
+        2.5255394,
+        8.941278
+      ],
+      "radius": 0.6095561,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -5.4961066,
+        6.205342,
+        17.225016
+      ],
+      "radius": 0.43628126,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -3.4528384,
+        2.899081,
+        12.075382
+      ],
+      "radius": 0.63453454,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        3.199367,
+        4.1288743,
+        15.651898
+      ],
+      "radius": 0.5651784,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        3.369043,
+        2.9712584,
+        12.620517
+      ],
+      "radius": 0.65491736,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        5.4289856,
+        0.7778755,
+        13.869407
+      ],
+      "radius": 0.5868554,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        10.032842,
+        0.42476776,
+        13.587781
+      ],
+      "radius": 0.3959328,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        8.4035,
+        1.2380005,
+        14.385343
+      ],
+      "radius": 0.5816418,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        10.644763,
+        7.2400084,
+        13.007415
+      ],
+      "radius": 0.45402077,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -7.587244,
+        3.6361089,
+        16.690311
+      ],
+      "radius": 0.43255502,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -10.72304,
+        4.8710876,
+        13.383449
+      ],
+      "radius": 0.35596922,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -2.1387787,
+        3.182434,
+        13.243293
+      ],
+      "radius": 0.5678957,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -1.1678004,
+        1.7274382,
+        13.013284
+      ],
+      "radius": 0.5907611,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        3.154882,
+        0.45645446,
+        12.7441025
+      ],
+      "radius": 0.43407065,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -0.29289556,
+        7.164641,
+        15.858569
+      ],
+      "radius": 0.58428955,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        1.7570039,
+        4.6984563,
+        16.898878
+      ],
+      "radius": 0.6509733,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        4.1217785,
+        4.6646543,
+        16.40102
+      ],
+      "radius": 0.66443706,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        3.253089,
+        2.6200051,
+        15.3336935
+      ],
+      "radius": 0.60223234,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        5.971662,
+        2.6271431,
+        15.770696
+      ],
+      "radius": 0.5277568,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        12.994362,
+        5.7210255,
+        11.9591
+      ],
+      "radius": 0.41648403,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        13.1587105,
+        4.1160045,
+        12.96273
+      ],
+      "radius": 0.68158937,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -11.973011,
+        7.171001,
+        15.686888
+      ],
+      "radius": 0.5834142,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -6.387622,
+        2.2235835,
+        19.474758
+      ],
+      "radius": 0.6825619,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -5.869345,
+        4.4824004,
+        17.62005
+      ],
+      "radius": 0.52358454,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -7.355473,
+        3.311345,
+        13.98637
+      ],
+      "radius": 0.50855136,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -5.7480135,
+        3.324703,
+        18.543541
+      ],
+      "radius": 0.6669185,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        0.46909615,
+        4.909669,
+        13.531207
+      ],
+      "radius": 0.59840536,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        0.14918077,
+        1.4692131,
+        12.864122
+      ],
+      "radius": 0.45489585,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        0.22070104,
+        1.2783988,
+        15.18694
+      ],
+      "radius": 0.6543123,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        4.157262,
+        1.7180829,
+        17.406824
+      ],
+      "radius": 0.38432705,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        5.7297087,
+        4.4898825,
+        18.469412
+      ],
+      "radius": 0.45861465,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        6.9094753,
+        0.55168235,
+        14.107756
+      ],
+      "radius": 0.5282491,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        6.093011,
+        3.3157043,
+        19.832363
+      ],
+      "radius": 0.582566,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -10.228334,
+        2.734627,
+        16.293713
+      ],
+      "radius": 0.6658912,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -5.8201294,
+        1.2696463,
+        15.715794
+      ],
+      "radius": 0.67697644,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -4.999602,
+        6.7968245,
+        19.714052
+      ],
+      "radius": 0.6463978,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -3.3999612,
+        5.246678,
+        20.344646
+      ],
+      "radius": 0.4276237,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -1.8146069,
+        1.0017143,
+        21.10246
+      ],
+      "radius": 0.4060016,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -2.412605,
+        4.144961,
+        22.491386
+      ],
+      "radius": 0.47662133,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        0.9062217,
+        1.2402874,
+        21.511396
+      ],
+      "radius": 0.56931907,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -0.318981,
+        3.6408837,
+        24.314985
+      ],
+      "radius": 0.4810757,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        5.5190425,
+        2.099967,
+        17.20087
+      ],
+      "radius": 0.63034046,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        6.5365553,
+        6.595545,
+        19.344643
+      ],
+      "radius": 0.6545154,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        8.136078,
+        7.0164046,
+        18.483244
+      ],
+      "radius": 0.66921735,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        8.595612,
+        2.2873595,
+        19.197481
+      ],
+      "radius": 0.5559222,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -11.699758,
+        1.7362618,
+        19.153244
+      ],
+      "radius": 0.35129452,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -11.857269,
+        2.4527054,
+        24.708542
+      ],
+      "radius": 0.6157309,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -7.0321155,
+        6.3612976,
+        20.207714
+      ],
+      "radius": 0.4289165,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -4.685409,
+        0.5575303,
+        22.398697
+      ],
+      "radius": 0.394246,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -1.8112231,
+        6.400635,
+        21.150282
+      ],
+      "radius": 0.4622767,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -1.128468,
+        6.377856,
+        20.484673
+      ],
+      "radius": 0.43949777,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -0.15862717,
+        1.6354903,
+        22.395735
+      ],
+      "radius": 0.52750564,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        4.4764366,
+        0.75377125,
+        19.241993
+      ],
+      "radius": 0.68059504,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -0.5742559,
+        0.67258906,
+        27.016436
+      ],
+      "radius": 0.43540603,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        5.4009633,
+        6.6878824,
+        20.177471
+      ],
+      "radius": 0.6654075,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        7.690334,
+        3.0028734,
+        19.857973
+      ],
+      "radius": 0.37614185,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        10.628608,
+        6.3920774,
+        21.119543
+      ],
+      "radius": 0.45371938,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -13.243813,
+        0.64820707,
+        -0.371434
+      ],
+      "radius": 0.46095002,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -8.881618,
+        2.1630034,
+        3.8809793
+      ],
+      "radius": 0.406627,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -9.344547,
+        1.5820482,
+        -0.17203046
+      ],
+      "radius": 0.68799883,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -2.1079338,
+        2.9623067,
+        -0.54974157
+      ],
+      "radius": 0.68845004,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -3.0087044,
+        0.98839533,
+        2.3437688
+      ],
+      "radius": 0.64103687,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -2.1023016,
+        4.5083976,
+        2.3218703
+      ],
+      "radius": 0.62732947,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        1.8088019,
+        0.4196937,
+        2.7139316
+      ],
+      "radius": 0.4196937,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        3.2372496,
+        5.1688623,
+        3.8749754
+      ],
+      "radius": 0.67394036,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        4.459905,
+        0.70345724,
+        2.8136067
+      ],
+      "radius": 0.52772015,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        4.9571,
+        2.640623,
+        -1.5096513
+      ],
+      "radius": 0.6853297,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        7.997552,
+        1.760252,
+        3.282312
+      ],
+      "radius": 0.62486994,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        10.129247,
+        4.603729,
+        3.9695373
+      ],
+      "radius": 0.4570942,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -12.751513,
+        2.7758114,
+        2.7734673
+      ],
+      "radius": 0.63789165,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -7.9899592,
+        0.69842094,
+        3.0540502
+      ],
+      "radius": 0.5733496,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -6.4026217,
+        3.6641483,
+        5.102033
+      ],
+      "radius": 0.6084355,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -4.364249,
+        2.5712876,
+        4.1011276
+      ],
+      "radius": 0.47561103,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -3.3541892,
+        4.6062803,
+        3.8574355
+      ],
+      "radius": 0.6584377,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -0.6487906,
+        2.0408845,
+        2.419929
+      ],
+      "radius": 0.63540834,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        0.27107286,
+        4.5147657,
+        4.134666
+      ],
+      "radius": 0.4012489,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        1.3884287,
+        2.1752274,
+        6.3953156
+      ],
+      "radius": 0.62889886,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        9.222358,
+        0.3798452,
+        3.9918125
+      ],
+      "radius": 0.36334452,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        4.5853677,
+        4.114348,
+        5.0910053
+      ],
+      "radius": 0.6676623,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        8.249524,
+        4.265747,
+        5.2351966
+      ],
+      "radius": 0.50725687,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        8.9853115,
+        4.4977183,
+        3.7862144
+      ],
+      "radius": 0.40118766,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -7.1686354,
+        0.7962035,
+        6.8536158
+      ],
+      "radius": 0.5194889,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -8.116875,
+        3.7741528,
+        7.3070245
+      ],
+      "radius": 0.41064984,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -6.1398463,
+        1.6372918,
+        4.703476
+      ],
+      "radius": 0.5420356,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -3.7266736,
+        4.332714,
+        7.933226
+      ],
+      "radius": 0.6448293,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -5.9016333,
+        1.3150327,
+        6.352339
+      ],
+      "radius": 0.631109,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        2.7890372,
+        1.9451121,
+        7.908645
+      ],
+      "radius": 0.54765403,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        5.5334034,
+        3.6599915,
+        9.416781
+      ],
+      "radius": 0.49715996,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        2.3332138,
+        5.037498,
+        5.7381663
+      ],
+      "radius": 0.35048372,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        6.0894647,
+        1.1309068,
+        4.0105658
+      ],
+      "radius": 0.6508346,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        6.3666058,
+        1.9724462,
+        6.1483655
+      ],
+      "radius": 0.5426785,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        9.017,
+        1.5082601,
+        5.218684
+      ],
+      "radius": 0.66667366,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        10.082407,
+        2.4902723,
+        8.27024
+      ],
+      "radius": 0.69937456,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -9.299411,
+        1.412215,
+        7.3670025
+      ],
+      "radius": 0.4886225,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -8.527353,
+        2.0849411,
+        8.056497
+      ],
+      "radius": 0.580869,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -9.505124,
+        1.8715037,
+        10.813312
+      ],
+      "radius": 0.54003876,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -4.2511706,
+        3.868482,
+        8.8450775
+      ],
+      "radius": 0.35301098,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        0.41329852,
+        3.963162,
+        7.5899954
+      ],
+      "radius": 0.5848217,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -1.2855427,
+        4.4353456,
+        9.610888
+      ],
+      "radius": 0.695277,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -1.0098984,
+        0.80657405,
+        9.767352
+      ],
+      "radius": 0.37820205,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        1.5072492,
+        0.56441396,
+        9.007762
+      ],
+      "radius": 0.36596483,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        3.2179258,
+        1.2910875,
+        9.104263
+      ],
+      "radius": 0.6908609,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        7.944625,
+        2.2778625,
+        6.4203663
+      ],
+      "radius": 0.6718223,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        8.728186,
+        3.2276099,
+        8.549055
+      ],
+      "radius": 0.45635435,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        11.497724,
+        1.2186655,
+        10.876465
+      ],
+      "radius": 0.5889271,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -11.863579,
+        0.63061637,
+        11.437443
+      ],
+      "radius": 0.53106225,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -9.262631,
+        0.8231704,
+        14.458859
+      ],
+      "radius": 0.40189463,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -12.083194,
+        2.6900198,
+        15.937122
+      ],
+      "radius": 0.37215728,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -3.7324548,
+        3.760947,
+        9.51414
+      ],
+      "radius": 0.4999977,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -5.6463656,
+        0.81511277,
+        10.330436
+      ],
+      "radius": 0.6141586,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -1.2786193,
+        0.85219234,
+        11.928827
+      ],
+      "radius": 0.44724298,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        4.6702986,
+        2.2285302,
+        8.448236
+      ],
+      "radius": 0.44037485,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -1.0151435,
+        7.9976144,
+        10.713545
+      ],
+      "radius": 0.49328768,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        4.6313295,
+        1.5144925,
+        9.635258
+      ],
+      "radius": 0.5993701,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        5.3914704,
+        1.5643348,
+        12.399581
+      ],
+      "radius": 0.63681114,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        7.076124,
+        0.55008566,
+        11.238746
+      ],
+      "radius": 0.5189612,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        11.753193,
+        3.5430624,
+        9.757032
+      ],
+      "radius": 0.58038706,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -12.13116,
+        2.685115,
+        12.9784975
+      ],
+      "radius": 0.43529382,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -10.439001,
+        7.4885125,
+        15.270355
+      ],
+      "radius": 0.47486442,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -5.7092896,
+        3.0225055,
+        13.922642
+      ],
+      "radius": 0.3928314,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -5.048957,
+        3.7127926,
+        13.038282
+      ],
+      "radius": 0.68006605,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -4.1807075,
+        1.9981221,
+        12.546314
+      ],
+      "radius": 0.53816974,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        1.1984172,
+        1.8584721,
+        11.990467
+      ],
+      "radius": 0.6243862,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        2.8565505,
+        3.7468317,
+        13.865034
+      ],
+      "radius": 0.50625956,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        1.971553,
+        1.1188542,
+        13.541529
+      ],
+      "radius": 0.44521314,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        2.8357131,
+        0.83002734,
+        14.318544
+      ],
+      "radius": 0.606676,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        7.1344147,
+        2.6538184,
+        11.582987
+      ],
+      "radius": 0.6090609,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        8.704366,
+        0.93502575,
+        12.106702
+      ],
+      "radius": 0.6869885,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        11.542591,
+        1.9664794,
+        12.439303
+      ],
+      "radius": 0.42756867,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -12.26535,
+        0.7969991,
+        14.89659
+      ],
+      "radius": 0.44536954,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -6.511301,
+        2.4372804,
+        13.929723
+      ],
+      "radius": 0.3982379,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -4.2769504,
+        0.96568316,
+        13.453823
+      ],
+      "radius": 0.39407712,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -4.8814797,
+        3.443505,
+        9.599309
+      ],
+      "radius": 0.3680675,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -2.218902,
+        1.2330097,
+        15.3382845
+      ],
+      "radius": 0.63946027,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -2.5950623,
+        1.3891782,
+        14.1826
+      ],
+      "radius": 0.49129206,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -1.2146941,
+        2.2801287,
+        14.235415
+      ],
+      "radius": 0.41032672,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -1.2750039,
+        1.9972717,
+        11.704707
+      ],
+      "radius": 0.54766655,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        3.933361,
+        1.5128665,
+        13.223464
+      ],
+      "radius": 0.65429544,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        6.453236,
+        1.9260414,
+        13.192643
+      ],
+      "radius": 0.6531085,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        8.887137,
+        2.5179343,
+        13.978261
+      ],
+      "radius": 0.463767,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        10.264175,
+        2.3662467,
+        16.475998
+      ],
+      "radius": 0.57921433,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -13.60611,
+        3.4315608,
+        14.826128
+      ],
+      "radius": 0.5254968,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -7.655264,
+        1.4493165,
+        14.044993
+      ],
+      "radius": 0.6971623,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -7.0194073,
+        0.74068177,
+        15.558376
+      ],
+      "radius": 0.43632513,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -2.8307695,
+        3.0585964,
+        17.936348
+      ],
+      "radius": 0.5535916,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -1.0959065,
+        1.8202298,
+        17.830246
+      ],
+      "radius": 0.45230365,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -0.62110883,
+        2.919773,
+        18.308912
+      ],
+      "radius": 0.523386,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        0.9050858,
+        1.9497758,
+        16.400356
+      ],
+      "radius": 0.45000446,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        3.8638725,
+        5.699514,
+        17.112183
+      ],
+      "radius": 0.55181134,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        2.957838,
+        3.2539723,
+        17.687729
+      ],
+      "radius": 0.41190785,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        3.5250635,
+        1.0497907,
+        15.580824
+      ],
+      "radius": 0.65965176,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        8.238553,
+        0.8609128,
+        18.427483
+      ],
+      "radius": 0.61771715,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        10.663044,
+        0.80444527,
+        17.385378
+      ],
+      "radius": 0.45995727,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -8.326689,
+        1.3119881,
+        22.38571
+      ],
+      "radius": 0.6524456,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -5.7037344,
+        3.1099186,
+        20.222416
+      ],
+      "radius": 0.39813602,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -5.439335,
+        0.80165493,
+        18.307804
+      ],
+      "radius": 0.52779514,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -3.3333538,
+        3.5017118,
+        19.20534
+      ],
+      "radius": 0.41647473,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -3.067936,
+        0.5310053,
+        17.84865
+      ],
+      "radius": 0.5155628,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -1.3009956,
+        2.6002388,
+        16.724823
+      ],
+      "radius": 0.3611412,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        0.80890346,
+        1.8521583,
+        17.875648
+      ],
+      "radius": 0.6822511,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        4.5210066,
+        4.620627,
+        17.689718
+      ],
+      "radius": 0.6220014,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        4.5897393,
+        1.9098115,
+        20.458075
+      ],
+      "radius": 0.4149061,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        5.885466,
+        1.0293732,
+        20.092257
+      ],
+      "radius": 0.6445886,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        4.9602947,
+        4.242779,
+        15.175765
+      ],
+      "radius": 0.40462816,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        13.150818,
+        0.9506359,
+        15.670346
+      ],
+      "radius": 0.56592065,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -10.637814,
+        1.9931235,
+        19.506315
+      ],
+      "radius": 0.40316585,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -8.153398,
+        2.012265,
+        20.450476
+      ],
+      "radius": 0.42230734,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -5.224354,
+        1.4964738,
+        21.66855
+      ],
+      "radius": 0.5538274,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -4.2604938,
+        3.4148326,
+        21.442123
+      ],
+      "radius": 0.4580781,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -3.2139633,
+        0.9335238,
+        19.302916
+      ],
+      "radius": 0.57648444,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        -2.2683015,
+        1.7979535,
+        18.852509
+      ],
+      "radius": 0.67129457,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        2.2750616,
+        1.9380186,
+        19.124449
+      ],
+      "radius": 0.62609154,
+      "material": {
+        "color": [
+          0.02,
+          0.85,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        0.90390646,
+        2.7373993,
+        23.163012
+      ],
+      "radius": 0.4821853,
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        3.502288,
+        1.951055,
+        20.467619
+      ],
+      "radius": 0.3610974,
+      "material": {
+        "color": [
+          0.5,
+          0.12,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        5.194747,
+        0.60880136,
+        21.578545
+      ],
+      "radius": 0.51361704,
+      "material": {
+        "color": [
+          1,
+          0.42,
+          0.22
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        9.626257,
+        0.9603183,
+        21.656166
+      ],
+      "radius": 0.50456923,
+      "material": {
+        "color": [
+          0.12,
+          0.55,
+          1
+        ],
+        "diffuse": 0.72,
+        "reflection": 0.28,
+        "specular": 0.2,
+        "shininess": 100,
+        "emission": 0.18
+      }
+    },
+    {
+      "type": "sphere",
+      "center": [
+        9.105213,
+        1.5879328,
+        20.604073
+      ],
+      "radius": 0.5410074,
+      "material": {
+        "color": [
+          0.75,
+          0.8,
+          0.95
+        ],
+        "diffuse": 0.08,
+        "reflection": 0.9,
+        "specular": 0.2,
+        "shininess": 140
+      }
+    },
+    {
+      "type": "plane",
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "d": 0,
+      "material": {
+        "color": [
+          0.09,
+          0.045,
+          0.17
+        ],
+        "diffuse": 0.5,
+        "reflection": 0.65,
+        "specular": 0.08,
+        "shininess": 110,
+        "emission": 0.3
+      }
+    },
+    {
+      "type": "plane",
+      "normal": [
+        -0,
+        -0,
+        -1
+      ],
+      "d": 95,
+      "material": {
+        "color": [
+          0.055,
+          0.03,
+          0.14
+        ],
+        "diffuse": 0.7,
+        "reflection": 0,
+        "specular": 0,
+        "emission": 0.7
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        50,
+        8,
+        -32
+      ],
+      "max": [
+        50.15,
+        34,
+        10
+      ],
+      "material": {
+        "color": [
+          0.03,
+          0.85,
+          1
+        ],
+        "diffuse": 0,
+        "reflection": 0,
+        "specular": 0,
+        "emission": 1
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -50.15,
+        8,
+        -32
+      ],
+      "max": [
+        -50,
+        34,
+        10
+      ],
+      "material": {
+        "color": [
+          1,
+          0.05,
+          0.5
+        ],
+        "diffuse": 0,
+        "reflection": 0,
+        "specular": 0,
+        "emission": 1
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -30,
+        36,
+        -18
+      ],
+      "max": [
+        30,
+        36.1,
+        -8
+      ],
+      "material": {
+        "color": [
+          0.65,
+          0.4,
+          1
+        ],
+        "diffuse": 0,
+        "reflection": 0,
+        "specular": 0,
+        "emission": 1
+      }
+    },
+    {
+      "type": "light",
+      "center": [
+        18,
+        24,
+        -16
+      ],
+      "material": {
+        "color": [
+          0.35,
+          0.9,
+          1.1
+        ],
+        "diffuse": 0,
+        "reflection": 0,
+        "specular": 0
+      },
+      "visible": true
+    },
+    {
+      "type": "light",
+      "center": [
+        -18,
+        21,
+        -10
+      ],
+      "material": {
+        "color": [
+          1.1,
+          0.35,
+          0.7
+        ],
+        "diffuse": 0,
+        "reflection": 0,
+        "specular": 0
+      },
+      "visible": true
+    },
+    {
+      "type": "light",
+      "center": [
+        0,
+        26,
+        25
+      ],
+      "material": {
+        "color": [
+          0.65,
+          0.45,
+          1
+        ],
+        "diffuse": 0,
+        "reflection": 0,
+        "specular": 0
+      },
+      "visible": true
+    }
+  ]
+}

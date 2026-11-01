@@ -1,0 +1,435 @@
+{
+  "format": "raytracer-scene",
+  "version": 1,
+  "name": "skull-echo",
+  "camera": {
+    "position": [
+      0,
+      7,
+      -26
+    ],
+    "target": [
+      0,
+      5,
+      10
+    ]
+  },
+  "objects": [
+    {
+      "type": "mesh",
+      "obj": "assets/skull.obj",
+      "normalize": false,
+      "smooth": true,
+      "accelerate": true,
+      "fit": {
+        "height": 12,
+        "yawDegrees": 20.053522,
+        "x": 16,
+        "z": 10
+      },
+      "material": {
+        "color": [
+          0.76,
+          0.7,
+          0.58
+        ],
+        "diffuse": 0.85,
+        "reflection": 0.07,
+        "specular": 0.08,
+        "shininess": 80,
+        "emission": 0.055
+      }
+    },
+    {
+      "type": "mesh",
+      "obj": "assets/skull.obj",
+      "normalize": false,
+      "smooth": true,
+      "accelerate": true,
+      "fit": {
+        "height": 11.4,
+        "yawDegrees": -34.37747,
+        "x": -19,
+        "z": 9
+      },
+      "material": {
+        "color": [
+          0.3,
+          0.32,
+          0.34
+        ],
+        "diffuse": 0.48,
+        "reflection": 0.62,
+        "specular": 0.14,
+        "shininess": 120,
+        "emission": 0.035
+      }
+    },
+    {
+      "type": "plane",
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "d": 0,
+      "material": {
+        "color": [
+          0.065,
+          0.067,
+          0.07
+        ],
+        "diffuse": 0.4,
+        "reflection": 0.72,
+        "specular": 0.08,
+        "shininess": 110,
+        "emission": 0.2
+      }
+    },
+    {
+      "type": "plane",
+      "normal": [
+        -0,
+        -0,
+        -1
+      ],
+      "d": 95,
+      "material": {
+        "color": [
+          0.075,
+          0.073,
+          0.07
+        ],
+        "diffuse": 0.6,
+        "reflection": 0,
+        "specular": 0,
+        "emission": 0.55
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        11,
+        0,
+        6
+      ],
+      "max": [
+        21,
+        1,
+        14
+      ],
+      "material": {
+        "color": [
+          0.11,
+          0.115,
+          0.12
+        ],
+        "diffuse": 0.65,
+        "reflection": 0.15,
+        "specular": 0.06,
+        "shininess": 80
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        11.2,
+        1,
+        6.2
+      ],
+      "max": [
+        20.8,
+        1.08,
+        13.8
+      ],
+      "material": {
+        "color": [
+          0.36,
+          0.27,
+          0.15
+        ],
+        "diffuse": 0.7,
+        "reflection": 0.24,
+        "specular": 0.1,
+        "shininess": 80
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -24,
+        0,
+        5
+      ],
+      "max": [
+        -14,
+        1,
+        13
+      ],
+      "material": {
+        "color": [
+          0.11,
+          0.115,
+          0.12
+        ],
+        "diffuse": 0.65,
+        "reflection": 0.15,
+        "specular": 0.06,
+        "shininess": 80
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -23.8,
+        1,
+        5.2
+      ],
+      "max": [
+        -14.2,
+        1.08,
+        12.8
+      ],
+      "material": {
+        "color": [
+          0.36,
+          0.27,
+          0.15
+        ],
+        "diffuse": 0.7,
+        "reflection": 0.24,
+        "specular": 0.1,
+        "shininess": 80
+      }
+    },
+    {
+      "type": "rotated",
+      "quaternion": [
+        0.0144212525,
+        -0.8353344,
+        0,
+        0.5495529
+      ],
+      "position": [
+        20,
+        7.5,
+        3
+      ],
+      "primitive": {
+        "type": "box",
+        "min": [
+          -3.4,
+          -7,
+          -0.15
+        ],
+        "max": [
+          3.4,
+          7,
+          0.15
+        ],
+        "material": {
+          "color": [
+            0.36,
+            0.27,
+            0.15
+          ],
+          "diffuse": 0.7,
+          "reflection": 0.24,
+          "specular": 0.1,
+          "shininess": 80
+        }
+      }
+    },
+    {
+      "type": "rotated",
+      "quaternion": [
+        0.0144212525,
+        -0.8353344,
+        0,
+        0.5495529
+      ],
+      "position": [
+        20,
+        7.5,
+        3
+      ],
+      "primitive": {
+        "type": "box",
+        "min": [
+          -3.2,
+          -6.8,
+          0.15
+        ],
+        "max": [
+          3.2,
+          6.8,
+          0.18
+        ],
+        "material": {
+          "color": [
+            0.15,
+            0.16,
+            0.17
+          ],
+          "diffuse": 0.015,
+          "reflection": 0.98,
+          "specular": 0.015,
+          "shininess": 120
+        }
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        60,
+        8,
+        -40
+      ],
+      "max": [
+        60.15,
+        30,
+        8
+      ],
+      "material": {
+        "color": [
+          0.85,
+          0.75,
+          0.6
+        ],
+        "diffuse": 0,
+        "reflection": 0,
+        "specular": 0,
+        "emission": 1
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -60.15,
+        8,
+        -40
+      ],
+      "max": [
+        -60,
+        30,
+        8
+      ],
+      "material": {
+        "color": [
+          0.55,
+          0.6,
+          0.66
+        ],
+        "diffuse": 0,
+        "reflection": 0,
+        "specular": 0,
+        "emission": 1
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -35,
+        40,
+        -18
+      ],
+      "max": [
+        35,
+        40.1,
+        -8
+      ],
+      "material": {
+        "color": [
+          0.75,
+          0.77,
+          0.8
+        ],
+        "diffuse": 0,
+        "reflection": 0,
+        "specular": 0,
+        "emission": 1
+      }
+    },
+    {
+      "type": "box",
+      "min": [
+        -32,
+        22,
+        -40
+      ],
+      "max": [
+        32,
+        24,
+        -39.9
+      ],
+      "material": {
+        "color": [
+          0.85,
+          0.78,
+          0.66
+        ],
+        "diffuse": 0,
+        "reflection": 0,
+        "specular": 0,
+        "emission": 1
+      }
+    },
+    {
+      "type": "light",
+      "center": [
+        18,
+        22,
+        -12
+      ],
+      "material": {
+        "color": [
+          0.95,
+          0.8,
+          0.62
+        ],
+        "diffuse": 0,
+        "reflection": 0,
+        "specular": 0
+      },
+      "visible": true
+    },
+    {
+      "type": "light",
+      "center": [
+        -22,
+        16,
+        -10
+      ],
+      "material": {
+        "color": [
+          0.62,
+          0.66,
+          0.73
+        ],
+        "diffuse": 0,
+        "reflection": 0,
+        "specular": 0
+      },
+      "visible": true
+    },
+    {
+      "type": "light",
+      "center": [
+        0,
+        22,
+        28
+      ],
+      "material": {
+        "color": [
+          0.6,
+          0.62,
+          0.65
+        ],
+        "diffuse": 0,
+        "reflection": 0,
+        "specular": 0
+      },
+      "visible": true
+    }
+  ]
+}
