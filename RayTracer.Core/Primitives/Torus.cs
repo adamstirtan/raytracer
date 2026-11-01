@@ -34,33 +34,93 @@ public class Torus : Primitive
 
     public override RayIntersection Intersects(Ray ray, ref float distance)
     {
-        const int maxSteps = 512;
-        const float hitEps = 5e-4f;
+        // Analytic torus intersection: the torus (axis Y, ring in the XZ plane)
+        // is the quartic (|p|^2 + R^2 - r^2)^2 - 4 R^2 (x^2 + z^2) = 0.
+        // Substituting p(t) = origin + t * direction gives a quartic in t.
+        // Roots are found by scanning the bounding-sphere interval for sign
+        // changes and bisecting them. This replaces the previous SDF sphere
+        // tracing, which failed for rays already inside the tube (exactly the
+        // refracted rays a glass torus produces): marching by |SDF| inside
+        // the tube converges to the wrong surface or stalls, so glass tori
+        // rendered black. The analytic form gives the exact first hit, and
+        // whether it is an entry (Hit) or an exit (Inside) follows from
+        // whether the ray origin is inside the tube.
         Vector3 origin = ray.Origin - Center;
-        float speed = ray.Direction.Length();
-        if (speed == 0f) return RayIntersection.Miss;
+        Vector3 dir = ray.Direction;
+        if (dir == Vector3.Zero) return RayIntersection.Miss;
 
-        // Restrict marching to the bounding sphere, rather than an arbitrary world range.
-        float bound = MajorRadius + MinorRadius + hitEps;
-        float a = Vector3.Dot(ray.Direction, ray.Direction);
-        float b = Vector3.Dot(origin, ray.Direction);
-        float c = Vector3.Dot(origin, origin) - bound * bound;
-        float discriminant = b * b - a * c;
-        if (discriminant < 0f) return RayIntersection.Miss;
-        float root = System.MathF.Sqrt(discriminant);
-        float end = System.MathF.Min(distance, (-b + root) / a);
-        float t = System.MathF.Max(1e-6f, (-b - root) / a);
+        float r = MinorRadius;
+        float bigR = MajorRadius;
+
+        // Quartic coefficients for f(t) = c4 t^4 + c3 t^3 + c2 t^2 + c1 t + c0.
+        float a = Vector3.Dot(dir, dir);
+        float b = 2f * Vector3.Dot(origin, dir);
+        float g = Vector3.Dot(origin, origin) + bigR * bigR - r * r;
+        float radial0 = origin.X * origin.X + origin.Z * origin.Z;
+        float radial1 = 2f * (origin.X * dir.X + origin.Z * dir.Z);
+        float radial2 = dir.X * dir.X + dir.Z * dir.Z;
+        float c4 = a * a;
+        float c3 = 2f * a * b;
+        float c2 = b * b + 2f * a * g - 4f * bigR * bigR * radial2;
+        float c1 = 2f * b * g - 4f * bigR * bigR * radial1;
+        float c0 = g * g - 4f * bigR * bigR * radial0;
+
+        float F(float t) => ((c4 * t + c3) * t + c2) * t * t + c1 * t + c0;
+
+        // Restrict the search to the bounding sphere, and to the caller's
+        // maximum distance (a hit beyond it is a miss, and distance is
+        // left unchanged, matching the other primitives).
+        float bound = bigR + r;
+        float qa = a;
+        float qb = 2f * Vector3.Dot(origin, dir);
+        float qc = Vector3.Dot(origin, origin) - bound * bound;
+        float qdisc = qb * qb - 4f * qa * qc;
+        if (qdisc < 0f) return RayIntersection.Miss;
+        float qroot = System.MathF.Sqrt(qdisc);
+        float tStart = System.MathF.Max(1e-4f, (-qb - qroot) / (2f * qa));
+        float tEnd = System.MathF.Min(distance, (-qb + qroot) / (2f * qa));
+        if (tStart >= tEnd) return RayIntersection.Miss;
+
+        // Scan for sign changes. Steps are dense enough that a ray crossing
+        // the tube cannot jump over it: at least 512 steps, and a step no
+        // larger than half the tube radius.
+        int steps = (int)System.MathF.Max(512f, System.MathF.Ceiling((tEnd - tStart) / (r * 0.5f)));
+        float step = (tEnd - tStart) / steps;
+        float tPrev = tStart;
+        float fPrev = F(tPrev);
         bool inside = SDF(origin) < 0f;
 
-        for (int i = 0; i < maxSteps && t < distance && t <= end; i++)
+        for (int i = 1; i <= steps; i++)
         {
-            float d = SDF(origin + ray.Direction * t);
-            if (System.MathF.Abs(d) < hitEps)
+            float t = i == steps ? tEnd : tStart + i * step;
+            float f = F(t);
+            if (System.MathF.Abs(f) < 1e-4f || fPrev * f < 0f)
             {
-                distance = t;
-                return inside ? RayIntersection.Inside : RayIntersection.Hit;
+                // Bisect the sign change (or accept the near-zero sample).
+                float lo = tPrev, hi = t, fLo = fPrev;
+                if (System.MathF.Abs(f) >= 1e-4f)
+                {
+                    for (int j = 0; j < 60; j++)
+                    {
+                        float mid = 0.5f * (lo + hi);
+                        float fMid = F(mid);
+                        if (fLo * fMid <= 0f) hi = mid;
+                        else { lo = mid; fLo = fMid; }
+                    }
+                }
+                else
+                {
+                    hi = t;
+                }
+                if (hi > 1e-4f && hi < distance)
+                {
+                    distance = hi;
+                    return inside ? RayIntersection.Inside : RayIntersection.Hit;
+                }
+                return RayIntersection.Miss;
             }
-            t += System.MathF.Abs(d) / speed;
+            tPrev = t;
+            fPrev = f;
         }
         return RayIntersection.Miss;
     }
