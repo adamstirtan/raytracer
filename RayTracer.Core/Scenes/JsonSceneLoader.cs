@@ -366,6 +366,8 @@ public static class JsonSceneLoader
         if (el.TryGetProperty("shininess", out JsonElement s) && s.ValueKind == JsonValueKind.Number)
             material.Shininess = s.GetSingle();
         material.Emission = OptFloat(el, "emission", 0f);
+        material.Ior = OptFloat(el, "ior", 1f);
+        material.Transmission = OptFloat(el, "transmission", 0f);
         return material;
     }
 
@@ -431,9 +433,15 @@ public static class JsonSceneLoader
         if (el.ValueKind != JsonValueKind.Object)
             throw new InvalidDataException($"{ctx}: environment must be an object with 'type', or the string 'nightSky'.");
         string type = ReqString(el, "type", ctx).ToLowerInvariant();
+        if (type == "solid")
+        {
+            // Parse eagerly: the returned lambda runs after the JsonDocument
+            // is disposed, so it must not capture the JsonElement itself.
+            Vector3 solidColor = ReqVec3(el, "color", ctx);
+            return _ => solidColor;
+        }
         return type switch
         {
-            "solid" => _ => ReqVec3(el, "color", ctx),
             "studio" => StudioEnvironment(
                 ReqVec3(el, "dark", ctx), ReqVec3(el, "light", ctx),
                 OptFloat(el, "yFactor", 0f), ParseApertures(el, ctx)),

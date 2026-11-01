@@ -23,4 +23,8 @@ public class Material
     public float? Shininess { get; set; }
     public float Reflection { get; set; }
     public float Emission { get; set; }
+    /// <summary>Index of refraction (1.0 = air, ~1.5 = glass). Only used when <see cref="Transmission"/> is greater than 0.</summary>
+    public float Ior { get; set; } = 1f;
+    /// <summary>Fraction of light that may pass through the material (0 = opaque, 1 = fully transmissive).</summary>
+    public float Transmission { get; set; }
 }

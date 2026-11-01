@@ -153,6 +153,7 @@ public class Engine
         float minDistance = float.MaxValue;
         Primitive? closest = null;
         Vector3 closestNormal = Vector3.Zero;
+        bool closestInside = false;
 
         foreach (Primitive primitive in scene)
         {
@@ -162,8 +163,9 @@ public class Engine
             {
                 minDistance = result.Distance;
                 closest = primitive;
+                closestInside = result.RayIntersection == RayIntersection.Inside;
                 // Exit intersections shade the interior-facing side of the surface.
-                closestNormal = result.RayIntersection == RayIntersection.Inside
+                closestNormal = closestInside
                     ? -result.Normal
                     : result.Normal;
             }
@@ -221,16 +223,64 @@ public class Engine
                 color += baseColor * 0.08f; // Adjust the factor as needed
             }
 
-            if (!options.DisableReflections && closest.Material.Reflection > 0 && depth < options.TraceDepth)
+            if (!options.DisableReflections && depth < options.TraceDepth)
             {
-                Vector3 reflectionDirection = Vector3.Normalize(Vector3.Reflect(ray.Direction, normal));
-                Ray reflectedRay = new(intersection + reflectionDirection * 0.001f, reflectionDirection);
-                Vector3 reflectedColor = Vector3.Zero;
-                float reflectedDistance = float.MaxValue;
+                float transmission = System.Math.Clamp(closest.Material.Transmission, 0f, 1f);
+                if (transmission > 0 && closest.Material.Ior > 0)
+                {
+                    // Refraction (Snell's law) with Schlick's Fresnel approximation.
+                    // closestNormal already faces the incoming ray, so cosI is positive.
+                    // Inside the material, the ray is exiting into air (n = 1).
+                    float n1 = closestInside ? closest.Material.Ior : 1f;
+                    float n2 = closestInside ? 1f : closest.Material.Ior;
+                    float eta = n1 / n2;
+                    float cosI = System.Math.Clamp(-Vector3.Dot(ray.Direction, normal), 0f, 1f);
+                    float sin2T = eta * eta * (1f - cosI * cosI);
+                    // Schlick's approximation to the Fresnel reflectance.
+                    float r0 = (n1 - n2) / (n1 + n2);
+                    r0 *= r0;
+                    float fresnel = r0 + (1f - r0) * MathF.Pow(1f - cosI, 5f);
 
-                Raytrace(scene, options, reflectedRay, ref reflectedColor, depth + 1, ref reflectedDistance);
+                    Vector3 reflectionDirection = Vector3.Normalize(Vector3.Reflect(ray.Direction, normal));
+                    Ray reflectedRay = new(intersection + reflectionDirection * 0.001f, reflectionDirection);
+                    Vector3 reflectedColor = Vector3.Zero;
+                    float reflectedDistance = float.MaxValue;
+                    Raytrace(scene, options, reflectedRay, ref reflectedColor, depth + 1, ref reflectedDistance);
+                    color += fresnel * reflectedColor;
 
-                color += closest.Material.Reflection * reflectedColor;
+                    if (sin2T <= 1f)
+                    {
+                        // Total internal reflection (sin2T > 1) reflects everything,
+                        // which the Fresnel term above already approximates at 1
+                        // for grazing exits; here there is a real refracted ray.
+                        float cosT = MathF.Sqrt(1f - sin2T);
+                        Vector3 refractedDirection = Vector3.Normalize(
+                            eta * ray.Direction + (eta * cosI - cosT) * normal);
+                        Ray refractedRay = new(intersection + refractedDirection * 0.001f, refractedDirection);
+                        Vector3 refractedColor = Vector3.Zero;
+                        float refractedDistance = float.MaxValue;
+                        Raytrace(scene, options, refractedRay, ref refractedColor, depth + 1, ref refractedDistance);
+                        color += (1f - fresnel) * transmission * refractedColor;
+                    }
+                    else
+                    {
+                        // No refracted ray exists: everything reflects internally.
+                        // The Fresnel weight above is < 1 at non-grazing angles,
+                        // so top it up to a full reflection.
+                        color += (1f - fresnel) * reflectedColor;
+                    }
+                }
+                else if (closest.Material.Reflection > 0)
+                {
+                    Vector3 reflectionDirection = Vector3.Normalize(Vector3.Reflect(ray.Direction, normal));
+                    Ray reflectedRay = new(intersection + reflectionDirection * 0.001f, reflectionDirection);
+                    Vector3 reflectedColor = Vector3.Zero;
+                    float reflectedDistance = float.MaxValue;
+
+                    Raytrace(scene, options, reflectedRay, ref reflectedColor, depth + 1, ref reflectedDistance);
+
+                    color += closest.Material.Reflection * reflectedColor;
+                }
             }
         }
 
@@ -248,6 +298,9 @@ public class Engine
         {
             // Lights are emitters, including the non-geometric point lights used by scenes.
             if (primitive is Light) continue;
+            // Transmissive materials let light through: a glass object must not
+            // cast a solid shadow. (True caustics are out of scope for v1.)
+            if (primitive.Material.Transmission > 0) continue;
             float distance = maxDistance;
             RayIntersection result = primitive.Intersects(shadowRay, ref distance);
             if (result != RayIntersection.Miss && distance >= 0f && distance < maxDistance)

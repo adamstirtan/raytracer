@@ -50,12 +50,16 @@ single number, meaning a grey `(v, v, v)`.
 ## Materials
 
 ```json
-{ "color": [0.9, 0.08, 0.05], "diffuse": 0.8, "reflection": 0.55, "specular": 0.9, "shininess": 80, "emission": 0.07 }
+{ "color": [0.9, 0.08, 0.05], "diffuse": 0.8, "reflection": 0.55, "specular": 0.9, "shininess": 80, "emission": 0.07, "ior": 1.5, "transmission": 1 }
 ```
 
 All fields except `color` are optional and default to 0; `shininess` defaults
 to "unspecified" (the engine then falls back to `specular` as the highlight
-exponent, exactly as the `Material` class does). An object may give its
+exponent, exactly as the `Material` class does). `ior` defaults to 1 (air)
+and `transmission` to 0 (opaque); a material with `transmission > 0` refracts
+light by Snell's law with that index of refraction, blending reflection and
+refraction by Schlick's Fresnel approximation, and it does not cast a shadow
+(true caustics are not modelled). An object may give its
 material inline, or as a string naming an entry in `materials`.
 
 ## Textures
