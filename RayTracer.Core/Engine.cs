@@ -198,7 +198,11 @@ public class Engine
                 float lightDistance = toLight.Length();
                 if (lightDistance <= 0.001f) continue;
                 Vector3 lightDirection = toLight / lightDistance;
-                if (IsOccluded(scene, intersection, lightDirection, lightDistance)) continue;
+                // Pass the geometric (outward) normal: closestNormal is
+                // flipped for Inside hits, and the shadow bias must push
+                // the ray out of the surface, not further into it.
+                Vector3 outwardNormal = closestInside ? -normal : normal;
+                if (IsOccluded(scene, intersection, outwardNormal, lightDirection, lightDistance)) continue;
                 float dot = Vector3.Dot(normal, lightDirection);
 
                 if (!options.DisableDiffuse && dot > 0)
@@ -287,11 +291,19 @@ public class Engine
         return closest;
     }
 
-    private static bool IsOccluded(Scene scene, Vector3 position, Vector3 lightDirection, float lightDistance)
+    private static bool IsOccluded(Scene scene, Vector3 position, Vector3 outwardNormal, Vector3 lightDirection, float lightDistance)
     {
-        // Offset toward the light to avoid hitting the originating surface at t = 0.
+        // Offset along the surface normal, not just toward the light.
+        // The old light-direction-only bias (0.001) left a shadow ray
+        // starting essentially on the surface whenever the light was
+        // near the terminator (light direction almost tangent), so the
+        // torus scan re-detected its own surface and the shadow
+        // terminator came out as a speckled line at the tube equator.
+        // A 0.01 normal offset puts the ray clearly outside the surface
+        // regardless of light angle, while genuine occluders are much
+        // farther away than that.
         const float bias = 0.001f;
-        Ray shadowRay = new(position + lightDirection * bias, lightDirection);
+        Ray shadowRay = new(position + outwardNormal * 0.01f + lightDirection * bias, lightDirection);
         float maxDistance = lightDistance - bias;
 
         foreach (Primitive primitive in scene)
@@ -303,7 +315,14 @@ public class Engine
             if (primitive.Material.Transmission > 0) continue;
             float distance = maxDistance;
             RayIntersection result = primitive.Intersects(shadowRay, ref distance);
-            if (result != RayIntersection.Miss && distance >= 0f && distance < maxDistance)
+            // Ignore hits within 0.05 of the shaded point: those are the
+            // point's own surface, re-detected by a curved primitive
+            // (notably the torus, whose scan can report its own surface
+            // for a shadow ray leaving at a grazing angle). Without this,
+            // the shadow boundary on a torus came out as single-pixel
+            // speckle instead of a clean terminator. Genuine occluders
+            // are farther away than 0.05 in any scene at this scale.
+            if (result != RayIntersection.Miss && distance >= 0.05f && distance < maxDistance)
                 return true;
         }
 

@@ -77,7 +77,16 @@ public class Torus : Primitive
         float qdisc = qb * qb - 4f * qa * qc;
         if (qdisc < 0f) return RayIntersection.Miss;
         float qroot = System.MathF.Sqrt(qdisc);
-        float tStart = System.MathF.Max(1e-4f, (-qb - qroot) / (2f * qa));
+        // Secondary rays are offset 0.001 from the surface they left, so a
+        // scan starting at 1e-4 could re-detect that same surface (its
+        // implicit value is still near zero a step or two out, especially
+        // for shadow rays leaving at a grazing angle) and report a spurious
+        // self-hit. That showed up as single-pixel speckle: a shadow ray
+        // that "hit" its own torus shadowed that pixel. Start the scan
+        // 0.02 out instead; the tube is 0.4 in radius, so a genuine exit
+        // for a ray starting inside is never that close, and primary rays
+        // start at the bounding-sphere entry, which is farther still.
+        float tStart = System.MathF.Max(0.02f, (-qb - qroot) / (2f * qa));
         float tEnd = System.MathF.Min(distance, (-qb + qroot) / (2f * qa));
         if (tStart >= tEnd) return RayIntersection.Miss;
 

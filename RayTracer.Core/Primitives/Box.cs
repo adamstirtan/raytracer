@@ -47,7 +47,11 @@ public class Box : Primitive
         if (t > 1e-6f && t < distance)
         {
             distance = t;
-            return RayIntersection.Hit;
+            // tmin <= 1e-6 means the ray started inside the box and t is
+            // the exit, so report Inside (as spheres do) or a refracted
+            // ray exiting a glass box would be bent back inside it, the
+            // same bug cylinders had.
+            return tmin > 1e-6f ? RayIntersection.Hit : RayIntersection.Inside;
         }
 
         return RayIntersection.Miss;

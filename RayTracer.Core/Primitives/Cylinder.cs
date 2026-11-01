@@ -73,7 +73,17 @@ public class Cylinder : Primitive
 
         if (!hit) return RayIntersection.Miss;
         distance = closestDistance;
-        return RayIntersection.Hit;
+        // A ray starting inside the cylinder (exactly what a refracted ray
+        // is, after it enters) hits the exit surface. That must be reported
+        // as Inside, or the engine treats the exit as a second entry: it
+        // refracts with eta 1/ior instead of ior/1, bending the ray back
+        // into the cylinder, which then bounces around inside it until the
+        // depth limit is hit. That chaotic internal bouncing was the
+        // speckled mosaic in a glass/water cylinder. Spheres already do
+        // this; cylinders did not.
+        bool originInside = o.X * o.X + o.Z * o.Z < Radius * Radius
+            && System.MathF.Abs(o.Y) < halfHeight;
+        return originInside ? RayIntersection.Inside : RayIntersection.Hit;
     }
 
     public override Vector3 GetNormal(Vector3 position)
