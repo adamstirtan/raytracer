@@ -107,14 +107,22 @@ public class Engine
 
                 Vector3 accum = Vector3.Zero;
 
-                // simple stratified grid within pixel
+                // Stratified random sampling within each pixel. The old
+                // code used the centre of every subpixel cell (0.5), a
+                // fixed grid, so a hard edge (silhouette, shadow
+                // terminator, reflection horizon) landed on the same
+                // subpixel positions in every pixel and came out as a
+                // sharp, stair-stepped, speckled line. A random offset
+                // inside each cell, deterministic per pixel so renders
+                // are reproducible and thread-safe with no shared RNG,
+                // turns those edges into a soft 1-2 pixel gradient:
+                // pixels straddling an edge get a mix of both sides.
                 for (int sy = 0; sy < side; sy++)
                 {
                     for (int sx = 0; sx < side; sx++)
                     {
-                        // jitter within subpixel
-                        float jitterX = (sx + 0.5f) / side;
-                        float jitterY = (sy + 0.5f) / side;
+                        float jitterX = (sx + Hash01(x, y, sx, sy, 0)) / side;
+                        float jitterY = (sy + Hash01(x, y, sx, sy, 1)) / side;
 
                         Vector3 pixelPosSS = pixelStart + camRight * ((x + _options.HorizontalOffset + jitterX) * deltaX) - camUp * (jitterY * deltaY);
                         Vector3 dirSS = Vector3.Normalize(pixelPosSS - camPos);
@@ -141,6 +149,20 @@ public class Engine
         OnRenderCompleted(stopwatch.Elapsed);
 
         return render;
+    }
+
+    // Deterministic hash in [0, 1) from pixel / subpixel coordinates.
+    // SplitMix-style mixing; no shared state, so Parallel.For is safe
+    // and the same scene renders identically every run.
+    private static float Hash01(int x, int y, int sx, int sy, int channel)
+    {
+        uint h = (uint)x * 374761393u + (uint)y * 668265263u + (uint)sx * 974634211u + (uint)sy * 1274126177u + (uint)channel * 2654435761u;
+        h ^= h >> 16;
+        h *= 2246822519u;
+        h ^= h >> 13;
+        h *= 3266489917u;
+        h ^= h >> 16;
+        return (h & 0xFFFFFFu) / 16777216f;
     }
 
     private static Primitive? Raytrace(Scene scene, RenderOptions options, Ray ray, ref Vector3 color, int depth, ref float distance)

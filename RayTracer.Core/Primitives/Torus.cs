@@ -52,6 +52,40 @@ public class Torus : Primitive
         float r = MinorRadius;
         float bigR = MajorRadius;
 
+        // Hybrid: for rays starting outside the tube, sphere-trace with
+        // the exact SDF instead of scanning the quartic. The quartic
+        // scan samples F(t) on a fixed grid, so a ray that just grazes
+        // the tube (a shadow ray near the terminator, or a reflection
+        // ray near the floor/environment horizon) could be detected or
+        // missed depending on where the samples landed, giving a
+        // speckled, sharp line instead of a clean edge. Sphere tracing
+        // steps by the exact distance to the surface, so a grazing ray's
+        // step size shrinks as it approaches and the hit/miss decision
+        // is smooth, not grid-dependent. The analytic scan below is
+        // kept for rays starting inside the tube, where sphere tracing
+        // by |SDF| stalls — exactly the refracted rays that used to
+        // render a glass torus black.
+        if (SDF(origin) >= 0f)
+        {
+            float t = 0f;
+            for (int i = 0; i < 512; i++)
+            {
+                if (t >= distance) return RayIntersection.Miss;
+                float d = SDF(origin + dir * t);
+                if (d < 1e-4f)
+                {
+                    if (t > 1e-4f && t < distance)
+                    {
+                        distance = t;
+                        return RayIntersection.Hit;
+                    }
+                    return RayIntersection.Miss;
+                }
+                t += d;
+            }
+            return RayIntersection.Miss;
+        }
+
         // Quartic coefficients for f(t) = c4 t^4 + c3 t^3 + c2 t^2 + c1 t + c0.
         float a = Vector3.Dot(dir, dir);
         float b = 2f * Vector3.Dot(origin, dir);
@@ -134,21 +168,24 @@ public class Torus : Primitive
         return RayIntersection.Miss;
     }
 
-    private Vector3 EstimateNormal(Vector3 p)
-    {
-        // numerical gradient
-        float eps = 5e-5f;
-        float dx = SDF(new Vector3(p.X + eps, p.Y, p.Z)) - SDF(new Vector3(p.X - eps, p.Y, p.Z));
-        float dy = SDF(new Vector3(p.X, p.Y + eps, p.Z)) - SDF(new Vector3(p.X, p.Y - eps, p.Z));
-        float dz = SDF(new Vector3(p.X, p.Y, p.Z + eps)) - SDF(new Vector3(p.X, p.Y, p.Z - eps));
-        var n = new Vector3(dx, dy, dz);
-        if (n == Vector3.Zero) return Vector3.UnitY;
-        return Vector3.Normalize(n);
-    }
-
     public override Vector3 GetNormal(Vector3 position)
     {
-        return EstimateNormal(position - Center);
+        // Analytic normal: the vector from the tube's centre circle to
+        // the point. The old numerical SDF gradient (eps 5e-5, float32)
+        // was noisy enough that, right where a reflected ray is almost
+        // horizontal, a tiny normal error flipped the reflection between
+        // hitting the floor and missing to the environment. That showed
+        // up as a speckled line across the torus where the reflection
+        // switches from floor to environment, instead of a clean edge.
+        // On the surface, |p - centreCircle| == MinorRadius, so this is
+        // already unit length; normalise anyway for safety.
+        var p = position - Center;
+        float lenXZ = System.MathF.Sqrt(p.X * p.X + p.Z * p.Z);
+        if (lenXZ < 1e-6f) return Vector3.UnitY;
+        float radial = lenXZ - MajorRadius;
+        var n = new Vector3(radial * p.X / lenXZ, p.Y, radial * p.Z / lenXZ);
+        if (n == Vector3.Zero) return Vector3.UnitY;
+        return Vector3.Normalize(n);
     }
 
     public override Vector2 GetUV(Vector3 position)
